@@ -7,9 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.rando.dto.ItineraireDto;
 import com.rando.dto.UtilisateurDto;
-import com.rando.modele.Niveau;
 import com.rando.modele.Utilisateur;
 
 @Repository
@@ -41,7 +39,7 @@ public class UtilisateurDao {
 				.setParameter("id", utilisateurId).executeUpdate();
 	}
 	
-	public void supprimer(String nomUtilisateur) {	
-		em.createQuery("delete from Utilisateur u where u.pseudo = :pseudo").setParameter("pseudo", nomUtilisateur).executeUpdate();
+	public void supprimer(int utilisateurId) {	
+		em.createQuery("delete from Utilisateur u where u.id = :id").setParameter("id", utilisateurId).executeUpdate();
 	}
 }
