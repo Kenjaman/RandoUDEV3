@@ -2,7 +2,6 @@ package com.rando.modele;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -21,9 +20,9 @@ public class Etape implements Serializable {
 
 	private String description;
 
-	private BigDecimal latitude;
+	private Integer latitude;
 
-	private BigDecimal longitude;
+	private Integer longitude;
 
 	private String name;
 
@@ -56,19 +55,19 @@ public class Etape implements Serializable {
 		this.description = description;
 	}
 
-	public BigDecimal getLatitude() {
+	public Integer getLatitude() {
 		return this.latitude;
 	}
 
-	public void setLatitude(BigDecimal latitude) {
+	public void setLatitude(Integer latitude) {
 		this.latitude = latitude;
 	}
 
-	public BigDecimal getLongitude() {
+	public Integer getLongitude() {
 		return this.longitude;
 	}
 
-	public void setLongitude(BigDecimal longitude) {
+	public void setLongitude(Integer longitude) {
 		this.longitude = longitude;
 	}
 

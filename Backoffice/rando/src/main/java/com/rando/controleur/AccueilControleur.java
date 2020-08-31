@@ -10,4 +10,5 @@ public class AccueilControleur {
 	public String accueillir() {
 		return "accueil";
 	}
+	
 }
