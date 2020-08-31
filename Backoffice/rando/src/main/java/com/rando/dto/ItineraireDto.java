@@ -1,7 +1,10 @@
 package com.rando.dto;
 
+import java.util.List;
+
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.rando.modele.Etapeitineraire;
 import com.rando.modele.Niveau;
 
 public class ItineraireDto {
@@ -9,6 +12,21 @@ public class ItineraireDto {
 	private Niveau niveau;
 	@NotBlank(message = "Vous devez fournir un nom d'itineraire !")
 	private String nom;
+	private List<Etapeitineraire> etapeitineraires;
+
+	/**
+	 * @return the etapeitineraires
+	 */
+	public List<Etapeitineraire> getEtapeitineraires() {
+		return etapeitineraires;
+	}
+
+	/**
+	 * @param etapeitineraires the etapeitineraires to set
+	 */
+	public void setEtapeitineraires(List<Etapeitineraire> etapeitineraires) {
+		this.etapeitineraires = etapeitineraires;
+	}
 
 	/**
 	 * @return the id
