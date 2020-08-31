@@ -44,7 +44,7 @@ public class ItineraireDao {
 				.setParameter("id", itineraireId).executeUpdate();
 	}
 	
-	public void supprimerItineraire(String nomIteneraire) {	
-		em.createQuery("delete from Iteneraire i where i.nom = :nom").setParameter("nom", nomIteneraire).executeUpdate();
+	public void supprimerItineraire(int itineraireId) {	
+		em.createQuery("delete from Iteneraire i where i.nom = :nom").setParameter("nom", itineraireId).executeUpdate();
 	}
 }
