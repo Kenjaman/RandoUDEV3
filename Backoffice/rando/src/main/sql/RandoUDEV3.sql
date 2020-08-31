@@ -7,8 +7,7 @@ use RandoUDEV3;
 CREATE table if not exists `Itineraire` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `nom` varchar(255),
-  `niveau` ENUM ('Debutants', 'Normal', 'Confirme'),
-  `distance` int
+  `niveau` ENUM ('Debutants', 'Normal', 'Confirme')
 )ENGINE = INNODB;
 
 CREATE TABLE if not exists `Etape` (

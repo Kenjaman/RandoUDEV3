@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.rando.modele.Iteneraire;
+import com.rando.modele.Itineraire;
 
 @Repository
 public class ItineraireDao {
@@ -15,12 +15,12 @@ public class ItineraireDao {
 	@PersistenceContext
 	private EntityManager em;
 	
-	public Iteneraire getIteneraire(int iteneraireId) {
-		return em.find(Iteneraire.class, iteneraireId);
+	public Itineraire getIteneraire(int itineraireId) {
+		return em.find(Itineraire.class, itineraireId);
 	}
 	
-	public List<Iteneraire> getAllIteneraires() {
-		return em.createQuery("select i from Iteneraire i order by i.nom", Iteneraire.class).getResultList();
+	public List<Itineraire> getAllIteneraires() {
+		return em.createQuery("select i from Iteneraire i order by i.nom", Itineraire.class).getResultList();
 	}
 
 	public boolean existe(String nomIteneraire) {
