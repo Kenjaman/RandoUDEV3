@@ -83,6 +83,7 @@ public class EtapeControlleur {
 	@PostMapping("/etape/suppression")
 	public String supprimerEtape(Model model,@ModelAttribute EtapeDto etapeDto) {
 		//TODO Suppression d'Etape
+		etapeService.supprimer(etapeDto.getId());
 		return "redirect:/etapes";
 	}
 

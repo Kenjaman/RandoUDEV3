@@ -30,6 +30,11 @@ public class EtapeService {
 		
 	}
 
+	public void supprimer(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 }
