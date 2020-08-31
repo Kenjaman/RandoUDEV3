@@ -4,26 +4,23 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the itineraire database table.
  * 
  */
 @Entity
-@NamedQuery(name="Itineraire.findAll", query="SELECT i FROM Itineraire i")
+@NamedQuery(name = "Itineraire.findAll", query = "SELECT i FROM Itineraire i")
 public class Itineraire implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	private String niveau;
-
 	private String nom;
+	private Niveau niveau;
 
-	//bi-directional many-to-one association to Etapeitineraire
-	@OneToMany(mappedBy="itineraire")
+	// bi-directional many-to-one association to Etapeitineraire
+	@OneToMany(mappedBy = "itineraire")
 	private List<Etapeitineraire> etapeitineraires;
 
 	public Itineraire() {
@@ -37,11 +34,17 @@ public class Itineraire implements Serializable {
 		this.id = id;
 	}
 
-	public String getNiveau() {
-		return this.niveau;
+	/**
+	 * @return the niveau
+	 */
+	public Niveau getNiveau() {
+		return niveau;
 	}
 
-	public void setNiveau(String niveau) {
+	/**
+	 * @param niveau the niveau to set
+	 */
+	public void setNiveau(Niveau niveau) {
 		this.niveau = niveau;
 	}
 

@@ -7,13 +7,26 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import com.rando.dto.ItineraireDto;
+import com.rando.modele.Etapeitineraire;
 import com.rando.modele.Itineraire;
 
 @Repository
 public class ItineraireDao {
 
 	@PersistenceContext
-	private EntityManager em;
+	private EntityManager em;	
+
+	public boolean existe(String nomIteneraire) {
+		long nb = em.createQuery("select count(i) from Iteneraire i where lower(i.nom) = lower(:nom)", Long.class)
+				.setParameter("nom", nomIteneraire).getSingleResult();
+		return nb > 0;
+	}
+	
+	public void ajouterItineraire(Itineraire itineraire, Etapeitineraire etapeitineraire) {
+		em.persist(itineraire);
+		em.persist(etapeitineraire);
+	}
 	
 	public Itineraire getIteneraire(int itineraireId) {
 		return em.find(Itineraire.class, itineraireId);
@@ -23,13 +36,15 @@ public class ItineraireDao {
 		return em.createQuery("select i from Iteneraire i order by i.nom", Itineraire.class).getResultList();
 	}
 
-	public boolean existe(String nomIteneraire) {
-		long nb = em.createQuery("select count(i) from Iteneraire i where lower(i.nom) = lower(:nom)", Long.class)
-				.setParameter("nom", nomIteneraire).getSingleResult();
-		return nb > 0;
+	public void modifierItineraire(long itineraireId, ItineraireDto itineraireDto) {
+		em.createQuery(
+				"update Itineraire i set i.nom=:nom, i.niveau=:niveau where i.id=:id")
+				.setParameter("nom", itineraireDto.getNom())
+				.setParameter("niveau", itineraireDto.getNiveau())
+				.setParameter("id", itineraireId).executeUpdate();
 	}
 	
-	public void supprimer(String nomIteneraire) {	
+	public void supprimerItineraire(String nomIteneraire) {	
 		em.createQuery("delete from Iteneraire i where i.nom = :nom").setParameter("nom", nomIteneraire).executeUpdate();
 	}
 }

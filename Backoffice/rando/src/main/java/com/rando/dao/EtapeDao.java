@@ -15,6 +15,8 @@ public class EtapeDao {
 	@PersistenceContext
 	private EntityManager em;
 	
+
+	
 	public Etape getIteneraire(int etapeId) {
 		return em.find(Etape.class, etapeId);
 	}
