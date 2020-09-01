@@ -39,7 +39,7 @@ public class UtilisateurControleur {
 			utilisateurService.inscription(utilisateurDto);
 			String message = "Inscription réalisée avec succes...connectez-vous";
 			model.addAttribute("messageSucces", message);
-			return "raccueil";
+			return "accueil";
 		} catch (AfficheMessageException e) {
 			model.addAttribute("messageEchec", e.getMessage());
 			return "redirect:/renseignement";
