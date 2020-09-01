@@ -1,6 +1,5 @@
 package com.rando.modele;
 
-import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -29,9 +28,6 @@ public class Etape implements Serializable {
 
 	@Column(name="nb_like")
 	private Integer nbLike;
-
-	@Column(name="qr_code")
-	private BufferedImage qrCode;
 
 	//bi-directional many-to-one association to Etapeitineraire
 	@OneToMany(mappedBy="etape")
@@ -76,8 +72,8 @@ public class Etape implements Serializable {
 		return this.nom;
 	}
 
-	public void setNom(String name) {
-		this.nom = name;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public Integer getNbLike() {
@@ -88,13 +84,6 @@ public class Etape implements Serializable {
 		this.nbLike = nbLike;
 	}
 
-	public BufferedImage getQrCode() {
-		return this.qrCode;
-	}
-
-	public void setQrCode(BufferedImage bufferedImage) {
-		this.qrCode = bufferedImage;
-	}
 
 	public List<Etapeitineraire> getEtapeitineraires() {
 		return this.etapeitineraires;

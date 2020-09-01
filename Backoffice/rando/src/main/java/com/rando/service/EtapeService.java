@@ -45,7 +45,7 @@ public class EtapeService {
 				nEtape.setLongitude(etapeDto.getLongitude());
 				nEtape.setLatitude(etapeDto.getLatitude());
 				nEtape.setDescription(etapeDto.getDescription());
-				nEtape.setQrCode(generateQRCodeImage(etapeDto.getNom()+etapeDto.getDescription()+etapeDto.getLatitude()+etapeDto.getLongitude()));
+				//nEtape.setQrCode(generateQRCodeImage(etapeDto.getNom()+etapeDto.getDescription()+etapeDto.getLatitude()+etapeDto.getLongitude()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -65,7 +65,7 @@ public class EtapeService {
 				nEtape.setLongitude(etapeDto.getLongitude());
 				nEtape.setLatitude(etapeDto.getLatitude());
 				nEtape.setDescription(etapeDto.getDescription());
-				nEtape.setQrCode(generateQRCodeImage(etapeDto.getNom()+etapeDto.getDescription()+etapeDto.getLatitude()+etapeDto.getLongitude()));
+				//nEtape.setQrCode(generateQRCodeImage(etapeDto.getNom()+etapeDto.getDescription()+etapeDto.getLatitude()+etapeDto.getLongitude()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -85,13 +85,6 @@ public class EtapeService {
 
 	}
 
-	private static BufferedImage generateQRCodeImage(String barcodeText) throws Exception {
-		QRCodeWriter barcodeWriter = new QRCodeWriter();
-		BitMatrix bitMatrix = 
-				barcodeWriter.encode(barcodeText, BarcodeFormat.QR_CODE, 200, 200);
-
-		return MatrixToImageWriter.toBufferedImage(bitMatrix);
-	}
 
 
 }

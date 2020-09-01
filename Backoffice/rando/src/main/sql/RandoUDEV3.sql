@@ -14,7 +14,6 @@ CREATE TABLE if not exists `Etape` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `description` varchar(255),
-  `qr_code` varchar(255),
   `nb_like` int,
   `latitude` numeric,
   `longitude` numeric
