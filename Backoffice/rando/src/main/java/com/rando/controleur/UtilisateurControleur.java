@@ -18,27 +18,28 @@ public class UtilisateurControleur {
 
 	@Autowired
 	private UtilisateurService utilisateurService;
-	
+
 	@PostMapping("/authentification")
 	public String authentification(Model model, @Valid @ModelAttribute UtilisateurDto utilisateurDto) {
-		System.out.println("ici 1");
-		boolean result=utilisateurService.getConnectUser(utilisateurDto.getPseudo(), utilisateurDto.getMdp());
+		System.out.println("ici 1 " + utilisateurDto.getPseudo() + " " + utilisateurDto.getMdp());
+		boolean result = utilisateurService.getConnectUser(utilisateurDto.getPseudo(), utilisateurDto.getMdp());
 		model.addAttribute("statut", result);
-		return "redirect:/";
+		return "accueil";
 	}
-	
+
 	@GetMapping("/renseignement")
 	public String renseignement(Model model, @ModelAttribute UtilisateurDto utilisateurDto) {
 		return "renseignement";
 	}
-	
+
 	@PostMapping("/inscription")
 	public String inscription(Model model, @Valid @ModelAttribute UtilisateurDto utilisateurDto) {
+		System.out.println("ici 2 " + utilisateurDto.getPseudo() + " " + utilisateurDto.getMdp());
 		try {
 			utilisateurService.inscription(utilisateurDto);
 			String message = "Inscription réalisée avec succes...connectez-vous";
 			model.addAttribute("messageSucces", message);
-			return "redirect:/";
+			return "raccueil";
 		} catch (AfficheMessageException e) {
 			model.addAttribute("messageEchec", e.getMessage());
 			return "redirect:/renseignement";

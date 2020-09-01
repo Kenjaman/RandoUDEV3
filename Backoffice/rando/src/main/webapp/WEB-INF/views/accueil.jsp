@@ -76,8 +76,7 @@
 								<input type="text" id="login_username" name="pseudo"
 									class="form-control" placeholder="Nom d'utilisateur" value="" />
 								<input type="password" id="login_password" class="form-control"
-									name="mdp" placeholder="********" pattern="^[A-Z][a-z].{6}"
-									required="required" value="" />
+									name="mdp" placeholder="********" required="required" value="" />
 								<div class="modal-footer">
 									<button class="btn btn-success" type="submit">Connectez-vous</button>
 									<button class="btn btn-secondary">

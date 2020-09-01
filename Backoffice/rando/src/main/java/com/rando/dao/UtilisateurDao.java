@@ -17,8 +17,8 @@ public class UtilisateurDao {
 	private EntityManager em;
 
 	public boolean existe(String nomUtilisateur) {
-		long nb = em.createQuery("select count(u) from Utilisateur u where lower(.pseudo) = lower(:pseudo)", Long.class)
-				.setParameter("nom", nomUtilisateur).getSingleResult();
+		long nb = em.createQuery("select count(u) from Utilisateur u where lower(u.pseudo) = lower(:pseudo)", Long.class)
+				.setParameter("pseudo", nomUtilisateur).getSingleResult();
 		return nb > 0;
 	}
 	
