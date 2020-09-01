@@ -22,9 +22,8 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /.metadata/
-Backoffice/rando/src/main/resources/jdbc.properties
-<<<<<<< Updated upstream
+/Backoffice/rando/src/main/resources/jdbc.properties
 /Servers/
-=======
 *.properties
->>>>>>> Stashed changes
+Backoffice/rando/src/main/resources/jdbc.properties
+
