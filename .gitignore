@@ -23,4 +23,8 @@
 hs_err_pid*
 /.metadata/
 Backoffice/rando/src/main/resources/jdbc.properties
+<<<<<<< Updated upstream
 /Servers/
+=======
+*.properties
+>>>>>>> Stashed changes

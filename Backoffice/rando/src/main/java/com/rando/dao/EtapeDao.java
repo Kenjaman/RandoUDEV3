@@ -17,17 +17,17 @@ public class EtapeDao {
 	private EntityManager em;
 
 	public boolean existe(String nomEtape) {
-		long nb = em.createQuery("select count(i) from Etape e where lower(e.nom) = lower(:nom)", Long.class)
+		long nb = em.createQuery("select count(e) from Etape e where lower(e.nom) = lower(:nom)", Long.class)
 				.setParameter("nom", nomEtape).getSingleResult();
 		return nb > 0;
 	}
 
-	public Etape getIteneraire(int etapeId) {
+	public Etape getEtape(int etapeId) {
 		return em.find(Etape.class, etapeId);
 	}
 
 	public List<Etape> getAllEtapes() {
-		return em.createQuery("select e from Etape i order by e.nom", Etape.class).getResultList();
+		return em.createQuery("select e from Etape e order by e.nom", Etape.class).getResultList();
 	}
 
 	public void modifierEtape(int etapeId, EtapeDto etapeDto) {
