@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * The persistent class for the itineraire database table.
+ * The persistent class for the Itineraire database table.
  * 
  */
 @Entity
@@ -15,22 +15,24 @@ public class Itineraire implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String nom;
+	
+	@Enumerated(EnumType.STRING)
 	private Niveau niveau;
 
 	// bi-directional many-to-one association to Etapeitineraire
-	@OneToMany(mappedBy = "itineraire")
+	@OneToMany(mappedBy = "itineraire",orphanRemoval = true)
 	private List<Etapeitineraire> etapeitineraires;
 
 	public Itineraire() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

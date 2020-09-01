@@ -14,7 +14,7 @@ public class EtapeDto {
 	@NotBlank(message = "Vous devez indiquer une longitude !")
 	private BigDecimal longitude;
 	@NotBlank(message = "Vous devez donner un nom à cette étape !")
-	private String name;
+	private String nom;
 	private String qrCode;
 	private List<Etapeitineraire> etapeitineraires;
 	
@@ -69,14 +69,14 @@ public class EtapeDto {
 	/**
 	 * @return the name
 	 */
-	public String getName() {
-		return name;
+	public String getNom() {
+		return nom;
 	}
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setNom(String name) {
+		this.nom = name;
 	}
 	/**
 	 * @return the qrCode

@@ -27,7 +27,8 @@ public class ItineraireService {
 	
 	@Transactional
 	public void ajouter(ItineraireDto itineraireDto) {
-		if(itineraireDto != null && itineraireDao.existe(itineraireDto.getNom())) {
+//		if(itineraireDto != null && itineraireDao.existe(itineraireDto.getNom())) {
+		if(itineraireDto != null) {
 			Itineraire itineraire = new Itineraire();
 			itineraire.setNom(itineraireDto.getNom());
 			itineraire.setNiveau(itineraireDto.getNiveau());
@@ -50,10 +51,8 @@ public class ItineraireService {
         if (itineraire == null) {
             return;
         }
-//        if (! itineraire.getAnimaux().isEmpty()) {
-//            throw new AnimalExisteEncoreException("Cette espèce a encore des animaux.");
-//        }
         itineraireDao.supprimerItineraire(itineraireId);
+        
     }
 	
 

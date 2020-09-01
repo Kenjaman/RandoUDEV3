@@ -65,11 +65,11 @@ public class ItineraireControleur {
 	public String modifierItineraire(Model model,@PathVariable int itineraireId) {
 		model.addAttribute("itineraire",itineraireService.getItineraire(itineraireId));
 		model.addAttribute("niveaux", Niveau.values());
-		return "itineraire";	
+		return "itineraire";
 	}
 	
 	@PostMapping("/modifItineraire/{itineraireId}")
-	public String modifierItineraire(Model model,@PathVariable long itineraireId, @Valid @ModelAttribute ItineraireDto itineraireDto,BindingResult bindingResult) {
+	public String modifierItineraire(Model model,@PathVariable int itineraireId, @Valid @ModelAttribute ItineraireDto itineraireDto,BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			System.out.println("ya une erreur");
 			return "modifierItineraire";
@@ -82,9 +82,9 @@ public class ItineraireControleur {
 	
 	//Suppression
 	
-	@PostMapping("/itineraire/suppression")
-	public String supprimerItineraire(Model model,@ModelAttribute ItineraireDto itineraireDto) {
-		//TODO Suppression d'itineraireS
+	@PostMapping("/itineraire/suppression/{itineraireId}")
+	public String supprimerItineraire(@PathVariable int itineraireId) {
+		itineraireService.supprimer(itineraireId);
 		return "redirect:/itineraires";
 	}
 

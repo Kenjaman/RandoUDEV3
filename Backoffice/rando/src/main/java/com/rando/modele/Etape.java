@@ -16,7 +16,7 @@ public class Etape implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private String description;
 
@@ -24,10 +24,10 @@ public class Etape implements Serializable {
 
 	private Integer longitude;
 
-	private String name;
+	private String nom;
 
 	@Column(name="nb_like")
-	private int nbLike;
+	private Integer nbLike;
 
 	@Column(name="qr_code")
 	private String qrCode;
@@ -39,11 +39,11 @@ public class Etape implements Serializable {
 	public Etape() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -71,19 +71,19 @@ public class Etape implements Serializable {
 		this.longitude = longitude;
 	}
 
-	public String getName() {
-		return this.name;
+	public String getNom() {
+		return this.nom;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNom(String name) {
+		this.nom = name;
 	}
 
-	public int getNbLike() {
+	public Integer getNbLike() {
 		return this.nbLike;
 	}
 
-	public void setNbLike(int nbLike) {
+	public void setNbLike(Integer nbLike) {
 		this.nbLike = nbLike;
 	}
 
