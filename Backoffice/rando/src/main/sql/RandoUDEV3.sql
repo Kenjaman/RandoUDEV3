@@ -1,4 +1,4 @@
-drop database `RandoUDEV3`;
+drop database if exists `RandoUDEV3`;
 
 create database if not exists `RandoUDEV3` character set 'UTF8';
 
