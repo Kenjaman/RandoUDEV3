@@ -140,7 +140,7 @@ public class EtapeControlleur {
 	public void produireFicheEtape(OutputStream out) {
 		//TODO
 		try(Connection connection = dataSource.getConnection()) {
-			InputStream modeleInputStream = this.getClass().getResourceAsStream("/qr_code.jrxml");
+			InputStream modeleInputStream = this.getClass().getResourceAsStream("/QrCodeEtape.jrxml");
 			JasperReport rapport = JasperCompileManager.compileReport(modeleInputStream);
 			Map<String, Object> parameters = new HashMap<>();
 			parameters.put("AUTEUR", "GROUPE1");

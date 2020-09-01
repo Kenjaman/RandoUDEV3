@@ -28,18 +28,7 @@
 		</nav>
 	</div>
 	<div class="container bg-light">
-		<H2>${itineraire.nom}</H2>
-		<div>
-			<h3>Niveau :</h3>
-			<pre>${itineraire.niveau}</pre>
-		</div>
-		<div>
-		<h3>Etapes :</h3>
-			<ul class="list-group">
-				<c:forEach items="${itineraire.etapeitineraires}" var="etapeItineraire">
-					<li class="list-group-item"><c:out value="${etapeItineraire.etape.nom}"></c:out></li>
-				</c:forEach>
-			</ul>
+		
 	</div>
 </div>
 </body>

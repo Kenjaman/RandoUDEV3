@@ -20,9 +20,9 @@ public class Etape implements Serializable {
 
 	private String description;
 
-	private Integer latitude;
+	private Float latitude;
 
-	private Integer longitude;
+	private Float longitude;
 
 	private String nom;
 
@@ -52,19 +52,19 @@ public class Etape implements Serializable {
 		this.description = description;
 	}
 
-	public Integer getLatitude() {
+	public Float getLatitude() {
 		return this.latitude;
 	}
 
-	public void setLatitude(Integer latitude) {
+	public void setLatitude(Float latitude) {
 		this.latitude = latitude;
 	}
 
-	public Integer getLongitude() {
+	public Float getLongitude() {
 		return this.longitude;
 	}
 
-	public void setLongitude(Integer longitude) {
+	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
 
