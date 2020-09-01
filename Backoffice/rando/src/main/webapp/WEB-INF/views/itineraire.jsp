@@ -11,21 +11,7 @@
 <body class="bg-dark">
 <div class="container">
 	<H1>Application Web de responsable d'association de randonnée</H1>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-   	 			<div class="navbar-nav">	
-					<a class="nav-item nav-link active" href="<c:url value='/itineraires'/>">Consulter la liste des itinéraires existants</a>
-					<a class="nav-item nav-link" href="<c:url value='/etapes'/>">Consulter la liste des étapes existantes</a>
-					<a class="nav-item nav-link" href="<c:url value='/ajoutItineraire'/>">Créer un nouvel itinéraire</a>
-					<a class="nav-item nav-link" href="<c:url value='/ajoutEtape'/>">Réferencer une nouvelle étape</a>
-				</div>
-			</div>
-		</nav>
+<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<div class="container bg-light">
 		<H2>${itineraire.nom}</H2>
@@ -42,5 +28,16 @@
 			</ul>
 	</div>
 </div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
 </body>
 </html>
