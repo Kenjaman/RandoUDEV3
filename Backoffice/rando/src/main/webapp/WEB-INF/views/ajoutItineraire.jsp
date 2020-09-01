@@ -15,21 +15,24 @@
 </head>
 <body class="bg-dark">
 	<div class="container">
-		<c:if test="${!empty statut}">
-			<c:if test="${statut=='false' }">
-				<div class="btn btn-danger avertissement">
-					<c:out value="Connexion échec" />
-				</div>
-			</c:if>
-			<c:if test="${statut=='true' }">
-				<div class="btn btn-success avertissement">
-					<c:out value="Connexion reussie" />
-				</div>
-			</c:if>
-		</c:if>
 		<H1>Application Web de responsable d'association de randonnée</H1>
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
-
+	</div>
+	<div class="container bg-light">
+		<form:form servletRelativeAction="/ajoutItineraire"
+			modelAttribute="itineraireDto">
+			Nom de l'itinéraire<br>
+			<form:input class="form-control" path="nom" required="required" />
+			Niveau<br>
+			<form:select path="niveau" class="form-control">
+				<form:options items="${niveau}" />
+			</form:select>
+			<section>
+				<button class="btn btn-success" type="submit">Ajouter</button>
+				<button class="btn btn-danger">
+					<a href="<c:url value='/accueil'/>">Annuler</a>
+			</section>
+		</form:form>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

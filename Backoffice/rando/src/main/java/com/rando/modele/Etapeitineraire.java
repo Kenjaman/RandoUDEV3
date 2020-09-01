@@ -15,10 +15,10 @@ public class Etapeitineraire implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@Column(name="num_etape")
-	private int numEtape;
+	private Integer numEtape;
 
 	//bi-directional many-to-one association to Etape
 	@ManyToOne
@@ -33,19 +33,19 @@ public class Etapeitineraire implements Serializable {
 	public Etapeitineraire() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getNumEtape() {
+	public Integer getNumEtape() {
 		return this.numEtape;
 	}
 
-	public void setNumEtape(int numEtape) {
+	public void setNumEtape(Integer numEtape) {
 		this.numEtape = numEtape;
 	}
 

@@ -27,7 +27,8 @@ public class ItineraireService {
 	
 	@Transactional
 	public void ajouter(ItineraireDto itineraireDto) {
-		if(itineraireDto != null && itineraireDao.existe(itineraireDto.getNom())) {
+//		if(itineraireDto != null && itineraireDao.existe(itineraireDto.getNom())) {
+		if(itineraireDto != null) {
 			Itineraire itineraire = new Itineraire();
 			itineraire.setNom(itineraireDto.getNom());
 			itineraire.setNiveau(itineraireDto.getNiveau());
@@ -37,11 +38,16 @@ public class ItineraireService {
 	}
 	
 	@Transactional
-	public void modifier(ItineraireDto itineraire) {
+	public void modifierDetail(ItineraireDto itineraire) {
 		Itineraire itineraireMAJ = itineraireDao.getIteneraire(itineraire.getId());
 		itineraireMAJ.setNom(itineraire.getNom());
 		itineraireMAJ.setNiveau(itineraire.getNiveau());
-		itineraireMAJ.setEtapeitineraires(itineraire.getEtapeitineraires());
+	}
+	
+	@Transactional
+	public void modifierEtapes(ItineraireDto itineraire) {
+		Itineraire itiMaj = itineraireDao.getIteneraire(itineraire.getId());
+		itiMaj.setEtapeitineraires(itineraire.getEtapeitineraires());
 	}
 
 	@Transactional
@@ -50,10 +56,8 @@ public class ItineraireService {
         if (itineraire == null) {
             return;
         }
-//        if (! itineraire.getAnimaux().isEmpty()) {
-//            throw new AnimalExisteEncoreException("Cette espèce a encore des animaux.");
-//        }
         itineraireDao.supprimerItineraire(itineraireId);
+        
     }
 	
 

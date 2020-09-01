@@ -17,28 +17,32 @@ public class EtapeDao {
 	private EntityManager em;
 
 	public boolean existe(String nomEtape) {
-		long nb = em.createQuery("select count(i) from Etape e where lower(e.name) = lower(:name)", Long.class)
-				.setParameter("name", nomEtape).getSingleResult();
+		long nb = em.createQuery("select count(e) from Etape e where lower(e.nom) = lower(:nom)", Long.class)
+				.setParameter("nom", nomEtape).getSingleResult();
 		return nb > 0;
 	}
 
-	public Etape getIteneraire(int etapeId) {
+	public Etape getEtape(int etapeId) {
 		return em.find(Etape.class, etapeId);
 	}
 
 	public List<Etape> getAllEtapes() {
-		return em.createQuery("select e from Etape i order by e.name", Etape.class).getResultList();
+		return em.createQuery("select e from Etape e order by e.nom", Etape.class).getResultList();
 	}
 
 	public void modifierEtape(int etapeId, EtapeDto etapeDto) {
 		em.createQuery(
-				"update Etape e set e.description=:description, e.latitude=:latitude, e.longitude=:longitude, e.name=:name,e.qrcode=:qrcode where u.id=:id")
+				"update Etape e set e.description=:description, e.latitude=:latitude, e.longitude=:longitude, e.nom=:nom,e.qrcode=:qrcode where u.id=:id")
 				.setParameter("description", etapeDto.getDescription()).setParameter("latitude", etapeDto.getLatitude())
-				.setParameter("longitude", etapeDto.getLongitude()).setParameter("name", etapeDto.getName())
+				.setParameter("longitude", etapeDto.getLongitude()).setParameter("nom", etapeDto.getNom())
 				.setParameter("qrcode", etapeDto.getQrCode()).setParameter("id", etapeId).executeUpdate();
 	}
 
 	public void supprimer(int etapeId) {
 		em.createQuery("delete from Etape e where e.id = :id").setParameter("id", etapeId).executeUpdate();
+	}
+	
+	public int getNbItinerairesEtape(int etapeId){
+		return em.createQuery("select count(ei) from Etape e join EtapeItineraire ei on e.id=ei.id_etape where e.id=:id",Integer.class).setParameter("id", etapeId).getSingleResult();
 	}
 }

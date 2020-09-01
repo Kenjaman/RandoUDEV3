@@ -18,7 +18,7 @@ public class ItineraireDao {
 	private EntityManager em;
 
 	public boolean existe(String nomIteneraire) {
-		long nb = em.createQuery("select count(i) from Iteneraire i where lower(i.nom) = lower(:nom)", Long.class)
+		long nb = em.createQuery("select count(i) from Itineraire i where lower(i.nom) = lower(:nom)", Long.class)
 				.setParameter("nom", nomIteneraire).getSingleResult();
 		return nb > 0;
 	}
@@ -33,16 +33,16 @@ public class ItineraireDao {
 	}
 
 	public List<Itineraire> getAllIteneraires() {
-		return em.createQuery("select i from Iteneraire i order by i.nom", Itineraire.class).getResultList();
+		return em.createQuery("select i from Itineraire i order by i.nom", Itineraire.class).getResultList();
 	}
 
 	public void modifierItineraire(long itineraireId, ItineraireDto itineraireDto) {
-		em.createQuery("update Itineraire i set i.nom=:nom, i.niveau=:niveau where i.id=:id")
+		em.createQuery("update Itiniraire i set i.nom=:nom, i.niveau=:niveau where i.id=:id")
 				.setParameter("nom", itineraireDto.getNom()).setParameter("niveau", itineraireDto.getNiveau())
 				.setParameter("id", itineraireId).executeUpdate();
 	}
 
-	public void supprimerItineraire(int iteneraireId) {
-		em.createQuery("delete from Iteneraire i where i.id = :id").setParameter("id", iteneraireId).executeUpdate();
+	public void supprimerItineraire(int itineraireId) {
+		em.createQuery("delete from Itineraire i where i.id = :id").setParameter("id", itineraireId).executeUpdate();
 	}
 }

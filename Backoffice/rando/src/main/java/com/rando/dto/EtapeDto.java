@@ -10,11 +10,11 @@ public class EtapeDto {
 	@NotBlank(message = "Vous devez fournir une description !")
 	private String description;
 	@NotBlank(message = "Vous devez indiquer une latitude !")
-	private BigDecimal latitude;
+	private Integer latitude;
 	@NotBlank(message = "Vous devez indiquer une longitude !")
-	private BigDecimal longitude;
+	private Integer longitude;
 	@NotBlank(message = "Vous devez donner un nom à cette étape !")
-	private String name;
+	private String nom;
 	private String qrCode;
 	private List<Etapeitineraire> etapeitineraires;
 	
@@ -45,38 +45,38 @@ public class EtapeDto {
 	/**
 	 * @return the latitude
 	 */
-	public BigDecimal getLatitude() {
+	public Integer getLatitude() {
 		return latitude;
 	}
 	/**
 	 * @param latitude the latitude to set
 	 */
-	public void setLatitude(BigDecimal latitude) {
+	public void setLatitude(Integer latitude) {
 		this.latitude = latitude;
 	}
 	/**
 	 * @return the longitude
 	 */
-	public BigDecimal getLongitude() {
+	public Integer getLongitude() {
 		return longitude;
 	}
 	/**
 	 * @param longitude the longitude to set
 	 */
-	public void setLongitude(BigDecimal longitude) {
+	public void setLongitude(Integer longitude) {
 		this.longitude = longitude;
 	}
 	/**
 	 * @return the name
 	 */
-	public String getName() {
-		return name;
+	public String getNom() {
+		return nom;
 	}
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setNom(String name) {
+		this.nom = name;
 	}
 	/**
 	 * @return the qrCode

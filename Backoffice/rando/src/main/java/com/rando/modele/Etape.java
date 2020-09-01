@@ -16,21 +16,18 @@ public class Etape implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private String description;
 
-	private Integer latitude;
+	private Float latitude;
 
-	private Integer longitude;
+	private Float longitude;
 
-	private String name;
+	private String nom;
 
 	@Column(name="nb_like")
-	private int nbLike;
-
-	@Column(name="qr_code")
-	private String qrCode;
+	private Integer nbLike;
 
 	//bi-directional many-to-one association to Etapeitineraire
 	@OneToMany(mappedBy="etape")
@@ -39,11 +36,11 @@ public class Etape implements Serializable {
 	public Etape() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -55,45 +52,38 @@ public class Etape implements Serializable {
 		this.description = description;
 	}
 
-	public Integer getLatitude() {
+	public Float getLatitude() {
 		return this.latitude;
 	}
 
-	public void setLatitude(Integer latitude) {
+	public void setLatitude(Float latitude) {
 		this.latitude = latitude;
 	}
 
-	public Integer getLongitude() {
+	public Float getLongitude() {
 		return this.longitude;
 	}
 
-	public void setLongitude(Integer longitude) {
+	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
 
-	public String getName() {
-		return this.name;
+	public String getNom() {
+		return this.nom;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
-	public int getNbLike() {
+	public Integer getNbLike() {
 		return this.nbLike;
 	}
 
-	public void setNbLike(int nbLike) {
+	public void setNbLike(Integer nbLike) {
 		this.nbLike = nbLike;
 	}
 
-	public String getQrCode() {
-		return this.qrCode;
-	}
-
-	public void setQrCode(String qrCode) {
-		this.qrCode = qrCode;
-	}
 
 	public List<Etapeitineraire> getEtapeitineraires() {
 		return this.etapeitineraires;

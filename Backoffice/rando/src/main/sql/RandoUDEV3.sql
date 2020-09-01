@@ -7,24 +7,23 @@ use RandoUDEV3;
 CREATE table if not exists `Itineraire` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `nom` varchar(255),
-  `niveau` ENUM ('Debutants', 'Normal', 'Confirme')
+  `niveau` ENUM ('Debutant', 'Normal', 'Confirme')
 )ENGINE = INNODB;
 
 CREATE TABLE if not exists `Etape` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL,
   `description` varchar(255),
-  `qr_code` varchar(255),
   `nb_like` int,
-  `latitude` numeric,
-  `longitude` numeric
+  `latitude` float,
+  `longitude` float
 )ENGINE = INNODB;
 
 CREATE TABLE if not exists `EtapeItineraire` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_etape` int not null,
   `id_itineraire` int not null,
-  `num_etape` int
+  `num_etape` int not null
 )ENGINE = INNODB;
 
 CREATE table if not exists `Utilisateur` (

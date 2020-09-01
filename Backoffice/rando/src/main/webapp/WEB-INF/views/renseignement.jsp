@@ -11,25 +11,29 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-<title>Rando</title>
+<title>Rando - Informations admin</title>
 </head>
 <body class="bg-dark">
 	<div class="container">
-		<c:if test="${!empty statut}">
-			<c:if test="${statut=='false' }">
-				<div class="btn btn-danger avertissement">
-					<c:out value="Connexion échec" />
-				</div>
-			</c:if>
-			<c:if test="${statut=='true' }">
-				<div class="btn btn-success avertissement">
-					<c:out value="Connexion reussie" />
-				</div>
-			</c:if>
-		</c:if>
-		<H1>Application Web de responsable d'association de randonnée</H1>
-		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
-
+		<form:form servletRelativeAction="/inscription"
+			modelAttribute="utilisateurDto">
+			<section>
+				Nom d'utilisateur :<br>
+				<form:input path="pseudo" class="form-control" required="required" />
+			</section>
+			<br>
+			<section>
+				Mot de passe :<br>
+				<form:password path="mdp" class="form-control" required="required" />
+			</section>
+			<br>
+			<section>
+				<button type="submit" class="btn btn-success">Valider</button>
+				<button class="btn btn-danger">
+					<a href="<c:url value='/'/>">Annuler</a>
+				</button>
+			</section>
+		</form:form>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
