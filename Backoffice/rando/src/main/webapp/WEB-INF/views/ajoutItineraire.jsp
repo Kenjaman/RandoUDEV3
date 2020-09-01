@@ -19,9 +19,6 @@
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<div class="container bg-light">
-<<<<<<< Updated upstream
-		
-=======
 		<form:form servletRelativeAction="/ajoutItineraire"
 			modelAttribute="itineraireDto">
 			Nom de l'itinéraire<br>
@@ -36,7 +33,6 @@
 					<a href="<c:url value='/accueil'/>">Annuler</a>
 			</section>
 		</form:form>
->>>>>>> Stashed changes
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
