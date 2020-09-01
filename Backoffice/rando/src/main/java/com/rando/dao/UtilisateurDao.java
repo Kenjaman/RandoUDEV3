@@ -17,9 +17,13 @@ public class UtilisateurDao {
 	private EntityManager em;
 
 	public boolean existe(String nomUtilisateur) {
-		long nb = em.createQuery("select count(u) from Utilisateur u where lower(i.pseudo) = lower(:pseudo)", Long.class)
+		long nb = em.createQuery("select count(u) from Utilisateur u where lower(.pseudo) = lower(:pseudo)", Long.class)
 				.setParameter("nom", nomUtilisateur).getSingleResult();
 		return nb > 0;
+	}
+	
+	public void inscription(Utilisateur utilisateur) {
+		em.persist(utilisateur);		
 	}
 	
 	public Utilisateur getUtilisateur(int utilisateurId) {
@@ -30,7 +34,7 @@ public class UtilisateurDao {
 		return em.createQuery("select u from Utilisateur u order by u.pseudo", Utilisateur.class).getResultList();
 	}
 
-	public void modifierItineraire(int utilisateurId, UtilisateurDto utilisateurDto) {
+	public void modifierUtilisateur(int utilisateurId, UtilisateurDto utilisateurDto) {
 		em.createQuery(
 				"update Utilisateur u set u.mdp=:mdp, u.pseudo=:pseudo, u.role=:role where u.id=:id")
 				.setParameter("mdp", utilisateurDto.getMdp())
@@ -41,5 +45,22 @@ public class UtilisateurDao {
 	
 	public void supprimer(int utilisateurId) {	
 		em.createQuery("delete from Utilisateur u where u.id = :id").setParameter("id", utilisateurId).executeUpdate();
+	}
+
+	public boolean getConnectUtilisateur(String pseudo, String mdp) {
+		boolean verdict = false;
+		if (pseudo != null && pseudo.trim().length() != 0 && mdp != null && mdp.trim().length() != 0) {
+			long nb = em.createQuery("SELECT count(u) FROM Utilisateur u where u.pseudo = :login and u.mdp = :mdp",
+					Long.class).setParameter("login", pseudo).setParameter("mdp", mdp).getSingleResult();
+//			System.out.println("nb = " + nb);
+			if (nb > 0 && nb == 1) {
+				verdict = true;
+			} else {
+				verdict = false;
+			}
+		} else {
+			verdict = false;
+		}
+		return verdict;
 	}
 }
