@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.rando.dto.EtapeDto;
 import com.rando.modele.Niveau;
+import com.rando.service.EtapeEncoreDansUnItineraireException;
+import com.rando.service.EtapeExisteDejaException;
 import com.rando.service.EtapeService;
 
 import net.sf.jasperreports.engine.JRException;
@@ -40,60 +42,73 @@ public class EtapeControlleur {
 	private EtapeService etapeService;
 	@Autowired
 	private DataSource dataSource;
-	
+
 	//Consultation
-	
+
 	@GetMapping("/etapes")
 	public String getListeEtapes(Model model) {
 		model.addAttribute("etapes", etapeService.getAllEtapes());
 		return "etapes";
 	}
-	
+
 	@GetMapping("/etape/{etapeId}")
 	public String getDetailEtape(Model model,@PathVariable int etapeId) {
 		model.addAttribute("etape",etapeService.getEtape(etapeId));
 		return "etape";	
 	}
-	
+
 	//Creation
-	
+
 	@GetMapping("/ajoutEtape")
 	public String ajouterEtape(Model model, @ModelAttribute EtapeDto etapeDto) {
 		model.addAttribute("etapes",etapeService.getAllEtapes());
 		return "ajouterEtape";
-		
+
 	}
 
 	@PostMapping("/ajoutEtape")
 	public String ajouterEtape(Model model, @Valid @ModelAttribute EtapeDto etapeDto, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors() || model.getAttribute("erreurs")!=null) {
 			System.out.println("ya une erreur");
 			return ajouterEtape(model, etapeDto);
 		}else {
-			etapeService.ajouter(etapeDto);
-			return "redirect:/etapes";
+			try {
+				etapeService.ajouter(etapeDto);
+				return "redirect:/etapes";
+			} catch (EtapeExisteDejaException e) {
+				model.addAttribute("erreurs",e.getMessage());
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return ajouterEtape(model, etapeDto);
+			}
 		}
 	}
-	
+
 	@PostMapping("/ajoutEtapeJS")
 	public String ajouterEtapeJS(Model model, @Valid @ModelAttribute EtapeDto etapeDto, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors() || model.getAttribute("erreurs")!=null) {
 			System.out.println("ya une erreur");
 			return ajouterEtapeJS(model, etapeDto,bindingResult);
 		}else {
-			etapeService.ajouter(etapeDto);
+			try {
+				etapeService.ajouter(etapeDto);
+			} catch (EtapeExisteDejaException e) {
+				model.addAttribute("erreurs",e.getMessage());
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return "ok";
 		}
 	}
-	
+
 	//Modification
-	
+
 	@GetMapping("/modifEtape/{etapeId}")
 	public String modifierEtape(Model model,@PathVariable int etapeId) {
 		model.addAttribute("etape",etapeService.getEtape(etapeId));
 		return "etape";	
 	}
-	
+
 	@PostMapping("/modifEtape/{etapeId}")
 	public String modifierEtape(Model model,@PathVariable long etapeId, @Valid @ModelAttribute EtapeDto etapeDto,BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
@@ -104,14 +119,19 @@ public class EtapeControlleur {
 			return "redirect:/etape/"+etapeId;
 		}
 	}
-	
-	
+
+
 	//Suppression
-	
+
 	@PostMapping("/etape/suppression")
 	public String supprimerEtape(Model model,@ModelAttribute EtapeDto etapeDto) {
 		//TODO Suppression d'Etape
-		etapeService.supprimer(etapeDto.getId());
+		try {
+			etapeService.supprimer(etapeDto.getId());
+		} catch (EtapeEncoreDansUnItineraireException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "redirect:/etapes";
 	}
 
@@ -136,6 +156,6 @@ public class EtapeControlleur {
 		}
 
 	}
-	
-	
+
+
 }

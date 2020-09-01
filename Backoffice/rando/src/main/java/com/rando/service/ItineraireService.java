@@ -38,11 +38,16 @@ public class ItineraireService {
 	}
 	
 	@Transactional
-	public void modifier(ItineraireDto itineraire) {
+	public void modifierDetail(ItineraireDto itineraire) {
 		Itineraire itineraireMAJ = itineraireDao.getIteneraire(itineraire.getId());
 		itineraireMAJ.setNom(itineraire.getNom());
 		itineraireMAJ.setNiveau(itineraire.getNiveau());
-		itineraireMAJ.setEtapeitineraires(itineraire.getEtapeitineraires());
+	}
+	
+	@Transactional
+	public void modifierEtapes(ItineraireDto itineraire) {
+		Itineraire itiMaj = itineraireDao.getIteneraire(itineraire.getId());
+		itiMaj.setEtapeitineraires(itineraire.getEtapeitineraires());
 	}
 
 	@Transactional

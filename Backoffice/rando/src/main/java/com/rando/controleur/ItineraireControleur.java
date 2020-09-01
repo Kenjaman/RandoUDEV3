@@ -68,17 +68,27 @@ public class ItineraireControleur {
 		return "itineraire";
 	}
 	
-	@PostMapping("/modifItineraire/{itineraireId}")
-	public String modifierItineraire(Model model,@PathVariable int itineraireId, @Valid @ModelAttribute ItineraireDto itineraireDto,BindingResult bindingResult) {
+	@PostMapping("/modifItineraireDetail/{itineraireId}")
+	public String modifierItineraireDetail(Model model,@PathVariable int itineraireId, @Valid @ModelAttribute ItineraireDto itineraireDto,BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			System.out.println("ya une erreur");
 			return "modifierItineraire";
 		}else {
-			itineraireService.modifier(itineraireDto);
+			itineraireService.modifierDetail(itineraireDto);
 			return "redirect:/itineraire/"+itineraireId;
 		}
 	}
 	
+	@PostMapping("/modifItineraireEtapes/{itineraireId}")
+	public String modifierItineraireEtapesl(Model model,@PathVariable int itineraireId, @Valid @ModelAttribute ItineraireDto itineraireDto,BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			System.out.println("ya une erreur");
+			return "modifierItineraire";
+		}else {
+			itineraireService.modifierEtapes(itineraireDto);
+			return "redirect:/itineraire/"+itineraireId;
+		}
+	}
 	
 	//Suppression
 	
