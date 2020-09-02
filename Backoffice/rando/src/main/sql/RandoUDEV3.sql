@@ -14,9 +14,7 @@ CREATE TABLE if not exists `Etape` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `description` varchar(255),
-  `nb_like` int,
-  `latitude` float(8),
-  `longitude` float(8)
+  `nb_like` int
 )ENGINE = INNODB;
 
 CREATE TABLE if not exists `EtapeItineraire` (
@@ -40,6 +38,6 @@ ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`
 INSERT INTO `itineraire` (`id`, `nom`, `niveau`) VALUES (NULL, 'Le premier chemin', 'Debutant'),
 (NULL, 'Le deuxieme chemin', 'Normal');
 
-INSERT INTO `etape` (`id`, `nom`, `description`, `nb_like`, `latitude`, `longitude`) VALUES 
-(NULL, 'La deuxieme etape', 'C\'est encore mieux', '0', '22,5844', '44,683'), 
-(NULL, 'La troisieme ', 'C\'est splendide', '0', '11,255', '78,8494');
+INSERT INTO `etape` (`id`, `nom`, `description`, `nb_like`) VALUES 
+(NULL, 'La deuxieme etape', 'C\'est encore mieux', '0'), 
+(NULL, 'La troisieme ', 'C\'est splendide', '0');

@@ -29,7 +29,7 @@
 		</queryString>
 	</subDataset>
 	<queryString>
-		<![CDATA[SELECT e.id, e.nom,e.latitude,e.longitude,e.description
+		<![CDATA[SELECT e.id, e.nom,e.description
 FROM etape e
 ORDER BY id DESC]]>
 	</queryString>
@@ -39,14 +39,6 @@ ORDER BY id DESC]]>
 	</field>
 	<field name="nom" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nom"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="etape"/>
-	</field>
-	<field name="latitude" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="latitude"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="etape"/>
-	</field>
-	<field name="longitude" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="longitude"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="etape"/>
 	</field>
 	<field name="description" class="java.lang.String">
@@ -59,25 +51,9 @@ ORDER BY id DESC]]>
 				<reportElement x="80" y="1" width="280" height="39" uuid="311ce23c-0612-4e2e-b7a7-13197fa19d54"/>
 				<textFieldExpression><![CDATA[$F{nom}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="454" y="0" width="100" height="30" uuid="dce6a21c-cd43-442f-bd1a-7d87c4b09327"/>
-				<textFieldExpression><![CDATA[$F{latitude}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="454" y="29" width="100" height="29" uuid="4560079b-5a45-40b1-a05d-9eeae53a1aff"/>
-				<textFieldExpression><![CDATA[$F{longitude}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="0" y="0" width="80" height="40" uuid="5a62c731-1277-44a5-9bfc-4e321a95e1f8"/>
 				<text><![CDATA[Nom de l'etape :]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="360" y="0" width="94" height="30" uuid="69810125-d04f-49bc-8394-c851efbef5b5"/>
-				<text><![CDATA[Latitude :]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="360" y="30" width="94" height="28" uuid="42c4234a-35bf-4c96-b676-047c62bd98ed"/>
-				<text><![CDATA[Longitude :]]></text>
 			</staticText>
 		</band>
 	</title>
