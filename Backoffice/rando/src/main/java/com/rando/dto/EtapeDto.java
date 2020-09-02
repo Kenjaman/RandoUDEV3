@@ -9,10 +9,6 @@ public class EtapeDto {
 	private int id;
 	//@NotBlank(message = "Vous devez fournir une description !")
 	private String description;
-	//@NotBlank(message = "Vous devez indiquer une latitude !")
-	private Float latitude;
-	//@NotBlank(message = "Vous devez indiquer une longitude !")
-	private Float longitude;
 	@NotBlank(message = "Vous devez donner un nom à cette étape !")
 	private String nom;
 	
@@ -43,30 +39,7 @@ public class EtapeDto {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	/**
-	 * @return the latitude
-	 */
-	public Float getLatitude() {
-		return latitude;
-	}
-	/**
-	 * @param latitude the latitude to set
-	 */
-	public void setLatitude(Float latitude) {
-		this.latitude = latitude;
-	}
-	/**
-	 * @return the longitude
-	 */
-	public Float getLongitude() {
-		return longitude;
-	}
-	/**
-	 * @param longitude the longitude to set
-	 */
-	public void setLongitude(Float longitude) {
-		this.longitude = longitude;
-	}
+
 	/**
 	 * @return the name
 	 */

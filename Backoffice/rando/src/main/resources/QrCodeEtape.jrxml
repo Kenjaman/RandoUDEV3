@@ -74,7 +74,7 @@ ORDER BY id DESC]]>
 		<band height="408" splitType="Stretch">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<componentElement>
-				<reportElement x="2" y="0" width="550" height="408" uuid="cde0c550-f758-4de2-ad2a-fe7b36326075"/>
+				<reportElement x="0" y="-10" width="549" height="407" uuid="cde0c550-f758-4de2-ad2a-fe7b36326075"/>
 				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" qrVersion="1">
 					<jr:codeExpression><![CDATA[$F{id}]]></jr:codeExpression>
 				</jr:QRCode>

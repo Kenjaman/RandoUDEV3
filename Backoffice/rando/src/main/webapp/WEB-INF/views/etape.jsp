@@ -19,13 +19,6 @@
 			<h3>Description :</h3>
 			<pre>${etape.description}</pre>
 		</div>
-		<div>
-		<h3>Coordonnées :</h3>
-			<ul class="list-group">
-				<li class="list-group-item">Latitude : &nbsp<c:out value="${etape.latitude}"></c:out></li>
-				<li class="list-group-item">Longitude : &nbsp<c:out value="${etape.longitude}"></c:out></li>
-			</ul>
-		</div>
 		<h3>Action :</h3>
 		<a class="btn btn-primary" target="_blank" href="<c:url value='/etape/qrcode.pdf'/>">Générer affiche du QR Code</a>
 </div>

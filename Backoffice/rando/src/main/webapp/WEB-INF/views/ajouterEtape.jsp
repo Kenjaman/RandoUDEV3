@@ -26,12 +26,6 @@
 				<label for="nom">Nom de l'etape:</label>
 				<form:input class="form-control" path="nom" required="required" />
 				</div>
-				<div class="col-md-6 mb-3">
-				<label for="latitude">Latitude:</label>
-				<form:input class="form-control" path="latitude" />
-				<label for="longitude">Longitude:</label>
-				<form:input class="form-control" path="longitude" />
-				</div>
 			</div>
 			<label for="description">Description :</label><br>
 			<form:textarea path="description" class="form-control"/>

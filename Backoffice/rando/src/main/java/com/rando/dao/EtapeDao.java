@@ -33,8 +33,7 @@ public class EtapeDao {
 	public void modifierEtape(int etapeId, EtapeDto etapeDto) {
 		em.createQuery(
 				"update Etape e set e.description=:description, e.latitude=:latitude, e.longitude=:longitude, e.nom=:nom,e.qrcode=:qrcode where u.id=:id")
-				.setParameter("description", etapeDto.getDescription()).setParameter("latitude", etapeDto.getLatitude())
-				.setParameter("longitude", etapeDto.getLongitude()).setParameter("nom", etapeDto.getNom())
+				.setParameter("description", etapeDto.getDescription()).setParameter("nom", etapeDto.getNom())
 				.setParameter("qrcode", etapeDto.getQrCode()).setParameter("id", etapeId).executeUpdate();
 	}
 

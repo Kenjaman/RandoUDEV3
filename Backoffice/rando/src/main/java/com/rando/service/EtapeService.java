@@ -34,8 +34,6 @@ public class EtapeService {
 			Etape nEtape = new Etape();
 			try {
 				nEtape.setNom(etapeDto.getNom());
-				nEtape.setLongitude(etapeDto.getLongitude());
-				nEtape.setLatitude(etapeDto.getLatitude());
 				nEtape.setDescription(etapeDto.getDescription());
 				//nEtape.setQrCode(generateQRCodeImage(etapeDto.getNom()+etapeDto.getDescription()+etapeDto.getLatitude()+etapeDto.getLongitude()));
 			} catch (Exception e) {
@@ -51,8 +49,6 @@ public class EtapeService {
 		if(nEtape != null) {
 			try {
 				nEtape.setNom(etapeDto.getNom());
-				nEtape.setLongitude(etapeDto.getLongitude());
-				nEtape.setLatitude(etapeDto.getLatitude());
 				nEtape.setDescription(etapeDto.getDescription());
 				//nEtape.setQrCode(generateQRCodeImage(etapeDto.getNom()+etapeDto.getDescription()+etapeDto.getLatitude()+etapeDto.getLongitude()));
 			} catch (Exception e) {
