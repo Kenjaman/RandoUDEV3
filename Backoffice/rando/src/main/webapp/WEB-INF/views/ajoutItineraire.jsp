@@ -34,8 +34,8 @@
 			</div>
 			<div class="form-group">
 			<h3>Etapes :</h3>
-			<form:label path="etapeItineraire.etape.nom"></form:label>
-			<form:select path="etapeItineraire.etape.nom" class="form-control">
+			<form:label path="etapeitineraire"></form:label>
+			<form:select path="etapeitineraire" class="form-control">
 				<c:forEach items="${etapes}" var="etape">
 					<form:options items="${etape.nom}"/>
 				</c:forEach>
