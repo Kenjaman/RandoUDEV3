@@ -35,6 +35,9 @@ ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_itineraire`) REFERENCES `Itin
 
 ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`);
 
+INSERT INTO `utilisateur` (`id`, `pseudo`, `mdp`, `role`) VALUES (NULL, 'pattho', 'ZeroM$Pe', 'admin'),
+(NULL, 'damien', 'CrEpEsP6','admin');
+
 INSERT INTO `itineraire` (`id`, `nom`, `niveau`) VALUES (NULL, 'Le premier chemin', 'Debutant'),
 (NULL, 'Le deuxieme chemin', 'Normal');
 

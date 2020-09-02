@@ -34,18 +34,14 @@
 			</div>
 			<div class="form-group">
 			<h3>Etapes :</h3>
-			<form:label path="etapeItineraire.etape.nom"></form:label>
-			<form:select path="etapeItineraire.etape.nom" class="form-control">
+			<form:label path="etapeitineraire"></form:label>
+			<form:select path="etapeitineraire" class="form-control">
 				<c:forEach items="${etapes}" var="etape">
 					<form:options items="${etape.nom}"/>
 				</c:forEach>
 			</form:select>
 			</div>
-			<div class ="form-row">
-				<button class="btn btn-success" type="submit">Ajouter</button>
-				<a class="btn btn-danger" href="<c:url value='/accueil'/>">Annuler</a>
-			</div>
-		</form:form>
+			</form:form>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
