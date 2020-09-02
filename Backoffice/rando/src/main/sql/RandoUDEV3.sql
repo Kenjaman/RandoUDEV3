@@ -15,8 +15,8 @@ CREATE TABLE if not exists `Etape` (
   `nom` varchar(255) NOT NULL,
   `description` varchar(255),
   `nb_like` int,
-  `latitude` float,
-  `longitude` float
+  `latitude` float(8),
+  `longitude` float(8)
 )ENGINE = INNODB;
 
 CREATE TABLE if not exists `EtapeItineraire` (
