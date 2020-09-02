@@ -22,11 +22,11 @@ public class ItineraireDao {
 				.setParameter("nom", nomIteneraire).getSingleResult();
 		return nb > 0;
 	}
-
-	public void ajouterItineraire(Itineraire itineraire, Etapeitineraire etapeitineraire) {
+	
+	public void ajouterItineraire(Itineraire itineraire) {
 		em.persist(itineraire);
-		em.persist(etapeitineraire);
 	}
+
 
 	public Itineraire getIteneraire(int itineraireId) {
 		return em.find(Itineraire.class, itineraireId);

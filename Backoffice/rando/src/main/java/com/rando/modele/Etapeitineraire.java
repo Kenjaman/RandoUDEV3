@@ -64,5 +64,8 @@ public class Etapeitineraire implements Serializable {
 	public void setItineraire(Itineraire itineraire) {
 		this.itineraire = itineraire;
 	}
+	
+	//TODO  public static Etapeitineraire valueOf(String id_etape)
+	
 
 }

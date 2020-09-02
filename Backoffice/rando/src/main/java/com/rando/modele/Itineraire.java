@@ -22,7 +22,7 @@ public class Itineraire implements Serializable {
 	private Niveau niveau;
 
 	// bi-directional many-to-one association to Etapeitineraire
-	@OneToMany(mappedBy = "itineraire",orphanRemoval = true)
+	@OneToMany(mappedBy = "itineraire",cascade = CascadeType.ALL)
 	private List<Etapeitineraire> etapeitineraires;
 
 	public Itineraire() {

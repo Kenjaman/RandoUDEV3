@@ -32,9 +32,9 @@ public class ItineraireService {
 			Itineraire itineraire = new Itineraire();
 			itineraire.setNom(itineraireDto.getNom());
 			itineraire.setNiveau(itineraireDto.getNiveau());
-			itineraire.setEtapeitineraires(itineraireDto.getEtapeitineraires());
+			//TODO boucle sur les etapes avec addEtapeItineraire
+			itineraireDao.ajouterItineraire(itineraire);
 		}
-		
 	}
 	
 	@Transactional
