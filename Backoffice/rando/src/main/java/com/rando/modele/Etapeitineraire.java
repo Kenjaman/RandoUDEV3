@@ -65,7 +65,23 @@ public class Etapeitineraire implements Serializable {
 		this.itineraire = itineraire;
 	}
 	
-	//TODO  public static Etapeitineraire valueOf(String id_etape)
+	
+	//Binding de etapeDto - Etapeitineraire pour ajout/modif d'itineraire
+	public static Etapeitineraire valueOf(String id_etape) {
+		Etapeitineraire ei = new Etapeitineraire();
+		Etape e = new Etape();
+		e.setNom(id_etape);
+		ei.setEtape(e);
+		return ei;
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Etapeitineraire [id=" + id + ", numEtape=" + numEtape + ", etape=" + etape.getId()+" :"+ etape.getNom() + ", itineraire="
+				+ itineraire + "]";
+	}
+	
 	
 
 }

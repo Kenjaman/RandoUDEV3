@@ -23,8 +23,9 @@ public class ItineraireDao {
 		return nb > 0;
 	}
 	
-	public void ajouterItineraire(Itineraire itineraire) {
+	public int ajouterItineraire(Itineraire itineraire) {
 		em.persist(itineraire);
+		return itineraire.getId();
 	}
 
 

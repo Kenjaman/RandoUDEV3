@@ -26,8 +26,20 @@ public class EtapeDao {
 		return em.find(Etape.class, etapeId);
 	}
 
+	public Etape getEtapeByNom(String etapeNom) {
+		return em.createQuery("select e from Etape e where lower(e.nom) = lower(:nom)", Etape.class)
+		.setParameter("nom", etapeNom).getSingleResult();
+		
+	}
+	
 	public List<Etape> getAllEtapes() {
 		return em.createQuery("select e from Etape e order by e.nom", Etape.class).getResultList();
+	}
+	
+	
+	public int ajouterEtape(Etape etape) {
+		em.persist(etape);
+		return etape.getId();
 	}
 
 	public void modifierEtape(int etapeId, EtapeDto etapeDto) {

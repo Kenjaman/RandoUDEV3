@@ -73,8 +73,8 @@ public class EtapeControlleur {
 			return ajouterEtape(model, etapeDto);
 		}else {
 			try {
-				etapeService.ajouter(etapeDto);
-				return "redirect:/etapes";
+				int idCreer= etapeService.ajouter(etapeDto);
+				return "redirect:/etape/"+idCreer;
 			} catch (EtapeExisteDejaException e) {
 				model.addAttribute("erreurs",e.getMessage());
 				// TODO Auto-generated catch block

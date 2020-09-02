@@ -26,15 +26,18 @@ public class ItineraireService {
 	}
 	
 	@Transactional
-	public void ajouter(ItineraireDto itineraireDto) {
+	public int ajouter(ItineraireDto itineraireDto) {
 //		if(itineraireDto != null && itineraireDao.existe(itineraireDto.getNom())) {
 		if(itineraireDto != null) {
 			Itineraire itineraire = new Itineraire();
 			itineraire.setNom(itineraireDto.getNom());
 			itineraire.setNiveau(itineraireDto.getNiveau());
+			
 			//TODO boucle sur les etapes avec addEtapeItineraire
-			itineraireDao.ajouterItineraire(itineraire);
+			itineraire.addEtapeitineraire()
+			return itineraireDao.ajouterItineraire(itineraire);
 		}
+		return 0;
 	}
 	
 	@Transactional

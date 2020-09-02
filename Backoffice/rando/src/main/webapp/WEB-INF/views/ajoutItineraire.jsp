@@ -19,7 +19,8 @@
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<div class="container bg-light">
-		<form:form servletRelativeAction="/ajoutItineraire"	modelAttribute="itineraireDto">
+		<form:form servletRelativeAction="/ajoutItineraire"
+			modelAttribute="itineraireDto">
 			<div class="form-row">
 				<div class="col-md-6 mb-3">
 					<form:label path="nom">Nom de l'itinéraire :</form:label>
@@ -32,16 +33,36 @@
 					</form:select>
 				</div>
 			</div>
-			<div class="form-group">
 			<h3>Etapes :</h3>
-			<form:label path="etapeitineraire"></form:label>
-			<form:select path="etapeitineraire" class="form-control">
-				<c:forEach items="${etapes}" var="etape">
-					<form:options items="${etape.nom}"/>
-				</c:forEach>
-			</form:select>
+			<div class="form-group ">
+				<div class="input-group">
+					<form:select path="etapeitineraires" class="custom-select" id="inputGroupSelect04"
+						aria-label="Example select with button addon">
+						<option selected value="0">Choisir une étape</option>
+						<c:forEach items="${etapes}" var="etape">
+							<form:option itemLabel="nom" itemValue="id" value="${etape.nom}"/>
+						</c:forEach>
+					</form:select>
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" type="button" onclick="addEtape()">Valider</button>
+					</div>
+				</div>
+				<%-- <div class="form-row">
+				<div id="etapes" class="col-md-6 mb-3">
+					<form:label path="etapeitineraires"></form:label>
+					<form:select multiple="false" path="etapeitineraires" class="form-control">
+						<c:forEach items="${etapes}" var="etape">
+							<form:option itemLabel="${etape.nom}" value ="${etape.id}"/>
+						</c:forEach>
+					</form:select>
+				</div>
+			</div> --%>
 			</div>
-			</form:form>
+			<div class="form-row">
+				<button class="btn btn-success" type="submit">Ajouter</button>
+				<a class="btn btn-danger" href="<c:url value='/accueil'/>">Annuler</a>
+			</div>
+		</form:form>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

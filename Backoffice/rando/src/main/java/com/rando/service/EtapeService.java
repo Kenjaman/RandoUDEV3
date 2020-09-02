@@ -15,7 +15,7 @@ public class EtapeService {
 
 	@Autowired
 	EtapeDao etapeDao;
-	
+
 
 
 	public List<Etape> getAllEtapes() {
@@ -27,20 +27,16 @@ public class EtapeService {
 	}
 
 	@Transactional
-	public void ajouter(EtapeDto etapeDto) throws EtapeExisteDejaException {
+	public int ajouter(EtapeDto etapeDto) throws EtapeExisteDejaException {
 		if(etapeDto != null) {
 			if(etapeDao.existe(etapeDto.getNom()))
 				throw new EtapeExisteDejaException("L'étape existe déjà");
 			Etape nEtape = new Etape();
-			try {
-				nEtape.setNom(etapeDto.getNom());
-				nEtape.setDescription(etapeDto.getDescription());
-				//nEtape.setQrCode(generateQRCodeImage(etapeDto.getNom()+etapeDto.getDescription()+etapeDto.getLatitude()+etapeDto.getLongitude()));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			nEtape.setNom(etapeDto.getNom());
+			nEtape.setDescription(etapeDto.getDescription());
+			return etapeDao.ajouterEtape(nEtape);
 		}
+		return 0;
 	}
 
 	@Transactional

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.rando.dto.ItineraireDto;
 import com.rando.modele.Etape;
+import com.rando.modele.Etapeitineraire;
 import com.rando.modele.Niveau;
 import com.rando.service.EtapeService;
 import com.rando.service.ItineraireService;
@@ -60,14 +61,15 @@ public class ItineraireControleur {
 	}
 
 	@PostMapping("/ajoutItineraire")
-	public String ajouterItineraire(Model model, @Valid @ModelAttribute ItineraireDto itineraireDto,
-			BindingResult bindingResult) {
+	public String ajouterItineraire(Model model, @Valid @ModelAttribute ItineraireDto itineraireDto,BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("ya une erreur");
 			return ajouterItineraire(model, itineraireDto);
 		} else {
-			itineraireService.ajouter(itineraireDto);
-			return "redirect:/itineraire";
+			int idCreer = itineraireService.ajouter(itineraireDto);
+			for(Etapeitineraire ei : itineraireDto.getEtapeitineraires())
+				System.out.println(ei);
+			return "redirect:/itineraire/"+idCreer;
 		}
 	}
 
