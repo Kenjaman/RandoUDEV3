@@ -19,28 +19,22 @@
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<div class="container bg-light">
-		<form:form servletRelativeAction="/ajoutItineraire"	modelAttribute="itineraireDto">
+		<form:form servletRelativeAction="/ajoutEtape"
+			modelAttribute="etapeDto">
 			<div class="form-row">
 				<div class="col-md-6 mb-3">
-					<form:label path="nom">Nom de l'itinéraire :</form:label>
-					<form:input class="form-control" path="nom" required="required" />
+				<label for="nom">Nom de l'etape:</label>
+				<form:input class="form-control" path="nom" required="required" />
 				</div>
 				<div class="col-md-6 mb-3">
-					<form:label path="niveau">Niveau :</form:label>
-					<form:select path="niveau" class="form-control">
-						<form:options items="${niveau}" />
-					</form:select>
+				<label for="latitude">Latitude:</label>
+				<form:input class="form-control" path="latitude" />
+				<label for="longitude">Longitude:</label>
+				<form:input class="form-control" path="longitude" />
 				</div>
 			</div>
-			<div class="form-group">
-			<h3>Etapes :</h3>
-			<form:label path="etapeItineraire.etape.nom"></form:label>
-			<form:select path="etapeItineraire.etape.nom" class="form-control">
-				<c:forEach items="${etapes}" var="etape">
-					<form:options items="${etape.nom}"/>
-				</c:forEach>
-			</form:select>
-			</div>
+			<label for="description">Description :</label><br>
+			<form:textarea path="description" class="form-control"/>
 			<div class ="form-row">
 				<button class="btn btn-success" type="submit">Ajouter</button>
 				<a class="btn btn-danger" href="<c:url value='/accueil'/>">Annuler</a>

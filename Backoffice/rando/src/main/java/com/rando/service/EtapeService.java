@@ -15,6 +15,7 @@ public class EtapeService {
 
 	@Autowired
 	EtapeDao etapeDao;
+	
 
 
 	public List<Etape> getAllEtapes() {
@@ -42,9 +43,6 @@ public class EtapeService {
 				e.printStackTrace();
 			}
 		}
-
-
-
 	}
 
 	@Transactional

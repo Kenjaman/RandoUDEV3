@@ -36,3 +36,10 @@ CREATE table if not exists `Utilisateur` (
 ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_itineraire`) REFERENCES `Itineraire` (`id`);
 
 ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`);
+
+INSERT INTO `itineraire` (`id`, `nom`, `niveau`) VALUES (NULL, 'Le premier chemin', 'Debutant'),
+(NULL, 'Le deuxieme chemin', 'Normal');
+
+INSERT INTO `etape` (`id`, `nom`, `description`, `nb_like`, `latitude`, `longitude`) VALUES 
+(NULL, 'La deuxieme etape', 'C\'est encore mieux', '0', '22,5844', '44,683'), 
+(NULL, 'La troisieme ', 'C\'est splendide', '0', '11,255', '78,8494');

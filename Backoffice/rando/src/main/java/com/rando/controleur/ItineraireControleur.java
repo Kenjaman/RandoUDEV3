@@ -25,6 +25,7 @@ public class ItineraireControleur {
 
 	@Autowired
 	private ItineraireService itineraireService;
+	@Autowired
 	private EtapeService etapeService;
 
 	// Consultation
