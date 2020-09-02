@@ -19,7 +19,6 @@
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<div class="container bg-light">
-<<<<<<< Updated upstream
 		<form:form servletRelativeAction="/ajoutItineraire"	modelAttribute="itineraireDto">
 			<div class="form-row">
 				<div class="col-md-6 mb-3">
@@ -42,32 +41,7 @@
 				</c:forEach>
 			</form:select>
 			</div>
-			<div class ="form-row">
-=======
-		<form:form servletRelativeAction="/ajoutItineraire"
-			modelAttribute="itineraireDto">
-			<section>
-				Nom de l'itinéraire<br>
-				<form:input class="form-control" path="nom" required="required" />
-			</section>
-			<section>
-				Niveau<br>
-				<form:select path="niveau" class="form-control">
-					<form:options items="${niveau}" />
-				</form:select>
-			</section>
-			<section>
-				Liste des étapes<br>
-				<form:select path="etapeitineraires" class="form-control">
-					<form:options items="${etapes}" />
-				</form:select>
-			</section>
-			<section>
->>>>>>> Stashed changes
-				<button class="btn btn-success" type="submit">Ajouter</button>
-				<a class="btn btn-danger" href="<c:url value='/accueil'/>">Annuler</a>
-			</div>
-		</form:form>
+			</form:form>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
