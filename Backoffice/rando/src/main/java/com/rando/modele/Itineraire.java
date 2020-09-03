@@ -2,6 +2,8 @@ package com.rando.modele;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,8 +24,9 @@ public class Itineraire implements Serializable {
 	private Niveau niveau;
 
 	// bi-directional many-to-one association to Etapeitineraire
+	@OrderBy("numEtape ASC")
 	@OneToMany(mappedBy = "itineraire",cascade = CascadeType.ALL)
-	private List<Etapeitineraire> etapeitineraires;
+	private List<Etapeitineraire> etapeitineraires = new ArrayList<Etapeitineraire>();
 
 	public Itineraire() {
 	}

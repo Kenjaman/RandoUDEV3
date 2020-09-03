@@ -25,9 +25,10 @@
 	<subDataset name="tableDataset" uuid="3decdba6-161b-4771-9c41-bc33ef62b207">
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
 		<queryString language="SQL">
-			<![CDATA[select e.id, e.nom, e.longitude, e.lattitude from etape e order by e.id]]>
+			<![CDATA[select e.id, e.description from etape e order by e.id]]>
 		</queryString>
 	</subDataset>
+	<parameter name="URI" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT e.id, e.nom,e.description
 FROM etape e
@@ -46,7 +47,7 @@ ORDER BY id DESC]]>
 		<property name="com.jaspersoft.studio.field.tree.path" value="etape"/>
 	</field>
 	<title>
-		<band height="73" splitType="Stretch">
+		<band height="41" splitType="Stretch">
 			<textField>
 				<reportElement x="80" y="1" width="280" height="39" uuid="311ce23c-0612-4e2e-b7a7-13197fa19d54"/>
 				<textFieldExpression><![CDATA[$F{nom}]]></textFieldExpression>
@@ -58,25 +59,30 @@ ORDER BY id DESC]]>
 		</band>
 	</title>
 	<detail>
-		<band height="50">
+		<band height="105" splitType="Immediate">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
-			<textField>
-				<reportElement x="100" y="0" width="455" height="50" uuid="c048f0b2-f5ac-44b5-bee9-f2c16b59a454"/>
-				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
-			</textField>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="50" uuid="78633bfd-5751-4c22-9a15-afdf53931292"/>
+				<reportElement x="0" y="0" width="80" height="59" uuid="d3260ce5-bd36-45b0-ae32-46d7a83076bc"/>
 				<text><![CDATA[Description :]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="0" y="17" width="555" height="30" uuid="18f1d023-c765-4cf1-840f-9ea5897fed7a"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="70" width="300" height="30" uuid="ffed58ad-be39-406a-9fcf-59594adee069"/>
+				<textFieldExpression><![CDATA[$P{URI}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<summary>
 		<band height="408" splitType="Stretch">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<componentElement>
-				<reportElement x="0" y="-10" width="549" height="407" uuid="cde0c550-f758-4de2-ad2a-fe7b36326075"/>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" qrVersion="1">
-					<jr:codeExpression><![CDATA[$F{id}]]></jr:codeExpression>
+				<reportElement x="10" y="0" width="545" height="383" uuid="cde0c550-f758-4de2-ad2a-fe7b36326075"/>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" qrVersion="3">
+					<jr:codeExpression><![CDATA[$P{URI}]]></jr:codeExpression>
 				</jr:QRCode>
 			</componentElement>
 		</band>

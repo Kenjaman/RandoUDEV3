@@ -29,13 +29,16 @@ public class EtapeDao {
 	public Etape getEtapeByNom(String etapeNom) {
 		return em.createQuery("select e from Etape e where lower(e.nom) = lower(:nom)", Etape.class)
 		.setParameter("nom", etapeNom).getSingleResult();
-		
 	}
 	
 	public List<Etape> getAllEtapes() {
 		return em.createQuery("select e from Etape e order by e.nom", Etape.class).getResultList();
 	}
 	
+	
+	public List<Etape> getEtapesItineraire(Integer id_iti){
+		return em.createQuery("select e from Etape e join EtapeItineraire ei on e.id=ei.id_etape where ei.id_itineraire = :id_iti order by num_etape", Etape.class).getResultList();
+	}
 	
 	public int ajouterEtape(Etape etape) {
 		em.persist(etape);

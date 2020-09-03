@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
@@ -11,11 +12,14 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
+
+
 <title>Rando</title>
 </head>
 <body class="bg-dark">
 	<div class="container">
-		<H1>Application Web de responsable d'association de randonnée</H1>
+		<H1 class="text-success">Application Web de responsable
+			d'association de randonnée</H1>
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<div class="container bg-light">
@@ -33,37 +37,31 @@
 					</form:select>
 				</div>
 			</div>
-			<h3>Etapes :</h3>
-			<div class="form-group ">
-				<div class="input-group">
-					<form:select path="etapeitineraires" class="custom-select" id="inputGroupSelect04"
-						aria-label="Example select with button addon">
-						<option selected value="0">Choisir une étape</option>
-						<c:forEach items="${etapes}" var="etape">
-							<form:option itemLabel="nom" itemValue="id" value="${etape.nom}"/>
-						</c:forEach>
-					</form:select>
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button" onclick="addEtape()">Valider</button>
+			<div class="form-row justify-content-between">
+				<h3 class="col-4">Etapes :</h3>
+				<button type="button"
+					class="btn btn-primary btn-lg col-4 active btn-ajouter"
+					id="btn">+</button>
+			</div>
+			<div class="form-group" id="groupeEtape">
+					<div class="form-row " id="etape">
+						<form:label path="etapes"></form:label>
+						<select name="etapes" class="form-control ">
+							<option value="-" selected>Choisir l'etape</option>
+							<c:forEach items="${etapes}" var="etape">
+								<option value="${etape.id}">${etape.nom}</option>
+							</c:forEach>
+						</select>
 					</div>
-				</div>
-				<%-- <div class="form-row">
-				<div id="etapes" class="col-md-6 mb-3">
-					<form:label path="etapeitineraires"></form:label>
-					<form:select multiple="false" path="etapeitineraires" class="form-control">
-						<c:forEach items="${etapes}" var="etape">
-							<form:option itemLabel="${etape.nom}" value ="${etape.id}"/>
-						</c:forEach>
-					</form:select>
-				</div>
-			</div> --%>
 			</div>
 			<div class="form-row">
 				<button class="btn btn-success" type="submit">Ajouter</button>
 				<a class="btn btn-danger" href="<c:url value='/accueil'/>">Annuler</a>
 			</div>
+			<form:errors></form:errors>
 		</form:form>
 	</div>
+
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>
@@ -75,5 +73,7 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
+
+	<script src="<c:url value="/assets/js/main.js"/>"></script>
 </body>
 </html>

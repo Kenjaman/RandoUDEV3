@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.rando.modele.Etapeitineraire;
+import com.rando.modele.Etape;
 import com.rando.modele.Niveau;
 
 public class ItineraireDto {
@@ -12,20 +12,21 @@ public class ItineraireDto {
 	private Niveau niveau;
 	@NotBlank(message = "Vous devez fournir un nom d'itineraire !")
 	private String nom;
-	private List<Etapeitineraire> etapeitineraires;
+	private List<Etape> etapes;
+
 
 	/**
-	 * @return the etapeitineraires
+	 * @return the etapes
 	 */
-	public List<Etapeitineraire> getEtapeitineraires() {
-		return etapeitineraires;
+	public List<Etape> getEtapes() {
+		return etapes;
 	}
 
 	/**
-	 * @param etapeitineraires the etapeitineraires to set
+	 * @param etapes the etapes to set
 	 */
-	public void setEtapeitineraires(List<Etapeitineraire> etapeitineraires) {
-		this.etapeitineraires = etapeitineraires;
+	public void setEtapes(List<Etape> etapes) {
+		this.etapes = etapes;
 	}
 
 	/**
@@ -69,5 +70,17 @@ public class ItineraireDto {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	@Override
+	public String toString() {
+		String s = "ItineraireDto [id=" + id + ", niveau=" + niveau + ", nom=" + nom + ", etapes=";
+		for(Etape e : etapes)
+			s = s + etapes;
+		s = s+"]";
+		return s;
+		
+	}
+	
+	
 
 }
