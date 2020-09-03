@@ -32,11 +32,9 @@
 					<td>${itineraire.nom}</td>
 					<td>${itineraire.niveau}</td>
 					<td><ul class="list-group">
-							<c:forEach items="${itineraire.etapeitineraires}"
-								var="etapeItineraire">
-								<li class="list-group-item"><c:out
-										value="${etapeItineraire.etape.nom}"></c:out></li>
-							</c:forEach>
+					<c:forEach items="${itineraire.etapeitineraires}" var="etapeItineraire">
+						<li class="list-group-item"><a href="<c:url value='/etape/${etapeItineraire.etape.id}'/>" ><c:out value="${etapeItineraire.etape.nom}"/></a></li>
+					</c:forEach>
 						</ul></td>
 				</tr>
 			</tbody>
