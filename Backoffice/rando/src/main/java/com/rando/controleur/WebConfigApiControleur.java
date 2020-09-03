@@ -13,6 +13,7 @@ import com.rando.modele.Utilisateur;
 import com.rando.service.EtapeService;
 import com.rando.service.ItineraireService;
 import com.rando.service.UtilisateurService;
+import org.json.simple.*;
 
 @RestController
 @RequestMapping("/api")
@@ -31,7 +32,7 @@ public class WebConfigApiControleur {
     }
     
     @GetMapping(path="/itineraires", produces= "application/json")
-    public List<Itineraire> getAllItineraires() {
+    public List<Itineraire> getItineraires() {
     	List<Itineraire> itineraires = itineraireService.getItineraires();
         return itineraires;
     }
