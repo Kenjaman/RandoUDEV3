@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rando.dao.ItineraireDao;
 import com.rando.dto.ItineraireDto;
+import com.rando.modele.Etape;
+import com.rando.modele.Etapeitineraire;
 import com.rando.modele.Itineraire;
 
 @Service
@@ -29,16 +31,25 @@ public class ItineraireService {
 	public int ajouter(ItineraireDto itineraireDto) {
 //		if(itineraireDto != null && itineraireDao.existe(itineraireDto.getNom())) {
 		if(itineraireDto != null) {
+			int ordreEtapes=1;
 			Itineraire itineraire = new Itineraire();
 			itineraire.setNom(itineraireDto.getNom());
 			itineraire.setNiveau(itineraireDto.getNiveau());
 			
 			//TODO boucle sur les etapes avec addEtapeItineraire
-			itineraire.addEtapeitineraire()
+			for(Etape e : itineraireDto.getEtapes()) {
+				Etapeitineraire ei = new Etapeitineraire();
+				ei.setEtape(e);
+				ei.setNumEtape(ordreEtapes);
+				System.out.println(ei);
+				itineraire.addEtapeitineraire(ei);
+				ordreEtapes++;
+			}
 			return itineraireDao.ajouterItineraire(itineraire);
 		}
 		return 0;
 	}
+	
 	
 	@Transactional
 	public void modifierDetail(ItineraireDto itineraire) {
@@ -47,11 +58,12 @@ public class ItineraireService {
 		itineraireMAJ.setNiveau(itineraire.getNiveau());
 	}
 	
-	@Transactional
-	public void modifierEtapes(ItineraireDto itineraire) {
-		Itineraire itiMaj = itineraireDao.getIteneraire(itineraire.getId());
-		itiMaj.setEtapeitineraires(itineraire.getEtapeitineraires());
-	}
+	//TODO : modifEtape itineraire
+//	@Transactional
+//	public void modifierEtapes(ItineraireDto itineraire) {
+//		Itineraire itiMaj = itineraireDao.getIteneraire(itineraire.getId());
+//		itiMaj.setEtapeitineraires(itineraire.getEtapes());
+//	}
 
 	@Transactional
     public void supprimer(int itineraireId) {

@@ -3,6 +3,8 @@ package com.rando.modele;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import net.bytebuddy.implementation.bind.annotation.BindingPriority;
+
 
 /**
  * The persistent class for the etapeitineraire database table.

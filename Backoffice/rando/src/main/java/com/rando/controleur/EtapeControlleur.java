@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.rando.dto.EtapeDto;
 import com.rando.modele.Niveau;
@@ -110,7 +111,7 @@ public class EtapeControlleur {
 	}
 
 	@PostMapping("/modifEtape/{etapeId}")
-	public String modifierEtape(Model model,@PathVariable long etapeId, @Valid @ModelAttribute EtapeDto etapeDto,BindingResult bindingResult) {
+	public String modifierEtape(Model model,@PathVariable Integer etapeId, @Valid @ModelAttribute EtapeDto etapeDto,BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			System.out.println("ya une erreur");
 			return "modifierEtape";
@@ -136,13 +137,18 @@ public class EtapeControlleur {
 	}
 
 	//Generation QR_Code PDF 
-	@GetMapping(path="etape/qrcode.pdf", produces = "application/pdf")
-	public void produireFicheEtape(OutputStream out) {
+	@GetMapping(path="etape/{etapeId}/qrcode.pdf", produces = "application/pdf")
+	public void produireFicheEtape(OutputStream out,Model model,@PathVariable Integer etapeId ) {
 		//TODO
 		try(Connection connection = dataSource.getConnection()) {
 			InputStream modeleInputStream = this.getClass().getResourceAsStream("/QrCodeEtape.jrxml");
 			JasperReport rapport = JasperCompileManager.compileReport(modeleInputStream);
 			Map<String, Object> parameters = new HashMap<>();
+			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(EtapeControlleur.class, "getDetailEtape",model,etapeId);
+			
+			System.out.println("uri du qrcode : " + uri.toUriString());
+			parameters.put("URI",uri.toUriString());
+			parameters.put("ID",etapeId);
 			parameters.put("AUTEUR", "GROUPE1");
 			JasperPrint print = JasperFillManager.fillReport(rapport, parameters, connection);
 
