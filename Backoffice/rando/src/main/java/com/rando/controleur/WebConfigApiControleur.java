@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rando.modele.Etape;
 import com.rando.modele.Itineraire;
 import com.rando.modele.Utilisateur;
+import com.rando.service.EtapeService;
 import com.rando.service.ItineraireService;
 import com.rando.service.UtilisateurService;
 
@@ -19,6 +21,8 @@ public class WebConfigApiControleur {
 	private UtilisateurService utilisateurService;
 	@Autowired
 	private ItineraireService itineraireService;
+	@Autowired
+	private EtapeService etapeService;
 
     @GetMapping(path="/utilisateurs", produces= "application/json")
     public List<Utilisateur> getAllUsers() {
@@ -30,5 +34,11 @@ public class WebConfigApiControleur {
     public List<Itineraire> getAllItineraires() {
     	List<Itineraire> itineraires = itineraireService.getItineraires();
         return itineraires;
+    }
+    
+    @GetMapping(path="/etapes", produces= "application/json")
+    public List<Etape> getAllEtapees() {
+    	List<Etape> etapes = etapeService.getAllEtapes();
+        return etapes;
     }
 }
