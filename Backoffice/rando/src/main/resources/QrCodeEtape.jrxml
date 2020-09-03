@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QrCodeEtape" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fc97a963-c0b6-4c19-a348-7e2773e092a3">
-	<property name="template.engine" value="tabular_template"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QrCodeEtape" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8aefb819-8ca8-4183-9c7a-ecb1a4bb64da">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
-	<property name="com.jaspersoft.studio.unit." value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
-	<style name="Table">
-		<box>
-			<pen lineWidth="1.0" lineColor="#000000"/>
-			<topPen lineWidth="1.0" lineColor="#000000"/>
-			<leftPen lineWidth="1.0" lineColor="#000000"/>
-			<bottomPen lineWidth="1.0" lineColor="#000000"/>
-			<rightPen lineWidth="1.0" lineColor="#000000"/>
-		</box>
-	</style>
-	<subDataset name="tableDataset" uuid="3decdba6-161b-4771-9c41-bc33ef62b207">
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
-		<queryString language="SQL">
-			<![CDATA[select e.id, e.description from etape e order by e.id]]>
-		</queryString>
-	</subDataset>
 	<parameter name="URI" class="java.lang.String"/>
-	<queryString>
-		<![CDATA[SELECT e.id, e.nom,e.description
-FROM etape e
-ORDER BY id DESC]]>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT DISTINCT id,
+	nom,
+	description
+FROM etape AS e 
+WHERE id  =  $P{ID} ]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
@@ -46,43 +24,53 @@ ORDER BY id DESC]]>
 		<property name="com.jaspersoft.studio.field.label" value="description"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="etape"/>
 	</field>
+	<sortField name="id"/>
+	<group name="id">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
 	<title>
-		<band height="41" splitType="Stretch">
+		<band height="62" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<staticText>
+				<reportElement stretchType="ContainerHeight" x="0" y="0" width="140" height="62" uuid="11653819-b817-4d9a-b752-9a555099935e"/>
+				<textElement>
+					<font fontName="Bernard MT Condensed" size="20"/>
+				</textElement>
+				<text><![CDATA[Nom :]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="80" y="1" width="280" height="39" uuid="311ce23c-0612-4e2e-b7a7-13197fa19d54"/>
+				<reportElement key="" stretchType="ElementGroupHeight" isPrintRepeatedValues="false" x="140" y="0" width="415" height="62" uuid="ab6aa7a4-8c80-4329-b0ab-179dfef45d6e"/>
+				<textElement>
+					<font fontName="Algerian" size="18"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nom}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="0" y="0" width="80" height="40" uuid="5a62c731-1277-44a5-9bfc-4e321a95e1f8"/>
-				<text><![CDATA[Nom de l'etape :]]></text>
-			</staticText>
 		</band>
 	</title>
 	<detail>
-		<band height="105" splitType="Immediate">
-			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		<band height="125" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="80" height="59" uuid="d3260ce5-bd36-45b0-ae32-46d7a83076bc"/>
+				<reportElement x="0" y="10" width="130" height="30" uuid="dc132e88-59f3-476c-8dd3-9e7f39601885"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
 				<text><![CDATA[Description :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="17" width="555" height="30" uuid="18f1d023-c765-4cf1-840f-9ea5897fed7a"/>
+				<reportElement x="0" y="40" width="555" height="70" uuid="30ca0144-2a31-4bab-ae96-0af23e538d58"/>
 				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="10" y="70" width="300" height="30" uuid="ffed58ad-be39-406a-9fcf-59594adee069"/>
-				<textFieldExpression><![CDATA[$P{URI}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<summary>
-		<band height="408" splitType="Stretch">
-			<property name="local_mesure_unitheight" value="pixel"/>
+		<band height="310" splitType="Stretch">
 			<componentElement>
-				<reportElement x="10" y="0" width="545" height="383" uuid="cde0c550-f758-4de2-ad2a-fe7b36326075"/>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" qrVersion="3">
-					<jr:codeExpression><![CDATA[$P{URI}]]></jr:codeExpression>
+				<reportElement x="0" y="0" width="550" height="310" uuid="ba4062f4-7c06-4eb0-a5c2-a2996ffa1c3f"/>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" qrVersion="5">
+					<jr:codeExpression><![CDATA["123456789"]]></jr:codeExpression>
 				</jr:QRCode>
 			</componentElement>
 		</band>
