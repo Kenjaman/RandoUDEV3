@@ -1,5 +1,7 @@
 package com.rando.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +33,9 @@ public class UtilisateurService {
 			throw new AfficheMessageException("Cet utilisateur existe deja");
 		}
 		
+	}
+
+	public List<Utilisateur> getAllUsers() {
+		return utilisateurDao.getAllUtilisateurs();
 	}
 }

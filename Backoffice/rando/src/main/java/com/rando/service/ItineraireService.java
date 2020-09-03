@@ -12,6 +12,7 @@ import com.rando.dto.ItineraireDto;
 import com.rando.modele.Etape;
 import com.rando.modele.Etapeitineraire;
 import com.rando.modele.Itineraire;
+import com.rando.modele.Utilisateur;
 
 @Service
 public class ItineraireService {
@@ -35,7 +36,7 @@ public class ItineraireService {
 			Itineraire itineraire = new Itineraire();
 			itineraire.setNom(itineraireDto.getNom());
 			itineraire.setNiveau(itineraireDto.getNiveau());
-			
+		
 			//TODO boucle sur les etapes avec addEtapeItineraire
 			for(Etape e : itineraireDto.getEtapes()) {
 				Etapeitineraire ei = new Etapeitineraire();
@@ -45,6 +46,7 @@ public class ItineraireService {
 				itineraire.addEtapeitineraire(ei);
 				ordreEtapes++;
 			}
+//			itineraire.addEtapeitineraire();
 			return itineraireDao.ajouterItineraire(itineraire);
 		}
 		return 0;
