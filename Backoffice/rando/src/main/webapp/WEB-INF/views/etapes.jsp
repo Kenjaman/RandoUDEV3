@@ -14,7 +14,7 @@
 </head>
 <body class="bg-dark">
 	<div class="container">
-		<H1>Application Web de responsable d'association de randonnée</H1>
+		<H1 class="text-success">L'association de randonnée K.J.P</H1>
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<c:if test="${!empty messageEchecAjoutEtape}">
@@ -22,7 +22,7 @@
 			<c:out value="${messageEchecAjoutEtape}" />
 		</div>
 	</c:if>
-	<div class="list-group">
+	<div class="list-group container">
 		<a class="btn btn-primary" href="<c:url value='/ajoutEtape'/>">Ajouter
 			une etape 
 			<svg width="1em" height="1em" viewBox="0 0 16 16"

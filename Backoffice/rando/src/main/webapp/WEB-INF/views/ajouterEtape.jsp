@@ -15,7 +15,7 @@
 </head>
 <body class="bg-dark">
 	<div class="container">
-		<H1>Application Web de responsable d'association de randonnée</H1>
+		<H1 class="text-success">L'association de randonnée K.J.P</H1>
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<div class="container bg-light">
@@ -31,7 +31,7 @@
 			<form:textarea path="description" class="form-control"/>
 			<div class ="form-row">
 				<button class="btn btn-success" type="submit">Ajouter</button>
-				<a class="btn btn-danger" href="<c:url value='/accueil'/>">Annuler</a>
+				<a class="btn btn-danger" href="<c:url value='/etapes'/>">Annuler</a>
 			</div>
 		</form:form>
 	</div>

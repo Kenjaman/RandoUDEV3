@@ -14,7 +14,7 @@
 </head>
 <body class="bg-dark">
 	<div class="container">
-		<H1>Application Web de responsable d'association de randonnée</H1>
+		<H1 class="text-success">L'association de randonnée K.J.P</H1>
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<div class="container bg-light">

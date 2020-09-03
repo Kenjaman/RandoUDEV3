@@ -112,5 +112,6 @@
 			<artifactId>batik-bridge</artifactId>
 			<version>1.11</version>
 		</dependency>
+
 	</dependencies>
 </project>

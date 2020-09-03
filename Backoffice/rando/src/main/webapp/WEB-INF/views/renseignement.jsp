@@ -15,6 +15,10 @@
 </head>
 <body class="bg-dark">
 	<div class="container">
+		<H1 class="text-success">L'association de randonnée K.J.P</H1>
+		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
+	</div>
+	<div class="container bg-light">
 		<form:form servletRelativeAction="/inscription"
 			modelAttribute="utilisateurDto">
 			<section>
@@ -30,7 +34,7 @@
 			<section>
 				<button type="submit" class="btn btn-success">Valider</button>
 				<button class="btn btn-danger">
-					<a href="<c:url value='/'/>">Annuler</a>
+					<a href="<c:url value='/accueil'/>">Annuler</a>
 				</button>
 			</section>
 		</form:form>

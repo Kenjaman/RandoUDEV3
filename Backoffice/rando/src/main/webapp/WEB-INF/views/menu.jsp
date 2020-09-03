@@ -8,13 +8,9 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
-			<a class="nav-link" href="<c:url value='/itineraires'/>">Consulter
-				la liste des itinéraires existants</a> <a class="nav-link"
-				href="<c:url value='/etapes'/>">Consulter la liste des étapes
-				existantes</a> <a class="nav-link"
-				href="<c:url value='/ajoutItineraire'/>">Créer un nouvel
-				itinéraire</a> <a class="nav-link" href="<c:url value='/ajoutEtape'/>">Réferencer
-				une nouvelle étape</a> <a class="nav-link" href="#" role="button"
+			<a class="nav-link" href="<c:url value='/itineraires'/>">Liste des itinéraires</a> <a class="nav-link"
+				href="<c:url value='/etapes'/>">Liste des étapes</a> <a class="nav-link"
+				href="<c:url value='/ajoutItineraire'/>">Création d'itinéraire</a> <a class="nav-link" href="<c:url value='/ajoutEtape'/>">Création d'étape</a> <a class="nav-link" href="#" role="button"
 				data-toggle="modal" data-target="#login-modal">Connexion</a>
 		</div>
 	</div>
