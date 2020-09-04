@@ -18,6 +18,11 @@
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<div class="container bg-light">
+	<section>
+	<bouton class="btn btn-success">
+	<a href="<c:url value='/modifEtape/${etape.id}'/>">Modifier</a>
+	</bouton>
+	</section>
 		<H2>${etape.nom}</H2>
 		<div>
 			<h3>Description :</h3>
@@ -25,8 +30,7 @@
 		</div>
 		<h3>Action :</h3>
 		<a class="btn btn-primary" target="_blank"
-			href="<c:url value='/etape/${etape.id}/qrcode.pdf'/>">Générer
-			affiche du QR Code</a>
+			href="<c:url value='/etape/${etape.id}/qrcode.pdf'/>">QR Code de l'étape</a>
 		<h3>Photos :</h3>
 		<section>
 			<div class="container">

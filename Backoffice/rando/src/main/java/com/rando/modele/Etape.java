@@ -2,6 +2,9 @@ package com.rando.modele;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -27,6 +30,7 @@ public class Etape implements Serializable {
 
 	//bi-directional many-to-one association to Etapeitineraire
 	@OneToMany(mappedBy="etape")
+	@JsonIgnore
 	private List<Etapeitineraire> etapeitineraires;
 
 	public Etape() {

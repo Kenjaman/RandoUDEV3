@@ -105,9 +105,9 @@ public class EtapeControlleur {
 	//Modification
 
 	@GetMapping("/modifEtape/{etapeId}")
-	public String modifierEtape(Model model,@PathVariable int etapeId) {
-		model.addAttribute("etape",etapeService.getEtape(etapeId));
-		return "etape";	
+	public String modifierEtape(Model model,@PathVariable int etapeId,@ModelAttribute EtapeDto etapeDto) {
+		model.addAttribute("etapeDto",etapeService.getEtape(etapeId));
+		return "ajouterEtape";	
 	}
 
 	@PostMapping("/modifEtape/{etapeId}")
@@ -116,7 +116,7 @@ public class EtapeControlleur {
 			System.out.println("ya une erreur");
 			return "modifierEtape";
 		}else {
-			etapeService.modifier(etapeDto);
+			etapeService.modifier(etapeId,etapeDto);
 			return "redirect:/etape/"+etapeId;
 		}
 	}

@@ -19,21 +19,52 @@
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<div class="container bg-light">
+		<c:if test="${!empty etapeDto && etapeDto.id>=1}">
+			<c:set var="id" value="${etapeDto.id}" />
+			<c:out value="${id}" />
+		</c:if>
+		<%-- 		<form:form --%>
+		<%-- 			servletRelativeAction="${!empty etapeDto.id && etapeDto.id==0 ? '/ajoutEtape' : '/modifEtape/${id}'}" --%>
+		<%-- 			modelAttribute="etapeDto"> --%>
 		<form:form servletRelativeAction="/ajoutEtape"
 			modelAttribute="etapeDto">
 			<div class="form-row">
 				<div class="col-md-6 mb-3">
-				<label for="nom">Nom de l'etape:</label>
-				<form:input class="form-control" path="nom" required="required" />
+					<label for="nom">Nom de l'etape:</label>
+					<form:input class="form-control" path="nom" required="required" />
+					<form:hidden path="id" />
 				</div>
 			</div>
-			<label for="description">Description :</label><br>
-			<form:textarea path="description" class="form-control"/>
-			<div class ="form-row">
-				<button class="btn btn-success" type="submit">Ajouter</button>
+			<label for="description">Description :</label>
+			<br>
+			<form:textarea path="description" class="form-control" />
+			<div class="form-row">
+				<c:if test="${!empty etapeDto.id && etapeDto.id==0}">
+					<button class="btn btn-success" type="submit">Ajouter</button>
+				</c:if>
+				<c:if test="${!empty etapeDto.id && etapeDto.id>=1}">
+					<button class="btn btn-success" type="submit">Modifier</button>
+				</c:if>
 				<a class="btn btn-danger" href="<c:url value='/etapes'/>">Annuler</a>
 			</div>
 		</form:form>
+		<%-- 		<c:if test="${!empty etape}"> --%>
+		<%-- 			<form:form servletRelativeAction="/ajoutEtape" modelAttribute="etape"> --%>
+		<!-- 				<div class="form-row"> -->
+		<!-- 					<div class="col-md-6 mb-3"> -->
+		<!-- 						<label for="nom">Nom de l'etape:</label> -->
+		<%-- 						<form:input class="form-control" path="nom" required="required" /> --%>
+		<!-- 					</div> -->
+		<!-- 				</div> -->
+		<!-- 				<label for="description">Description :</label> -->
+		<!-- 				<br> -->
+		<%-- 				<form:textarea path="description" class="form-control" /> --%>
+		<!-- 				<div class="form-row"> -->
+		<!-- 					<button class="btn btn-success" type="submit">Modifier</button> -->
+		<%-- 					<a class="btn btn-danger" href="<c:url value='/etapes'/>">Annuler</a> --%>
+		<!-- 				</div> -->
+		<%-- 			</form:form> --%>
+		<%-- 		</c:if> --%>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
