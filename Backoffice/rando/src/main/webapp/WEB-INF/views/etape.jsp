@@ -18,11 +18,12 @@
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
 	<div class="container bg-light">
-	<section>
-	<bouton class="btn btn-success">
-	<a href="<c:url value='/modifEtape/${etape.id}'/>">Modifier</a>
-	</bouton>
-	</section>
+		<c:if test="${!empty sessionScope.moi}">
+			<section>
+				<bouton class="btn btn-success"> <a
+					href="<c:url value='/modifEtape/${etape.id}'/>">Modifier</a> </bouton>
+			</section>
+		</c:if>
 		<H2>${etape.nom}</H2>
 		<div>
 			<h3>Description :</h3>
@@ -30,24 +31,26 @@
 		</div>
 		<h3>Action :</h3>
 		<a class="btn btn-primary" target="_blank"
-			href="<c:url value='/etape/${etape.id}/qrcode.pdf'/>">QR Code de l'étape</a>
+			href="<c:url value='/etape/${etape.id}/qrcode.pdf'/>">QR Code de
+			l'étape</a>
 		<h3>Photos :</h3>
 		<section>
 			<div class="container">
 				<c:forEach begin="0" end="6" step="1">
-				<div class="media">
-					<img src="..." class="align-self-start mr-3" alt="...">
-					<div class="media-body">
-						<h5 class="mt-0">Top-aligned media</h5>
-						<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel
-							metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
-							in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-							nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-						<p>Donec sed odio dui. Nullam quis risus eget urna mollis
-							ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
-							parturient montes, nascetur ridiculus mus.</p>
+					<div class="media">
+						<img src="..." class="align-self-start mr-3" alt="...">
+						<div class="media-body">
+							<h5 class="mt-0">Top-aligned media</h5>
+							<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel
+								metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
+								in vulputate at, tempus viverra turpis. Fusce condimentum nunc
+								ac nisi vulputate fringilla. Donec lacinia congue felis in
+								faucibus.</p>
+							<p>Donec sed odio dui. Nullam quis risus eget urna mollis
+								ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
+								parturient montes, nascetur ridiculus mus.</p>
+						</div>
 					</div>
-				</div>
 				</c:forEach>
 			</div>
 		</section>
