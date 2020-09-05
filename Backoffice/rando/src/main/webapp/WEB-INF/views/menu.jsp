@@ -8,10 +8,17 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
-			<a class="nav-link" href="<c:url value='/itineraires'/>">Liste des itinéraires</a> <a class="nav-link"
-				href="<c:url value='/etapes'/>">Liste des étapes</a> <a class="nav-link"
-				href="<c:url value='/ajoutItineraire'/>">Création d'itinéraire</a> <a class="nav-link" href="<c:url value='/ajoutEtape'/>">Création d'étape</a> <a class="nav-link" href="#" role="button"
-				data-toggle="modal" data-target="#login-modal">Connexion</a>
+			<a class="nav-link" href="<c:url value='/itineraires'/>">Liste
+				des itinéraires&nbsp;(<c:out value="${sessionScope.nbItineraires}" />)
+			</a> <a class="nav-link" href="<c:url value='/etapes'/>">Liste des
+				étapes&nbsp;(<c:out value="${sessionScope.nbEtapes}" />)
+			</a>
+			<%-- 			<a class="nav-link" href="<c:url value='/ajoutItineraire'/>">Création --%>
+			<!-- 				d'itinéraire</a>  -->
+			<%-- 				<a class="nav-link" href="<c:url value='/ajoutEtape'/>">Création --%>
+			<!-- 				d'étape</a>  -->
+			<a class="nav-link" href="#" role="button" data-toggle="modal"
+				data-target="#login-modal">Connexion</a>
 		</div>
 	</div>
 	<c:if test="${!empty messageSucces}">

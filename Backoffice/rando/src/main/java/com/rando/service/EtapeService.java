@@ -40,18 +40,8 @@ public class EtapeService {
 	}
 
 	@Transactional
-	public void modifier(EtapeDto etapeDto) {
-		Etape nEtape = etapeDao.getEtape(etapeDto.getId());
-		if(nEtape != null) {
-			try {
-				nEtape.setNom(etapeDto.getNom());
-				nEtape.setDescription(etapeDto.getDescription());
-				//nEtape.setQrCode(generateQRCodeImage(etapeDto.getNom()+etapeDto.getDescription()+etapeDto.getLatitude()+etapeDto.getLongitude()));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+	public void modifier(int etapeId,EtapeDto etapeDto) {
+		etapeDao.modifierEtape(etapeId, etapeDto);
 	}
 
 	@Transactional(rollbackFor = EtapeEncoreDansUnItineraireException.class)
