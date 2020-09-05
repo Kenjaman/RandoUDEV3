@@ -24,6 +24,8 @@ public class AccueilControleur {
 	public String accueillir(Model model,@ModelAttribute UtilisateurDto utilisateurDto,HttpSession session) {
 		session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
 		session.setAttribute("nbItineraires", itineraireService.getItineraires().size());
+		String moi=(String) session.getAttribute("moi");
+		model.addAttribute("moi", moi);
 		model.addAttribute("itineraires", itineraireService.getItineraires());
 		return "accueil";
 	}

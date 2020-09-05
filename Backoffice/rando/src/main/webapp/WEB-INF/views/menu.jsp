@@ -17,8 +17,15 @@
 			<!-- 				d'itinéraire</a>  -->
 			<%-- 				<a class="nav-link" href="<c:url value='/ajoutEtape'/>">Création --%>
 			<!-- 				d'étape</a>  -->
-			<a class="nav-link" href="#" role="button" data-toggle="modal"
-				data-target="#login-modal">Connexion</a>
+			<c:if test="${empty sessionScope.moi}">
+				<a class="nav-link" href="#" role="button" data-toggle="modal"
+					data-target="#login-modal">Connexion</a>
+			</c:if>
+			<c:if test="${!empty sessionScope.moi}">
+				<a href="<c:url value='/stop'/>" class="nav-link">Deconnexion</a>
+				<a class="nav-link" href="#">Bienvenue <c:out
+						value="${sessionScope.moi}" /></a>
+			</c:if>
 		</div>
 	</div>
 	<c:if test="${!empty messageSucces}">
