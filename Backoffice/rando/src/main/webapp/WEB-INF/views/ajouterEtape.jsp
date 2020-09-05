@@ -23,16 +23,15 @@
 			<c:set var="id" value="${etapeDto.id}" />
 			<c:out value="${id}" />
 		</c:if>
-		<%-- 		<form:form --%>
-		<%-- 			servletRelativeAction="${!empty etapeDto.id && etapeDto.id==0 ? '/ajoutEtape' : '/modifEtape/${id}'}" --%>
-		<%-- 			modelAttribute="etapeDto"> --%>
-		<form:form servletRelativeAction="/ajoutEtape"
-			modelAttribute="etapeDto">
+				<form:form
+		servletRelativeAction="${!empty etapeDto.id && etapeDto.id==0 ? '/ajoutEtape' : '/modifEtape'}"
+		modelAttribute="etapeDto">
+<%-- 		<form:form servletRelativeAction="/ajoutEtape" --%>
+<%-- 			modelAttribute="etapeDto"> --%>
 			<div class="form-row">
 				<div class="col-md-6 mb-3">
 					<label for="nom">Nom de l'etape:</label>
 					<form:input class="form-control" path="nom" required="required" />
-					<form:hidden path="id" />
 				</div>
 			</div>
 			<label for="description">Description :</label>
@@ -44,6 +43,7 @@
 				</c:if>
 				<c:if test="${!empty etapeDto.id && etapeDto.id>=1}">
 					<button class="btn btn-success" type="submit">Modifier</button>
+					<input type="hidden" name="id" value="${etapeDto.id}"/>
 				</c:if>
 				<a class="btn btn-danger" href="<c:url value='/etapes'/>">Annuler</a>
 			</div>

@@ -41,17 +41,6 @@ public class EtapeService {
 
 	@Transactional
 	public void modifier(int etapeId,EtapeDto etapeDto) {
-//		Etape nEtape = etapeDao.getEtape(etapeId);
-//		if(nEtape != null) {
-//			try {
-//				nEtape.setNom(etapeDto.getNom());
-//				nEtape.setDescription(etapeDto.getDescription());
-//				//nEtape.setQrCode(generateQRCodeImage(etapeDto.getNom()+etapeDto.getDescription()+etapeDto.getLatitude()+etapeDto.getLongitude()));
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
 		etapeDao.modifierEtape(etapeId, etapeDto);
 	}
 
