@@ -3,6 +3,7 @@ package com.rando.controleur;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,9 @@ public class ItineraireControleur {
 	 * @return
 	 */
 	@GetMapping("/itineraires")
-	public String getListeItineraires(Model model) {
+	public String getListeItineraires(Model model,HttpSession session) {
+		session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
+		session.setAttribute("nbItineraires", itineraireService.getItineraires().size());
 		model.addAttribute("itineraires", itineraireService.getItineraires());
 		return "itineraires";
 	}
