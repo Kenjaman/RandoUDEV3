@@ -60,6 +60,13 @@ public class EtapeControlleur {
 		model.addAttribute("etape",etapeService.getEtape(etapeId));
 		return "etape";	
 	}
+	
+	@GetMapping("/etape/{etapeId}")
+	public String getEtapeClient(Model model,@PathVariable int etapeId) {
+		model.addAttribute("etape",etapeService.getEtape(etapeId));
+		return "etapeRandonneur";	
+	}
+	
 
 	//Creation
 
@@ -89,22 +96,22 @@ public class EtapeControlleur {
 		}
 	}
 
-	@PostMapping("/ajoutEtapeJS")
-	public String ajouterEtapeJS(Model model, @Valid @ModelAttribute EtapeDto etapeDto, BindingResult bindingResult) {
-		if(bindingResult.hasErrors() || model.getAttribute("erreurs")!=null) {
-			System.out.println("ya une erreur");
-			return ajouterEtapeJS(model, etapeDto,bindingResult);
-		}else {
-			try {
-				etapeService.ajouter(etapeDto);
-			} catch (EtapeExisteDejaException e) {
-				model.addAttribute("erreurs",e.getMessage());
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return "ok";
-		}
-	}
+//	@PostMapping("/ajoutEtapeJS")
+//	public String ajouterEtapeJS(Model model, @Valid @ModelAttribute EtapeDto etapeDto, BindingResult bindingResult) {
+//		if(bindingResult.hasErrors() || model.getAttribute("erreurs")!=null) {
+//			System.out.println("ya une erreur");
+//			return ajouterEtapeJS(model, etapeDto,bindingResult);
+//		}else {
+//			try {
+//				etapeService.ajouter(etapeDto);
+//			} catch (EtapeExisteDejaException e) {
+//				model.addAttribute("erreurs",e.getMessage());
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			return "ok";
+//		}
+//	}
 
 	//Modification
 
