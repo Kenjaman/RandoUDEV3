@@ -36,12 +36,21 @@ public class UtilisateurControleur {
 	}
 
 	@GetMapping("/logMe")
-	public String afficherPageConnexion(Model model) {
+	public String afficherPageConnexion(Model model,@ModelAttribute UtilisateurDto utilisateurDto) {
+		model.addAttribute("utilisateurDto", "");
 		return "logMe";
 	}
 	
 	@GetMapping("/renseignement")
 	public String renseignement(Model model, @ModelAttribute UtilisateurDto utilisateurDto) {
+		String pseudo=utilisateurDto.getPseudo();
+		String mdp=utilisateurDto.getMdp();
+		if(pseudo!=null && mdp!=null) {
+			pseudo=" ";
+			mdp=" ";
+		}
+		model.addAttribute("pseudo", pseudo);
+		model.addAttribute("mdp", mdp);
 		return "renseignement";
 	}
 

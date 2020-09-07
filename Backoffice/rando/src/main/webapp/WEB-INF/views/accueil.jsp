@@ -58,13 +58,14 @@
 		<h1 class="text-success">Association de Randonnée K.P</h1>
 		<section>
 			<button class="btn btn-primary">
-				<a href="itineraires?itineraireKey=R">RONDONNEUR(S)</a>
+				<a href="itineraires?itineraireKey=R">RONDONNEUR</a>
 			</button>
 		</section>
 		<br>
 		<section>
 			<button class="btn btn-primary">
-				<a href="itineraires?itineraireKey=A">ADMINISTRATEUR</a>
+<!-- 				<a href="itineraires?itineraireKey=A">ADMINISTRATEUR</a> -->
+<a href="<c:url value='/logMe'/>">ADMINISTRATEUR</a>
 			</button>
 		</section>
 	</div>

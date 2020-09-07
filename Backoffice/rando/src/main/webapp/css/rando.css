@@ -9,14 +9,14 @@
 	justify-content: space-around;
 }
 
-.rando_design{
-	padding:3%;
+.rando_design {
+	padding: 3%;
 }
 
-.btn-primary a, .btn-secondary a{
-	color:white;
+.btn-primary a, .btn-secondary a, .btn-danger a {
+	color: white;
 }
 
-.btn-primary a:hover{
+.btn-primary a:hover, .btn-secondary a:hover, .btn-danger a:hover {
 	text-decoration: none;
 }

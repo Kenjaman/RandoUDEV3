@@ -17,7 +17,7 @@
 </head>
 <body class="bg-dark">
 	<div class="container rando rando_design">
-		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
+<%-- 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include> --%>
 		<div class="container bg-light">
 			<!-- Begin # Login Form -->
 			<form:form id="login-form" servletRelativeAction="/authentification"
@@ -34,6 +34,9 @@
 						<button class="btn btn-success" type="submit">Connectez-vous</button>
 						<button class="btn btn-secondary">
 							<a href="<c:url value='/renseignement'/>">Inscrivez-vous</a>
+						</button>
+						<button class="btn btn-danger">
+							<a href="<c:url value='/'/>">Annuler</a>
 						</button>
 					</div>
 				</div>
