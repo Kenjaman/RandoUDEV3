@@ -36,10 +36,10 @@ public class EtapeDao {
 	}
 	
 	
-	public List<Etape> getEtapesItineraire(Integer id_iti){
-		return em.createQuery("select e from Etape e join EtapeItineraire ei on e.id=ei.id_etape where ei.id_itineraire = :id_iti order by num_etape", Etape.class).getResultList();
-	}
-	
+//	public List<Etape> getEtapesItineraire(Integer id_iti){
+//		return em.createQuery("select e from Etape e join EtapeItineraire ei on e.id=ei.id_etape where ei.id_itineraire = :id_iti order by num_etape", Etape.class).getResultList();
+//	}
+//	
 	public int ajouterEtape(Etape etape) {
 		em.persist(etape);
 		return etape.getId();

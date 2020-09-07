@@ -149,8 +149,7 @@ public class EtapeControlleur {
 			InputStream modeleInputStream = this.getClass().getResourceAsStream("/QrCodeEtape.jrxml");
 			JasperReport rapport = JasperCompileManager.compileReport(modeleInputStream);
 			Map<String, Object> parameters = new HashMap<>();
-			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(EtapeControlleur.class, "getDetailEtape",model,etapeId);
-			
+			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(WebConfigApiControleur.class, "getEtape",etapeId);
 			System.out.println("uri du qrcode : " + uri.toUriString());
 			parameters.put("URI",uri.toUriString());
 			parameters.put("ID",etapeId);

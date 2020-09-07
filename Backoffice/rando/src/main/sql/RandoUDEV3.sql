@@ -33,13 +33,13 @@ CREATE table if not exists `Utilisateur` (
 
 ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_itineraire`) REFERENCES `Itineraire` (`id`);
 
-ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`);
-
-INSERT INTO `utilisateur` (`id`, `pseudo`, `mdp`, `role`) VALUES (NULL, 'pattho', 'ZeroM$Pe', 'admin'),
-(NULL, 'damien', 'CrEpEsP6','admin');
+ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 INSERT INTO `itineraire` (`id`, `nom`, `niveau`) VALUES (NULL, 'Le premier chemin', 'Debutant'),
 (NULL, 'Le deuxieme chemin', 'Normal');
+
+INSERT INTO `utilisateur` (`id`, `pseudo`, `mdp`, `role`) VALUES (NULL, 'pattho', 'ZeroM$Pe', 'admin'),
+(NULL, 'damien', 'CrEpEsP6','admin');
 
 INSERT INTO `etape` (`id`, `nom`, `description`, `nb_like`) VALUES 
 (NULL, 'La deuxieme etape', 'C\'est encore mieux', '0'), 

@@ -3,7 +3,9 @@ package com.rando.controleur;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,8 +40,14 @@ public class WebConfigApiControleur {
     }
     
     @GetMapping(path="/etapes", produces= "application/json")
-    public List<Etape> getAllEtapees() {
+    public List<Etape> getAllEtapes() {
     	List<Etape> etapes = etapeService.getAllEtapes();
         return etapes;
+    }
+    
+    @GetMapping(path="/etapes/{idEtape}", produces= "application/json")
+    public Etape getEtape(@PathVariable(name = "idEtape") Integer idEtape) {
+    	Etape etape = etapeService.getEtape(idEtape);
+        return etape;
     }
 }

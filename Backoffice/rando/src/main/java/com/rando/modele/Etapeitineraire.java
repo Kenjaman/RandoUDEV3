@@ -27,6 +27,7 @@ public class Etapeitineraire implements Serializable {
 	//bi-directional many-to-one association to Etape
 	@ManyToOne
 	@JoinColumn(name="id_etape")
+	@JsonIgnore
 	private Etape etape;
 
 	//bi-directional many-to-one association to Itineraire
