@@ -46,50 +46,49 @@ public class EtapeControlleur {
 	@Autowired
 	private DataSource dataSource;
 
-	//Consultation
+	// Consultation
 
 	@GetMapping("/etapes")
-	public String getListeEtapes(Model model,HttpSession session) {
+	public String getListeEtapes(Model model, HttpSession session) {
 		session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
 		model.addAttribute("etapes", etapeService.getAllEtapes());
 		return "etapes";
 	}
 
 	@GetMapping("/etape/{etapeId}")
-	public String getDetailEtape(Model model,@PathVariable int etapeId) {
-		model.addAttribute("etape",etapeService.getEtape(etapeId));
-		return "etape";	
-	}
-	
-	@GetMapping("/etape/{etapeId}")
-	public String getEtapeClient(Model model,@PathVariable int etapeId) {
-		model.addAttribute("etape",etapeService.getEtape(etapeId));
-//		return "etapeRandonneur";	
+	public String getDetailEtape(Model model, @PathVariable int etapeId) {
+		model.addAttribute("etape", etapeService.getEtape(etapeId));
 		return "etape";
 	}
-	
 
-	//Creation
+//	@GetMapping("/etape/{etapeId}")
+//	public String getEtapeClient(Model model, @PathVariable int etapeId) {
+//		model.addAttribute("etape", etapeService.getEtape(etapeId));
+//		return "etapeRandonneur";
+//	}
+
+	// Creation
 
 	@GetMapping("/ajoutEtape")
 	public String ajouterEtape(Model model, @ModelAttribute EtapeDto etapeDto) {
-		model.addAttribute("etapes",etapeService.getAllEtapes());
+		model.addAttribute("etapes", etapeService.getAllEtapes());
 		return "ajouterEtape";
 
 	}
 
 	@PostMapping("/ajoutEtape")
-	public String ajouterEtape(Model model, @Valid @ModelAttribute EtapeDto etapeDto, BindingResult bindingResult,HttpSession session) {
-		if(bindingResult.hasErrors() || model.getAttribute("erreurs")!=null) {
+	public String ajouterEtape(Model model, @Valid @ModelAttribute EtapeDto etapeDto, BindingResult bindingResult,
+			HttpSession session) {
+		if (bindingResult.hasErrors() || model.getAttribute("erreurs") != null) {
 			System.out.println("ya une erreur");
 			return ajouterEtape(model, etapeDto);
-		}else {
+		} else {
 			try {
-				int idCreer= etapeService.ajouter(etapeDto);
+				int idCreer = etapeService.ajouter(etapeDto);
 				session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
-				return "redirect:/etape/"+idCreer;
+				return "redirect:/etape/" + idCreer;
 			} catch (EtapeExisteDejaException e) {
-				model.addAttribute("erreurs",e.getMessage());
+				model.addAttribute("erreurs", e.getMessage());
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return ajouterEtape(model, etapeDto);
@@ -114,31 +113,31 @@ public class EtapeControlleur {
 //		}
 //	}
 
-	//Modification
+	// Modification
 
 	@GetMapping("/modifEtape/{etapeId}")
-	public String modifierEtape(Model model,@PathVariable int etapeId,@ModelAttribute EtapeDto etapeDto) {
-		model.addAttribute("etapeDto",etapeService.getEtape(etapeId));
-		return "ajouterEtape";	
+	public String modifierEtape(Model model, @PathVariable int etapeId, @ModelAttribute EtapeDto etapeDto) {
+		model.addAttribute("etapeDto", etapeService.getEtape(etapeId));
+		return "ajouterEtape";
 	}
 
 	@PostMapping("/modifEtape")
-	public String modifierEtape(Model model,@RequestParam Integer id, @Valid @ModelAttribute EtapeDto etapeDto,BindingResult bindingResult) {
+	public String modifierEtape(Model model, @RequestParam Integer id, @Valid @ModelAttribute EtapeDto etapeDto,
+			BindingResult bindingResult) {
 		System.out.println("ID =>>> " + id);
-		if(bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 			System.out.println("ya une erreur sur " + id);
 			return "modifierEtape";
-		}else {
-			etapeService.modifier(id,etapeDto);
-			return "redirect:/etape/"+id;
+		} else {
+			etapeService.modifier(id, etapeDto);
+			return "redirect:/etape/" + id;
 		}
 	}
 
-
-	//Suppression
+	// Suppression
 
 	@PostMapping("/etape/suppression/{etapeId}")
-	public String supprimerEtape(Model model,@PathVariable Integer etapeId,HttpSession session) {
+	public String supprimerEtape(Model model, @PathVariable Integer etapeId, HttpSession session) {
 		try {
 			etapeService.supprimer(etapeId);
 			session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
@@ -146,21 +145,22 @@ public class EtapeControlleur {
 		} catch (EtapeEncoreDansUnItineraireException e) {
 			model.addAttribute("MsgEchecSuppression", e.getMessage());
 			return "etapes";
-		}		
+		}
 	}
 
-	//Generation QR_Code PDF 
-	@GetMapping(path="etape/{etapeId}/qrcode.pdf", produces = "application/pdf")
-	public void produireFicheEtape(OutputStream out,Model model,@PathVariable Integer etapeId ) {
-		//TODO
-		try(Connection connection = dataSource.getConnection()) {
+	// Generation QR_Code PDF
+	@GetMapping(path = "etape/{etapeId}/qrcode.pdf", produces = "application/pdf")
+	public void produireFicheEtape(OutputStream out, Model model, @PathVariable Integer etapeId) {
+		// TODO
+		try (Connection connection = dataSource.getConnection()) {
 			InputStream modeleInputStream = this.getClass().getResourceAsStream("/QrCodeEtape.jrxml");
 			JasperReport rapport = JasperCompileManager.compileReport(modeleInputStream);
 			Map<String, Object> parameters = new HashMap<>();
-			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(WebConfigApiControleur.class, "getEtape",etapeId);
+			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(WebConfigApiControleur.class, "getEtape",
+					etapeId);
 			System.out.println("uri du qrcode : " + uri.toUriString());
-			parameters.put("URI",uri.toUriString());
-			parameters.put("ID",etapeId);
+			parameters.put("URI", uri.toUriString());
+			parameters.put("ID", etapeId);
 			parameters.put("AUTEUR", "GROUPE1");
 			JasperPrint print = JasperFillManager.fillReport(rapport, parameters, connection);
 
@@ -174,6 +174,5 @@ public class EtapeControlleur {
 		}
 
 	}
-
 
 }
