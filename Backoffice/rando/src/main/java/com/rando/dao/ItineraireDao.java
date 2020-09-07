@@ -34,7 +34,7 @@ public class ItineraireDao {
 	}
 
 	public List<Itineraire> getAllIteneraires() {
-		return em.createQuery("select i from Itineraire i order by i.nom", Itineraire.class).getResultList();
+		return em.createQuery("select i from Itineraire i order by i.id desc", Itineraire.class).getResultList();
 	}
 
 	public void modifierItineraire(long itineraireId, ItineraireDto itineraireDto) {

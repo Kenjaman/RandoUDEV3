@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<a href="<c:url value='/'/>" class="h1 text-success">L'association de randonnée K.J.P</a>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"

@@ -27,10 +27,40 @@
 				</div>
 			</c:if>
 		</c:if>
-		<H1 class="text-success">L'association de randonnée K.J.P</H1>
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 	</div>
-	<div class="list-group container">
+	<div class="container">
+			<div class="bg-light">
+			<h4>
+				Bienvenue sur la partie administration de RandoKPJ !
+			</h4>
+			<section>
+				<pre>Veuillez vous inscrire :</pre>
+				<div class="container bg-light">
+				<form:form servletRelativeAction="/inscription"
+					modelAttribute="utilisateurDto">
+					<section>
+						Nom d'utilisateur :<br>
+						<form:input path="pseudo" class="form-control" required="required" />
+					</section>
+					<br>
+					<section>
+						Mot de passe :<br>
+						<form:password path="mdp" class="form-control" required="required" />
+					</section>
+					<br>
+					<section>
+						<button type="submit" class="btn btn-success">Valider</button>
+					</section>
+				</form:form>
+			</div>
+			</section>
+
+		</div>
+		
+	</div>
+
+	<%-- <div class="list-group container">
 		<a class="btn btn-primary" href="<c:url value='/ajoutItineraire'/>">Ajouter
 			un itineraire <svg width="1em" height="1em" viewBox="0 0 16 16"
 				class="bi bi-clipboard-plus" fill="currentColor"
@@ -45,7 +75,7 @@
 				href="<c:url value='/itineraire/${itineraire.id}'/>"><c:out
 					value="${itineraire.nom}"></c:out></a>
 		</c:forEach>
-	</div>
+	</div> --%>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

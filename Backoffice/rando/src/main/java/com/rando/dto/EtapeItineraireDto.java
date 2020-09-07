@@ -3,7 +3,7 @@ package com.rando.dto;
 import com.rando.modele.Etape;
 import com.rando.modele.Itineraire;
 
-public class EtapeitineraireDto {
+public class EtapeItineraireDto {
 
 	private Integer id;
 	private Integer numEtape;
