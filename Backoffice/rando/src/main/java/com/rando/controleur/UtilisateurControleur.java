@@ -32,9 +32,14 @@ public class UtilisateurControleur {
 		}
 		model.addAttribute("itineraires", itineraireService.getItineraires());
 		model.addAttribute("statut", result);
-		return "accueil";
+		return "itineraires";
 	}
 
+	@GetMapping("/logMe")
+	public String afficherPageConnexion(Model model) {
+		return "logMe";
+	}
+	
 	@GetMapping("/renseignement")
 	public String renseignement(Model model, @ModelAttribute UtilisateurDto utilisateurDto) {
 		return "renseignement";

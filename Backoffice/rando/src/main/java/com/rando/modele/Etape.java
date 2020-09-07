@@ -29,7 +29,6 @@ public class Etape implements Serializable {
 	private Integer nbLike;
 
 	//bi-directional many-to-one association to Etapeitineraire
-	@JsonIgnore
 	@OneToMany(mappedBy="etape")
 	@JsonIgnore
 	private List<Etapeitineraire> etapeitineraires;

@@ -3,10 +3,12 @@ package com.rando.controleur;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,7 +44,17 @@ public class ItineraireControleur {
 	 * @return
 	 */
 	@GetMapping("/itineraires")
-	public String getListeItineraires(Model model,HttpSession session) {
+	public String getListeItineraires(Model model, HttpSession session, HttpServletRequest request) {
+		String key = null;
+		if ((String) session.getAttribute("key") != null) {
+			key = (String) session.getAttribute("key");
+			session.setAttribute("key", key);
+		}
+		if (request.getParameter("itineraireKey") != null) {
+			key = request.getParameter("itineraireKey");			
+			session.setAttribute("key", key);
+		}
+		System.out.println("KEY =>>> " + key);
 		session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
 		session.setAttribute("nbItineraires", itineraireService.getItineraires().size());
 		model.addAttribute("itineraires", itineraireService.getItineraires());
@@ -84,19 +96,20 @@ public class ItineraireControleur {
 	 * @return
 	 */
 	@PostMapping("/ajoutItineraire")
-	public String ajouterItineraire(Model model, @Valid @ModelAttribute ItineraireDto itineraireDto,BindingResult bindingResult) {
+	public String ajouterItineraire(Model model, @Valid @ModelAttribute ItineraireDto itineraireDto,
+			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("ya erreur :");
-			for(ObjectError oe : bindingResult.getAllErrors())
+			for (ObjectError oe : bindingResult.getAllErrors())
 				System.out.println(oe.getCode());
 			return ajouterItineraire(model, itineraireDto);
 		} else {
 			System.out.println();
-			List <Etape> lesEtapes = itineraireDto.getEtapes();
-			for(Etape e : itineraireDto.getEtapes())
+			List<Etape> lesEtapes = itineraireDto.getEtapes();
+			for (Etape e : itineraireDto.getEtapes())
 				System.out.println(e);
 			int idCreer = itineraireService.ajouter(itineraireDto);
-			return "redirect:/itineraire/"+idCreer;
+			return "redirect:/itineraire/" + idCreer;
 		}
 	}
 
@@ -135,7 +148,7 @@ public class ItineraireControleur {
 			System.out.println("ya une erreur");
 			return "modifierItineraire";
 		} else {
-			//itineraireService.modifierEtapes(itineraireDto);
+			// itineraireService.modifierEtapes(itineraireDto);
 			return "redirect:/itineraire/" + itineraireId;
 		}
 	}

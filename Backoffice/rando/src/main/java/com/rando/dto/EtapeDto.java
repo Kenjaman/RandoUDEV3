@@ -11,7 +11,7 @@ public class EtapeDto {
 	private String description;
 	@NotBlank(message = "Vous devez donner un nom à cette étape !")
 	private String nom;
-	
+	private Integer nbLike;
 	private String qrCode;
 	private List<Etapeitineraire> etapeitineraires;
 	
@@ -75,6 +75,18 @@ public class EtapeDto {
 	 */
 	public void setEtapeitineraires(List<Etapeitineraire> etapeitineraires) {
 		this.etapeitineraires = etapeitineraires;
+	}
+	/**
+	 * @return the nbLike
+	 */
+	public Integer getNbLike() {
+		return nbLike;
+	}
+	/**
+	 * @param nbLike the nbLike to set
+	 */
+	public void setNbLike(Integer nbLike) {
+		this.nbLike = nbLike;
 	}
 	
 }

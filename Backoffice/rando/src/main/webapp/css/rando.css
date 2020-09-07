@@ -1,0 +1,22 @@
+.rando {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+	justify-content: space-around;
+}
+
+.rando_design{
+	padding:3%;
+}
+
+.btn-primary a, .btn-secondary a{
+	color:white;
+}
+
+.btn-primary a:hover{
+	text-decoration: none;
+}
