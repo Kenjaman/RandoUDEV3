@@ -64,7 +64,8 @@ public class EtapeControlleur {
 	@GetMapping("/etape/{etapeId}")
 	public String getEtapeClient(Model model,@PathVariable int etapeId) {
 		model.addAttribute("etape",etapeService.getEtape(etapeId));
-		return "etapeRandonneur";	
+//		return "etapeRandonneur";	
+		return "etape";
 	}
 	
 
