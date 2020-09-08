@@ -10,40 +10,42 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-<title>Rando</title>
+<link rel="stylesheet" href="css/rando.css" type="text/css" />
+<title>Rando - Détails itinéraire</title>
 </head>
 <body class="bg-dark">
-	<div class="container">
-		<H1 class="text-success">L'association de randonnée K.J.P</H1>
+	<div class="container rando rando_design">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
-	</div>
-	<div class="container bg-light">
-
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Nom de l'itinéraire</th>
-					<th>Niveau requis</th>
-					<th>Etapes</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${itineraire.nom}</td>
-					<td>${itineraire.niveau}</td>
-					<td><ul class="list-group">
-					<c:forEach items="${itineraire.etapeitineraires}" var="etapeItineraire">
-						<li class="list-group-item"><a href="<c:url value='/etape/${etapeItineraire.etape.id}'/>" ><c:out value="${etapeItineraire.etape.nom}"/></a></li>
-					</c:forEach>
-						</ul></td>
-				</tr>
-			</tbody>
-			<section>
-			<button class="btn btn-success">
-			<a href="<c:url value='/itineraires'/>">Retour</a>
-			</button>
-			</section>
-		</table>
+		<div class="container bg-light">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nom de l'itinéraire</th>
+						<th>Niveau requis</th>
+						<th>Etapes</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>${itineraire.nom}</td>
+						<td>${itineraire.niveau}</td>
+						<td><ul class="list-group">
+								<c:forEach items="${itineraire.etapeitineraires}"
+									var="etapeItineraire">
+									<li class="list-group-item"><a
+										href="<c:url value='/etape/${etapeItineraire.etape.id}'/>"><c:out
+												value="${etapeItineraire.etape.nom}" /></a></li>
+								</c:forEach>
+							</ul></td>
+					</tr>
+				</tbody>
+				<section>
+					<button class="btn btn-success">
+						<a href="<c:url value='/itineraires'/>">Retour</a>
+					</button>
+				</section>
+			</table>
+		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

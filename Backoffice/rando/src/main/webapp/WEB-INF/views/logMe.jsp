@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
@@ -12,39 +13,35 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/rando.css" type="text/css" />
-<title>Rando - Ajouter/Modifier une étape</title>
+<title>Rando - Connexion</title>
 </head>
 <body class="bg-dark">
 	<div class="container rando rando_design">
-		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
+<%-- 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include> --%>
 		<div class="container bg-light">
-			<c:if test="${!empty etapeDto && etapeDto.id>=1}">
-				<c:set var="id" value="${etapeDto.id}" />
-				<c:out value="${id}" />
-			</c:if>
-			<form:form
-				servletRelativeAction="${!empty etapeDto.id && etapeDto.id==0 ? '/ajoutEtape' : '/modifEtape'}"
-				modelAttribute="etapeDto">
-				<div class="form-row">
-					<div class="col-md-6 mb-3">
-						<label for="nom">Nom de l'etape:</label>
-						<form:input class="form-control" path="nom" required="required" />
+			<!-- Begin # Login Form -->
+			<form:form id="login-form" servletRelativeAction="/authentification"
+				modelAttribute="utilisateurDto">
+				<div class="modal-body">
+					<div id="div-login-msg">
+						<span>Authentifiez-vous</span>
+					</div>
+					<input type="text" id="login_username" name="pseudo"
+						class="form-control" placeholder="Nom d'utilisateur" value="" />
+					<input type="password" id="login_password" class="form-control"
+						name="mdp" placeholder="********" required="required" value="" />
+					<div class="modal-footer">
+						<button class="btn btn-success" type="submit">Connectez-vous</button>
+						<button class="btn btn-secondary">
+							<a href="<c:url value='/renseignement'/>">Inscrivez-vous</a>
+						</button>
+						<button class="btn btn-danger">
+							<a href="<c:url value='/'/>">Annuler</a>
+						</button>
 					</div>
 				</div>
-				<label for="description">Description :</label>
-				<br>
-				<form:textarea path="description" class="form-control" />
-				<div class="form-row">
-					<c:if test="${!empty etapeDto.id && etapeDto.id==0}">
-						<button class="btn btn-success" type="submit">Ajouter</button>
-					</c:if>
-					<c:if test="${!empty etapeDto.id && etapeDto.id>=1}">
-						<button class="btn btn-success" type="submit">Modifier</button>
-						<input type="hidden" name="id" value="${etapeDto.id}" />
-					</c:if>
-					<a class="btn btn-danger" href="<c:url value='/etapes'/>">Annuler</a>
-				</div>
 			</form:form>
+			<!-- End # Login Form -->
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -58,5 +55,7 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
+
+	<script src="<c:url value="/assets/js/main.js"/>"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@ CREATE TABLE if not exists `Etape` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `description` varchar(255),
-  `nb_like` int
+  `nb_like` int(11) default '0'
 )ENGINE = INNODB;
 
 CREATE TABLE if not exists `EtapeItineraire` (

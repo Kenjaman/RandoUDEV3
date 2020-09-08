@@ -11,33 +11,33 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-<title>Rando - Informations admin</title>
+<link rel="stylesheet" href="css/rando.css" type="text/css" />
+<title>Rando - Informations</title>
 </head>
 <body class="bg-dark">
-	<div class="container">
-		<H1 class="text-success">L'association de randonnée K.J.P</H1>
-		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
-	</div>
-	<div class="container bg-light">
-		<form:form servletRelativeAction="/inscription"
-			modelAttribute="utilisateurDto">
-			<section>
-				Nom d'utilisateur :<br>
-				<form:input path="pseudo" class="form-control" required="required" />
-			</section>
-			<br>
-			<section>
-				Mot de passe :<br>
-				<form:password path="mdp" class="form-control" required="required" />
-			</section>
-			<br>
-			<section>
-				<button type="submit" class="btn btn-success">Valider</button>
-				<button class="btn btn-danger">
-					<a href="<c:url value='/accueil'/>">Annuler</a>
-				</button>
-			</section>
-		</form:form>
+	<div class="container rando rando_design">
+<%-- 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include> --%>
+		<div class="container bg-light">
+			<form:form servletRelativeAction="/inscription"
+				modelAttribute="utilisateurDto">
+				<section>
+					Nom d'utilisateur :<br>
+					<form:input path="pseudo" class="form-control" required="required" />
+				</section>
+				<br>
+				<section>
+					Mot de passe :<br>
+					<form:password path="mdp" class="form-control" required="required" />
+				</section>
+				<br>
+				<section>
+					<button type="submit" class="btn btn-success">Valider</button>
+					<button class="btn btn-danger">
+						<a href="<c:url value='/accueil'/>">Annuler</a>
+					</button>
+				</section>
+			</form:form>
+		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

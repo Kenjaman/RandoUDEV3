@@ -1,21 +1,21 @@
 package com.rando.controleur;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.rando.dto.EtapeDto;
 import com.rando.modele.Etape;
 import com.rando.modele.Itineraire;
 import com.rando.modele.Utilisateur;
 import com.rando.service.EtapeService;
 import com.rando.service.ItineraireService;
 import com.rando.service.UtilisateurService;
-import org.json.simple.*;
 
 @RestController
 @RequestMapping("/api")
@@ -50,4 +50,33 @@ public class WebConfigApiControleur {
     	Etape etape = etapeService.getEtape(idEtape);
         return etape;
     }
+   
+    
+    /**
+     * Liker l'etape
+     * @param etapeDto
+     * @return nbLike 
+     */
+	@PutMapping(path="/etape/like", consumes = "application/json", produces= "text/plain")
+	@ResponseBody
+	public String actionEtape(@RequestBody(required = true) EtapeDto etapeJson) {
+		EtapeDto nEtapeDto = etapeService.likeEtape(etapeJson);
+		return String.valueOf(nEtapeDto.getNbLike());
+	}
+
+	/**
+	 * Disliker l'etape
+	 * @param etapeDto
+	 * @return
+	 */
+	@PutMapping(path="/etape/dislike", consumes = "application/json", produces= "text/plain")
+	@ResponseBody
+	public String actionEtape2(@RequestBody(required = true) EtapeDto etapeDto) {
+		System.out.println("dislike ="+etapeDto.getNom());
+		EtapeDto nEtapeDto = etapeService.dislikeEtape(etapeDto);
+		return String.valueOf(nEtapeDto.getNbLike());
+	}
+	
+
+
 }

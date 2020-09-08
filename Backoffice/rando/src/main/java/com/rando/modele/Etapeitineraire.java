@@ -3,6 +3,8 @@ package com.rando.modele;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import net.bytebuddy.implementation.bind.annotation.BindingPriority;
 
 
@@ -25,12 +27,12 @@ public class Etapeitineraire implements Serializable {
 	//bi-directional many-to-one association to Etape
 	@ManyToOne
 	@JoinColumn(name="id_etape")
-	@JsonIgnore
 	private Etape etape;
 
 	//bi-directional many-to-one association to Itineraire
 	@ManyToOne
 	@JoinColumn(name="id_itineraire")
+	@JsonIgnore
 	private Itineraire itineraire;
 
 	public Etapeitineraire() {

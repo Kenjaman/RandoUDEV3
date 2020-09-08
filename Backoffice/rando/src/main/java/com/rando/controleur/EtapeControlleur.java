@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import javax.validation.Valid;
 
@@ -18,14 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -52,52 +47,65 @@ public class EtapeControlleur {
 	@Autowired
 	private DataSource dataSource;
 
-	//Consultation
+	// Consultation
 
 	@GetMapping("/etapes")
-	public String getListeEtapes(Model model) {
+	public String getListeEtapes(Model model, HttpSession session) {
+		session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
 		model.addAttribute("etapes", etapeService.getAllEtapes());
 		return "etapes";
 	}
 
+	@GetMapping("/etape/{etapeId}")
+	public String getDetailEtape(Model model, @PathVariable int etapeId) {
+		model.addAttribute("etape", etapeService.getEtape(etapeId));
+		return "etape";
+	}
 
 //	@GetMapping("/etape/{etapeId}")
-//	public String getDetailEtape(Model model,@PathVariable int etapeId) {
-//		model.addAttribute("etape",etapeService.getEtape(etapeId));
-//		return "etape";	
+//	public String getEtapeClient(Model model, @PathVariable int etapeId) {
+//		model.addAttribute("etape", etapeService.getEtape(etapeId));
+//		return "etapeRandonneur";
 //	}
+	
+	//	@GetMapping("/etape/{etapeId}")
+//	public String getDetailEtape(Model model,@PathVariable int etapeId) {
+//	model.addAttribute("etape",etapeService.getEtape(etapeId));
+//	return "etape";	
+//}
 	@GetMapping("/etape/{idEtape}")
 	public ModelAndView helloAjaxTest(@PathVariable(name="idEtape") Integer idEtape) {
 		return new ModelAndView("etapeRandonneur", "etape", etapeService.getEtape(idEtape));
 	}
-	
+
 	@GetMapping("/etape/view/{etapeId}")
 	public String getEtapeClient(Model model,@PathVariable int etapeId) {
 		model.addAttribute("etape",etapeService.getEtape(etapeId));
 		return "etapeRandonneur";	
 	}
-	
 
-	//Creation
+	// Creation
 
 	@GetMapping("/ajoutEtape")
 	public String ajouterEtape(Model model, @ModelAttribute EtapeDto etapeDto) {
-		model.addAttribute("etapes",etapeService.getAllEtapes());
+		model.addAttribute("etapes", etapeService.getAllEtapes());
 		return "ajouterEtape";
 
 	}
 
 	@PostMapping("/ajoutEtape")
-	public String ajouterEtape(Model model, @Valid @ModelAttribute EtapeDto etapeDto, BindingResult bindingResult) {
-		if(bindingResult.hasErrors() || model.getAttribute("erreurs")!=null) {
+	public String ajouterEtape(Model model, @Valid @ModelAttribute EtapeDto etapeDto, BindingResult bindingResult,
+			HttpSession session) {
+		if (bindingResult.hasErrors() || model.getAttribute("erreurs") != null) {
 			System.out.println("ya une erreur");
 			return ajouterEtape(model, etapeDto);
-		}else {
+		} else {
 			try {
-				int idCreer= etapeService.ajouter(etapeDto);
-				return "redirect:/etape/"+idCreer;
+				int idCreer = etapeService.ajouter(etapeDto);
+				session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
+				return "redirect:/etape/" + idCreer;
 			} catch (EtapeExisteDejaException e) {
-				model.addAttribute("erreurs",e.getMessage());
+				model.addAttribute("erreurs", e.getMessage());
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return ajouterEtape(model, etapeDto);
@@ -105,74 +113,70 @@ public class EtapeControlleur {
 		}
 	}
 
-	@PostMapping("/ajoutEtapeJS")
-	public String ajouterEtapeJS(Model model, @Valid @ModelAttribute EtapeDto etapeDto, BindingResult bindingResult) {
-		if(bindingResult.hasErrors() || model.getAttribute("erreurs")!=null) {
-			System.out.println("ya une erreur");
-			return ajouterEtapeJS(model, etapeDto,bindingResult);
-		}else {
-			try {
-				etapeService.ajouter(etapeDto);
-			} catch (EtapeExisteDejaException e) {
-				model.addAttribute("erreurs",e.getMessage());
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return "ok";
-		}
-	}
+//	@PostMapping("/ajoutEtapeJS")
+//	public String ajouterEtapeJS(Model model, @Valid @ModelAttribute EtapeDto etapeDto, BindingResult bindingResult) {
+//		if(bindingResult.hasErrors() || model.getAttribute("erreurs")!=null) {
+//			System.out.println("ya une erreur");
+//			return ajouterEtapeJS(model, etapeDto,bindingResult);
+//		}else {
+//			try {
+//				etapeService.ajouter(etapeDto);
+//			} catch (EtapeExisteDejaException e) {
+//				model.addAttribute("erreurs",e.getMessage());
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			return "ok";
+//		}
+//	}
 
-	//Modification
+	// Modification
 
 	@GetMapping("/modifEtape/{etapeId}")
-	public String modifierEtape(Model model,@PathVariable int etapeId) {
-		model.addAttribute("etape",etapeService.getEtape(etapeId));
-		return "etape";	
+	public String modifierEtape(Model model, @PathVariable int etapeId, @ModelAttribute EtapeDto etapeDto) {
+		model.addAttribute("etapeDto", etapeService.getEtape(etapeId));
+		return "ajouterEtape";
 	}
 
-	@PostMapping("/modifEtape/{etapeId}")
-	public String modifierEtape(Model model,@PathVariable Integer etapeId, @Valid @ModelAttribute EtapeDto etapeDto,BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			System.out.println("ya une erreur");
+	@PostMapping("/modifEtape")
+	public String modifierEtape(Model model, @RequestParam Integer id, @Valid @ModelAttribute EtapeDto etapeDto,
+			BindingResult bindingResult) {
+		System.out.println("ID =>>> " + id);
+		if (bindingResult.hasErrors()) {
+			System.out.println("ya une erreur sur " + id);
 			return "modifierEtape";
-		}else {
-			etapeService.modifier(etapeDto);
-			return "redirect:/etape/"+etapeId;
+		} else {
+			etapeService.modifier(id, etapeDto);
+			return "redirect:/etape/" + id;
 		}
 	}
 
+	// Suppression
 
-
-	//Suppression
-
-	@PostMapping("/etape/suppression")
-	public String supprimerEtape(Model model,@ModelAttribute EtapeDto etapeDto) {
-		//TODO Suppression d'Etape
+	@PostMapping("/etape/suppression/{etapeId}")
+	public String supprimerEtape(Model model, @PathVariable Integer etapeId, HttpSession session) {
 		try {
-			etapeService.supprimer(etapeDto.getId());
+			etapeService.supprimer(etapeId);
+			session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
+			return "redirect:/etapes";
 		} catch (EtapeEncoreDansUnItineraireException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			model.addAttribute("MsgEchecSuppression", e.getMessage());
+			return "etapes";
 		}
-		return "redirect:/etapes";
 	}
 
-	//Generation QR_Code PDF 
-	@GetMapping(path="etape/{etapeId}/qrcode.pdf", produces = "application/pdf")
-	public void produireFicheEtape(OutputStream out,Model model,@PathVariable Integer etapeId ) {
-		//TODO
-		try(Connection connection = dataSource.getConnection()) {
+	// Generation QR_Code PDF
+	@GetMapping(path = "etape/{etapeId}/qrcode.pdf", produces = "application/pdf")
+	public void produireFicheEtape(OutputStream out, Model model, @PathVariable Integer etapeId) {
+		// TODO
+		try (Connection connection = dataSource.getConnection()) {
 			InputStream modeleInputStream = this.getClass().getResourceAsStream("/QrCodeEtape.jrxml");
 			JasperReport rapport = JasperCompileManager.compileReport(modeleInputStream);
 			Map<String, Object> parameters = new HashMap<>();
-
-			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(WebConfigApiControleur.class, "getEtape",etapeId);
-
-			
-			//UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(EtapeControlleur.class, "getEtapeClient",model,etapeId);
+			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(WebConfigApiControleur.class, "getEtape",	etapeId);
 			System.out.println("uri du qrcode : " + uri.toUriString());
-			parameters.put("URI",uri.toUriString());
-			parameters.put("ID",etapeId);
+			parameters.put("URI", uri.toUriString());
+			parameters.put("ID", etapeId);
 			parameters.put("AUTEUR", "GROUPE1");
 			JasperPrint print = JasperFillManager.fillReport(rapport, parameters, connection);
 
@@ -186,6 +190,5 @@ public class EtapeControlleur {
 		}
 
 	}
-
 
 }
