@@ -40,7 +40,7 @@ import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
 @Controller
-public class EtapeControlleur {
+public class EtapeControleur {
 
 	@Autowired
 	private EtapeService etapeService;
@@ -56,23 +56,12 @@ public class EtapeControlleur {
 		return "etapes";
 	}
 
-	@GetMapping("/etape/{etapeId}")
+	@GetMapping("/etape/detail/{etapeId}")
 	public String getDetailEtape(Model model, @PathVariable int etapeId) {
 		model.addAttribute("etape", etapeService.getEtape(etapeId));
 		return "etape";
 	}
-
-//	@GetMapping("/etape/{etapeId}")
-//	public String getEtapeClient(Model model, @PathVariable int etapeId) {
-//		model.addAttribute("etape", etapeService.getEtape(etapeId));
-//		return "etapeRandonneur";
-//	}
 	
-	//	@GetMapping("/etape/{etapeId}")
-//	public String getDetailEtape(Model model,@PathVariable int etapeId) {
-//	model.addAttribute("etape",etapeService.getEtape(etapeId));
-//	return "etape";	
-//}
 	@GetMapping("/etape/{idEtape}")
 	public ModelAndView helloAjaxTest(@PathVariable(name="idEtape") Integer idEtape) {
 		return new ModelAndView("etapeRandonneur", "etape", etapeService.getEtape(idEtape));
@@ -173,7 +162,7 @@ public class EtapeControlleur {
 			InputStream modeleInputStream = this.getClass().getResourceAsStream("/QrCodeEtape.jrxml");
 			JasperReport rapport = JasperCompileManager.compileReport(modeleInputStream);
 			Map<String, Object> parameters = new HashMap<>();
-			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(WebConfigApiControleur.class, "getEtape",	etapeId);
+			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(RandoApiControleur.class, "getEtape",	etapeId);
 			System.out.println("uri du qrcode : " + uri.toUriString());
 			parameters.put("URI", uri.toUriString());
 			parameters.put("ID", etapeId);

@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.rando.dto.EtapeDto;
+import com.rando.dto.EtapeItineraireDto;
 import com.rando.dto.ItineraireDto;
 import com.rando.modele.Etape;
 import com.rando.modele.Etapeitineraire;
@@ -68,8 +70,9 @@ public class ItineraireControleur {
 	 * @return
 	 */
 	@GetMapping("/itineraire/{itineraireId}")
-	public String getDetailItineraire(Model model, @PathVariable int itineraireId) {
+	public String getDetailItineraire(Model model, @PathVariable Integer itineraireId, @ModelAttribute EtapeItineraireDto etapeItineraireDto) {
 		model.addAttribute("itineraire", itineraireService.getItineraire(itineraireId));
+		model.addAttribute("etapes", etapeService.getAllEtapes());
 		return "itineraire";
 	}
 

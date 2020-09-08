@@ -19,7 +19,7 @@ import com.rando.service.UtilisateurService;
 
 @RestController
 @RequestMapping("/api")
-public class WebConfigApiControleur {
+public class RandoApiControleur {
 	@Autowired
 	private UtilisateurService utilisateurService;
 	@Autowired

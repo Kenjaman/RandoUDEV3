@@ -43,9 +43,16 @@
 			<c:forEach items="${etapes}" var="etape">
 				<div class="row">
 					<div class="${!empty sessionScope.moi ? 'col-8' : 'col-12'}">
-						<a class="list-group-item list-group-item-action"
-							href="<c:url value='/etape/${etape.id}'/>"><c:out
-								value="${etape.nom}"></c:out></a>
+						<c:if test="${empty sessionScope.moi}">
+							<a class="list-group-item list-group-item-action"
+								href="<c:url value='/etape/${etape.id}'/>"><c:out
+									value="${etape.nom}"></c:out></a>
+						</c:if>
+						<c:if test="${!empty sessionScope.moi}">
+							<a class="list-group-item list-group-item-action"
+								href="<c:url value='/etape/detail/${etape.id}'/>"><c:out
+									value="${etape.nom}"></c:out></a>
+						</c:if>
 					</div>
 					<c:if test="${!empty sessionScope.moi}">
 						<div class="col-2">
