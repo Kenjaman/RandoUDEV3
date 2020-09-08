@@ -1,23 +1,33 @@
 package com.rando.dto;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
 import java.util.List;
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rando.modele.Etapeitineraire;
 
-public class EtapeDto {
+public class EtapeDto implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private int id;
 	//@NotBlank(message = "Vous devez fournir une description !")
 	private String description;
 	@NotBlank(message = "Vous devez donner un nom à cette étape !")
 	private String nom;
 	private Integer nbLike;
-	private String qrCode;
+	@JsonIgnore
 	private List<Etapeitineraire> etapeitineraires;
-	
+
+	public EtapeDto(){
+		super();
+	}
+
 	/**
 	 * @return the id
 	 */
+
 	public int getId() {
 		return id;
 	}
@@ -30,6 +40,7 @@ public class EtapeDto {
 	/**
 	 * @return the description
 	 */
+	
 	public String getDescription() {
 		return description;
 	}
@@ -43,6 +54,7 @@ public class EtapeDto {
 	/**
 	 * @return the name
 	 */
+	
 	public String getNom() {
 		return nom;
 	}
@@ -52,18 +64,7 @@ public class EtapeDto {
 	public void setNom(String name) {
 		this.nom = name;
 	}
-	/**
-	 * @return the qrCode
-	 */
-	public String getQrCode() {
-		return qrCode;
-	}
-	/**
-	 * @param qrCode the qrCode to set
-	 */
-	public void setQrCode(String qrCode) {
-		this.qrCode = qrCode;
-	}
+
 	/**
 	 * @return the etapeitineraires
 	 */
@@ -79,6 +80,7 @@ public class EtapeDto {
 	/**
 	 * @return the nbLike
 	 */
+
 	public Integer getNbLike() {
 		return nbLike;
 	}

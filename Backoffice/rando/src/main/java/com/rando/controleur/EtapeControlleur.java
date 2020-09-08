@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -66,6 +67,22 @@ public class EtapeControlleur {
 //		model.addAttribute("etape", etapeService.getEtape(etapeId));
 //		return "etapeRandonneur";
 //	}
+	
+	//	@GetMapping("/etape/{etapeId}")
+//	public String getDetailEtape(Model model,@PathVariable int etapeId) {
+//	model.addAttribute("etape",etapeService.getEtape(etapeId));
+//	return "etape";	
+//}
+	@GetMapping("/etape/{idEtape}")
+	public ModelAndView helloAjaxTest(@PathVariable(name="idEtape") Integer idEtape) {
+		return new ModelAndView("etapeRandonneur", "etape", etapeService.getEtape(idEtape));
+	}
+
+	@GetMapping("/etape/view/{etapeId}")
+	public String getEtapeClient(Model model,@PathVariable int etapeId) {
+		model.addAttribute("etape",etapeService.getEtape(etapeId));
+		return "etapeRandonneur";	
+	}
 
 	// Creation
 
@@ -156,8 +173,7 @@ public class EtapeControlleur {
 			InputStream modeleInputStream = this.getClass().getResourceAsStream("/QrCodeEtape.jrxml");
 			JasperReport rapport = JasperCompileManager.compileReport(modeleInputStream);
 			Map<String, Object> parameters = new HashMap<>();
-			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(WebConfigApiControleur.class, "getEtape",
-					etapeId);
+			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(WebConfigApiControleur.class, "getEtape",	etapeId);
 			System.out.println("uri du qrcode : " + uri.toUriString());
 			parameters.put("URI", uri.toUriString());
 			parameters.put("ID", etapeId);

@@ -62,25 +62,20 @@ public class EtapeService {
 	 * 
 	 */
 	@Transactional
-	public EtapeDto actionEtape(EtapeDto etapeDto,String action) {
-		if(action.equalsIgnoreCase("like"))
-			etapeDto.setNbLike(etapeDto.getNbLike()+1);
-		else
-			etapeDto.setNbLike(etapeDto.getNbLike()-1);
+	public EtapeDto likeEtape(EtapeDto etapeDto) {
+		System.out.println("lik "+etapeDto);
+		System.out.println(etapeDto.getNbLike());
+		etapeDto.setNbLike(etapeDto.getNbLike()+1);
 		etapeDao.actionEtape(etapeDto);
 		return etapeDto;
 	}
 
-//	@Transactional
-//	public EtapeDto dislikeEtape(Integer etapeId) {
-//		Etape etape = etapeDao.getEtape(etapeId);
-//		etape.setNbLike(etape.getNbLike()-1);
-//		if(etapeDao.likeEtape(etape) > 0) {
-//			return etape.getNbLike();
-//		}
-//		else
-//			return -69;
-//	}
+	@Transactional
+	public EtapeDto dislikeEtape(EtapeDto etapeDto) {
+		etapeDto.setNbLike(etapeDto.getNbLike()-1);
+		etapeDao.actionEtape(etapeDto);
+		return etapeDto;
+	}
 
 
 
