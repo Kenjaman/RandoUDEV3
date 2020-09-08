@@ -54,10 +54,8 @@ public class ItineraireService {
 	
 	
 	@Transactional
-	public void modifierDetail(ItineraireDto itineraire) {
-		Itineraire itineraireMAJ = itineraireDao.getIteneraire(itineraire.getId());
-		itineraireMAJ.setNom(itineraire.getNom());
-		itineraireMAJ.setNiveau(itineraire.getNiveau());
+	public void modifierDetail(int itineraireId,ItineraireDto itineraireDto) {
+		itineraireDao.modifierItineraire(itineraireId, itineraireDto);
 	}
 	
 	//TODO : modifEtape itineraire

@@ -37,8 +37,8 @@ public class ItineraireDao {
 		return em.createQuery("select i from Itineraire i order by i.id desc", Itineraire.class).getResultList();
 	}
 
-	public void modifierItineraire(long itineraireId, ItineraireDto itineraireDto) {
-		em.createQuery("update Itiniraire i set i.nom=:nom, i.niveau=:niveau where i.id=:id")
+	public void modifierItineraire(Integer itineraireId, ItineraireDto itineraireDto) {
+		em.createQuery("update Itineraire i set i.nom=:nom, i.niveau=:niveau where i.id=:id")
 				.setParameter("nom", itineraireDto.getNom()).setParameter("niveau", itineraireDto.getNiveau())
 				.setParameter("id", itineraireId).executeUpdate();
 	}

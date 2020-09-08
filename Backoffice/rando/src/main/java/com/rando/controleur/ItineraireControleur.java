@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rando.dto.ItineraireDto;
 import com.rando.modele.Etape;
@@ -51,7 +52,7 @@ public class ItineraireControleur {
 			session.setAttribute("key", key);
 		}
 		if (request.getParameter("itineraireKey") != null) {
-			key = request.getParameter("itineraireKey");			
+			key = request.getParameter("itineraireKey");
 			session.setAttribute("key", key);
 		}
 		System.out.println("KEY =>>> " + key);
@@ -130,13 +131,14 @@ public class ItineraireControleur {
 	 * @return
 	 */
 	@PostMapping("/modifItineraireDetail/{itineraireId}")
-	public String modifierItineraireDetail(Model model, @PathVariable int itineraireId,
+	public String modifierItineraireDetail(Model model, @PathVariable Integer itineraireId,
 			@Valid @ModelAttribute ItineraireDto itineraireDto, BindingResult bindingResult) {
+		System.out.println("TOTOID =>>> " + itineraireId);
 		if (bindingResult.hasErrors()) {
 			System.out.println("ya une erreur");
 			return "modifierItineraire";
 		} else {
-			itineraireService.modifierDetail(itineraireDto);
+			itineraireService.modifierDetail(itineraireId,itineraireDto);
 			return "redirect:/itineraire/" + itineraireId;
 		}
 	}
@@ -159,6 +161,14 @@ public class ItineraireControleur {
 	public String supprimerItineraire(@PathVariable int itineraireId) {
 		itineraireService.supprimer(itineraireId);
 		return "redirect:/itineraires";
+	}
+
+	// Modification ou Suppression étape dans itinéraire
+
+	@PostMapping("/actionSurEtapeItineraire/{etapeId}")
+	public String actionSurEtapeItineraire(Model model, @RequestParam String action,
+			 @PathVariable Integer etapeId) {
+		return "redirect:/itineraire/" + etapeId;
 	}
 
 }

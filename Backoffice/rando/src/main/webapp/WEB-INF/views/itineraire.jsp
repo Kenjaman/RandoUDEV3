@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +15,13 @@
 <title>Rando - Détails itinéraire</title>
 </head>
 <body class="bg-dark">
-	<div class="container rando rando_design">
+	<div class="container randoBis rando_design">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 		<div class="container bg-light">
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<th></th>
 						<th>Nom de l'itinéraire</th>
 						<th>Niveau requis</th>
 						<th>Etapes</th>
@@ -27,24 +29,60 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>${itineraire.nom}</td>
-						<td>${itineraire.niveau}</td>
+						<form:form
+							servletRelativeAction="/modifItineraireDetail/${itineraire.id}"
+							modelAttribute="itineraire">
+							<td><button class="btn btn-primary">
+									<a href="<c:url value='/itineraires'/>">Tous annuler</a>
+								</button>
+								<button type="submit" class="btn btn-danger">Modifier</button></td>
+							<td><form:input path="nom" class="form-control" /></td>
+							<td><form:select path="niveau" class="form-control">
+									<form:options items="${niveau}" />
+								</form:select></td>
+						</form:form>
 						<td><ul class="list-group">
 								<c:forEach items="${itineraire.etapeitineraires}"
 									var="etapeItineraire">
-									<li class="list-group-item"><a
+									<li class="list-group-item">
+<%-- 									<c:if test="${empty sessionScope.moi}"> --%>
+									<a
 										href="<c:url value='/etape/${etapeItineraire.etape.id}'/>"><c:out
-												value="${etapeItineraire.etape.nom}" /></a></li>
+												value="${etapeItineraire.etape.nom}" /></a>
+<%-- 												</c:if> --%>
+												
+												</li>
+									<c:set var="etapeId" value="${etapeItineraire.etape.id}" />
+									<form:form
+										servletRelativeAction="/actionSurEtapeItineraire/${etapeId}"
+										modelAttribute="etape">
+										<div class="form-row">
+											<button class="btn btn-success" type="submit" name="action"
+												value="modification">
+												<svg width="1em" height="1em" viewBox="0 0 16 16"
+													class="bi bi-pen-fill" fill="currentColor"
+													xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd"
+														d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
+</svg>
+											</button>
+											<button type="submit" class="btn btn-danger" name="action"
+												value="suppression">
+												<svg width="1em" height="1em" viewBox="0 0 16 16"
+													class="bi bi-trash-fill" fill="currentColor"
+													xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd"
+														d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
+</svg>
+											</button>
+										</div>
+									</form:form>
 								</c:forEach>
 							</ul></td>
 					</tr>
 				</tbody>
-				<section>
-					<button class="btn btn-success">
-						<a href="<c:url value='/itineraires'/>">Retour</a>
-					</button>
-				</section>
 			</table>
+
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
