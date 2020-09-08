@@ -18,15 +18,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-<<<<<<< Updated upstream
-=======
+
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
->>>>>>> Stashed changes
+
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -61,12 +60,7 @@ public class EtapeControlleur {
 		return "etapes";
 	}
 
-	@GetMapping("/etape/{etapeId}")
-	public String getDetailEtape(Model model,@PathVariable int etapeId) {
-		model.addAttribute("etape",etapeService.getEtape(etapeId));
-		return "etape";	
-	}
-=======
+
 //	@GetMapping("/etape/{etapeId}")
 //	public String getDetailEtape(Model model,@PathVariable int etapeId) {
 //		model.addAttribute("etape",etapeService.getEtape(etapeId));
@@ -83,7 +77,6 @@ public class EtapeControlleur {
 		return "etapeRandonneur";	
 	}
 	
->>>>>>> Stashed changes
 
 	//Creation
 
@@ -149,6 +142,7 @@ public class EtapeControlleur {
 	}
 
 
+
 	//Suppression
 
 	@PostMapping("/etape/suppression")
@@ -171,16 +165,11 @@ public class EtapeControlleur {
 			InputStream modeleInputStream = this.getClass().getResourceAsStream("/QrCodeEtape.jrxml");
 			JasperReport rapport = JasperCompileManager.compileReport(modeleInputStream);
 			Map<String, Object> parameters = new HashMap<>();
-<<<<<<< Updated upstream
+
 			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(WebConfigApiControleur.class, "getEtape",etapeId);
-=======
-<<<<<<< Updated upstream
-			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(WebConfigApiControleur.class, "getEtape",
-					etapeId);
-=======
-			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(EtapeControlleur.class, "getEtapeClient",model,etapeId);
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
+			
+			//UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(EtapeControlleur.class, "getEtapeClient",model,etapeId);
 			System.out.println("uri du qrcode : " + uri.toUriString());
 			parameters.put("URI",uri.toUriString());
 			parameters.put("ID",etapeId);
