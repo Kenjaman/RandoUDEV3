@@ -6,9 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rando.dto.EtapeDto;
 import com.rando.modele.Etape;
 import com.rando.modele.Itineraire;
 import com.rando.modele.Utilisateur;
@@ -50,4 +56,14 @@ public class WebConfigApiControleur {
     	Etape etape = etapeService.getEtape(idEtape);
         return etape;
     }
+    
+	@PostMapping(path="/etape/like/", produces= "application/text")
+	@ResponseBody
+	public Integer actionEtape(@RequestBody EtapeDto etapeDto, @RequestParam(name="action") String action) {
+		EtapeDto nEtapeDto = etapeService.actionEtape(etapeDto,action);
+		return nEtapeDto.getNbLike();
+	}
+
+
+
 }

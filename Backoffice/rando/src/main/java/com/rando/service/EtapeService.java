@@ -56,6 +56,32 @@ public class EtapeService {
 
 	}
 
+	
+	/*
+	 * likerEtape et dislikeEtape renvoient le nombre de like de l'étape une fois mise a jour
+	 * 
+	 */
+	@Transactional
+	public EtapeDto actionEtape(EtapeDto etapeDto,String action) {
+		if(action.equalsIgnoreCase("like"))
+			etapeDto.setNbLike(etapeDto.getNbLike()+1);
+		else
+			etapeDto.setNbLike(etapeDto.getNbLike()-1);
+		etapeDao.actionEtape(etapeDto);
+		return etapeDto;
+	}
+
+//	@Transactional
+//	public EtapeDto dislikeEtape(Integer etapeId) {
+//		Etape etape = etapeDao.getEtape(etapeId);
+//		etape.setNbLike(etape.getNbLike()-1);
+//		if(etapeDao.likeEtape(etape) > 0) {
+//			return etape.getNbLike();
+//		}
+//		else
+//			return -69;
+//	}
+
 
 
 }
