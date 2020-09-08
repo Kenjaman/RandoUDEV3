@@ -25,7 +25,6 @@
 				<div class="modal-body">
 					<div id="div-login-msg">
 						<span>Authentifiez-vous</span>
-					</div>
 					<input type="text" id="login_username" name="pseudo"
 						class="form-control" placeholder="Nom d'utilisateur" value="" />
 					<input type="password" id="login_password" class="form-control"
@@ -39,6 +38,7 @@
 							<a href="<c:url value='/'/>">Annuler</a>
 						</button>
 					</div>
+				</div>
 				</div>
 			</form:form>
 			<!-- End # Login Form -->

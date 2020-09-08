@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<link rel="stylesheet" href="css/rando.css" type="text/css" />
 <a href="<c:url value='/stop'/>" class="h1 text-success">L'association
 	de randonnée K.P</a>
 <nav class="navbar navbar-navbar navbar-expand-lg navbar-dark bg-dark">
