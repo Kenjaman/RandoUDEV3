@@ -11,10 +11,11 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="nav navbar-nav">
-			<a class="nav-link" href="<c:url value='/itineraires'/>">Liste
-				des itinéraires&nbsp;(<c:out value="${sessionScope.nbItineraires}" />)
-			</a> <a class="nav-link" href="<c:url value='/etapes'/>">Liste des
-				étapes&nbsp;(<c:out value="${sessionScope.nbEtapes}" />)
+			<a class="nav-link" href="<c:url value='/itineraires'/>">
+				Liste des itinéraires&nbsp;<span class="badge badge-light"><c:out value="${sessionScope.nbItineraires}" /></span>
+			</a> 
+			<a class="nav-link" href="<c:url value='/etapes'/>">
+				Liste des étapes&nbsp;<span class="badge badge-light"><c:out value="${sessionScope.nbEtapes}" /></span>
 			</a>
 			<c:if test="${!empty sessionScope.key && sessionScope.key=='A'}">
 				<c:if test="${empty sessionScope.moi }">
@@ -43,8 +44,9 @@
 			</c:if>
 			<c:if test="${!empty sessionScope.moi}">
 				<a class="nav-link" href="<c:url value='/stop'/>">Deconnexion</a>
-				<a class="nav-link" href="#">Bienvenue <c:out
-						value="${sessionScope.moi}" /></a>
+				<a class="nav-link" href="#">
+					<span class="badge badge-success">Bienvenue <c:out value="${sessionScope.moi}" /></span>
+				</a>
 			</c:if>
 		</div>
 	</div>

@@ -7,12 +7,17 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- CSS BootStrap -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="<c:url value='css/rando.css'/>" type="text/css" />
-<title>Rando</title>
+<!-- CSS Custom -->
+<link rel="stylesheet" href="<c:url value='/css/rando.css'/>" type="text/css" />
+<!-- Deux car bug de chargement lorsque l'adresse est "localhost:8080/rando"
+ -->
+<!--  <link rel="stylesheet" href="./rando/css/rando.css" type="text/css" />
+ --><title>Rando</title>
 </head>
 <body class="bg-dark">
 	<div class="container rando rando_design">
@@ -57,16 +62,12 @@
 		<!-- 		</div> -->
 		<h1 class="text-success">Association de Randonnée K.P</h1>
 		<section>
-			<button class="btn btn-primary">
-				<a href="itineraires?itineraireKey=R">RONDONNEUR</a>
-			</button>
+			<a class="btn btn-primary" href="itineraires?itineraireKey=R">RONDONNEUR</a>
 		</section>
 		<br>
-		<section>
-			<button class="btn btn-primary">
-<!-- 				<a href="itineraires?itineraireKey=A">ADMINISTRATEUR</a> -->
-<a href="<c:url value='/logMe'/>">ADMINISTRATEUR</a>
-			</button>
+		<section><a class="btn btn-primary" href="<c:url value='/logMe'/>">
+	<!-- 				<a href="itineraires?itineraireKey=A">ADMINISTRATEUR</a> -->
+					ADMINISTRATEUR</a>
 		</section>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
