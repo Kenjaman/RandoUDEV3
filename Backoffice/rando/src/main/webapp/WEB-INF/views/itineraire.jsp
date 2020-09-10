@@ -11,11 +11,11 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/rando.css" type="text/css" />
+<link rel="stylesheet" href="../css/rando.css" type="text/css" />
 <title>Rando - Détails itinéraire</title>
 </head>
 <body class="bg-dark">
-	<div class="container randoBis rando_design">
+	<div class="container rando rando_design">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 		<div class="container bg-light">
 			<table class="table table-striped">
@@ -74,18 +74,18 @@
 												</form:select></li>
 											<%-- 											<c:if test="${!empty sessionScope.moi}"> --%>
 											<div class="form-row">
-												<button class="btn btn-success" type="submit" name="action"
+												<button class="btn btn-success mr-3 mt-3 mb-3" type="submit" name="action"
 													value="modification">
-													<svg width="1em" height="1em" viewBox="0 0 16 16"
+													<svg width="10em" height="1em" viewBox="0 0 16 16"
 														class="bi bi-pen-fill" fill="currentColor"
 														xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd"
 															d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
 </svg>
 												</button>
-												<button type="submit" class="btn btn-danger" name="action"
+												<button type="submit" class="btn btn-danger mt-3 mb-3" name="action"
 													value="suppression">
-													<svg width="1em" height="1em" viewBox="0 0 16 16"
+													<svg width="10em" height="1em" viewBox="0 0 16 16"
 														class="bi bi-trash-fill" fill="currentColor"
 														xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd"

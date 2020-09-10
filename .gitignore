@@ -27,3 +27,4 @@ Servers/
 Backoffice/rando/target/*
 Backoffice/rando/src/main/resources/jdbc.properties
 Backoffice/rando/src/main/resources/jdbc.properties
+Backoffice/rando/src/main/resources/jdbc.properties

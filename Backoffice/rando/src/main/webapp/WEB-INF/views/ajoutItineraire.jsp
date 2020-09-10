@@ -61,8 +61,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<button class="btn btn-success" type="submit"
-							style="margin-right: 1%">Ajouter</button>
+						<button class="btn btn-success mr-3" type="submit">Ajouter</button>
 						<a class="btn btn-danger" href="<c:url value='/itineraires'/>">Annuler</a>
 					</div>
 					<form:errors></form:errors>

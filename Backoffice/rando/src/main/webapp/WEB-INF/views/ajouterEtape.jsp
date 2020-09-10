@@ -34,10 +34,9 @@
 					</div>
 					<label for="description">Description :</label> <br>
 					<form:textarea path="description" class="form-control" />
-					<div class="form-row" style="padding-top:3%">
+					<div class="form-row pt-3">
 						<c:if test="${!empty etapeDto.id && etapeDto.id==0}">
-							<button class="btn btn-success" type="submit"
-								style="margin-right: 1%">Ajouter</button>
+							<button class="btn btn-success mr-3" type="submit">Ajouter</button>
 						</c:if>
 						<c:if test="${!empty etapeDto.id && etapeDto.id>=1}">
 							<button class="btn btn-success" type="submit"

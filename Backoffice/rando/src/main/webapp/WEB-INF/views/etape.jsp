@@ -11,7 +11,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-<!-- <link rel="stylesheet" href="css/rando.css" type="text/css" /> -->
+<link rel="stylesheet" href="css/rando.css" type="text/css" />
 <title>Rando - Détails étape</title>
 </head>
 <body class="bg-dark">
@@ -20,7 +20,7 @@
 		<div class="container bg-light">
 			<c:if test="${!empty sessionScope.moi}">
 				<section>
-					<bouton class="btn btn-success"> <a
+					<bouton class="btn btn-success mt-3"> <a
 						href="<c:url value='/modifEtape/${etape.id}'/>">Modifier</a> </bouton>
 				</section>
 				<H2>${etape.nom}</H2>
