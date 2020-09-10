@@ -22,6 +22,9 @@
 			<form:form servletRelativeAction="/ajoutItineraire"
 				modelAttribute="itineraireDto">
 				<div class="modal-body">
+					<div class="text-danger">
+						<c:out value="${messageEchecAjoutItineraire}" />
+					</div>
 					<div class="form-row">
 						<div class="col-md-6 mb-3">
 							<form:label path="nom">Nom de l'itinéraire :</form:label>
@@ -48,7 +51,7 @@
 									<option value="${etape.id}">${etape.nom}</option>
 								</c:forEach>
 							</select>
-							<button type="button" class="btn btn-danger col-1" id="delete">
+							<button type="button" class="btn btn-danger col-1 delete" onclick="deleted(this)">
 								<svg width="1em" height="1em" viewBox="0 0 16 16"
 									class="bi bi-trash" fill="currentColor"
 									xmlns="http://www.w3.org/2000/svg">
@@ -64,8 +67,8 @@
 						<button class="btn btn-success mr-3" type="submit">Ajouter</button>
 						<a class="btn btn-danger" href="<c:url value='/itineraires'/>">Annuler</a>
 					</div>
-					<form:errors></form:errors>
 				</div>
+
 			</form:form>
 		</div>
 	</div>
@@ -82,5 +85,6 @@
 		crossorigin="anonymous"></script>
 
 	<script src="<c:url value="/assets/js/main.js"/>"></script>
+
 </body>
 </html>

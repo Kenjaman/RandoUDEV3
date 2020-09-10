@@ -103,23 +103,32 @@ public class ItineraireControleur {
 	 */
 	@PostMapping("/ajoutItineraire")
 	public String ajouterItineraire(Model model, @Valid @ModelAttribute ItineraireDto itineraireDto,
-			BindingResult bindingResult,HttpSession session) throws AfficheMessageException {
+			BindingResult bindingResult,HttpSession session) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("ya erreur :");
 			for (ObjectError oe : bindingResult.getAllErrors())
 				System.out.println(oe.getCode());
-//			return ajouterItineraire(model, itineraireDto);
+			//			return ajouterItineraire(model, itineraireDto);
 			model.addAttribute("itineraires", itineraireService.getItineraires());
 			model.addAttribute("messageEchecAjoutItineraire", "Un itineraire avec le même nom existe deja");
-			return "itineraires";
+			return "ajoutItineraire";
 		} else {
-			System.out.println();
-			List<Etape> lesEtapes = itineraireDto.getEtapes();
-			for (Etape e : itineraireDto.getEtapes())
-				System.out.println(e);
-			int idCreer = itineraireService.ajouter(itineraireDto);
-			session.setAttribute("nbItineraires", itineraireService.getItineraires().size());
-			return "redirect:/itineraire/" + idCreer;
+			try {
+				System.out.println();
+				List<Etape> lesEtapes = itineraireDto.getEtapes();
+				for (Etape e : itineraireDto.getEtapes())
+					System.out.println(e);
+				int idCreer;
+				idCreer = itineraireService.ajouter(itineraireDto);
+				session.setAttribute("nbItineraires", itineraireService.getItineraires().size());
+				return "redirect:/itineraire/" + idCreer;
+			} catch (AfficheMessageException e1) {
+				e1.printStackTrace();
+				return ajouterItineraire(model, itineraireDto);
+				// TODO Auto-generated catch block
+				
+
+			}
 		}
 	}
 
@@ -176,7 +185,7 @@ public class ItineraireControleur {
 
 	@PostMapping("/actionSurEtapeItineraire/{etapeId}")
 	public String actionSurEtapeItineraire(Model model, @RequestParam String action,
-			 @PathVariable Integer etapeId) {
+			@PathVariable Integer etapeId) {
 		return "redirect:/itineraire/" + etapeId;
 	}
 

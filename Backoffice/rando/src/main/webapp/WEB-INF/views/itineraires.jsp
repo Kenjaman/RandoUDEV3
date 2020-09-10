@@ -14,14 +14,8 @@
 <title>Rando - Liste des itinéraires</title>
 </head>
 <body class="bg-dark">
-	<div class="container rando rando_design overflow-auto">
+	<div class="container rando rando_design overflow-auto ">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
-		<c:if test="${!empty messageEchecAjoutItineraire}">
-			<div class="btn btn-danger avertissement">
-				<c:out value="${messageEchecAjoutItineraire}" />
-			</div>
-		</c:if>
-		
 			<div class="list-group container">
 			<c:if test="${!empty sessionScope.moi}">
 				<a class="btn btn-primary" href="<c:url value='/ajoutItineraire'/>">Ajouter
