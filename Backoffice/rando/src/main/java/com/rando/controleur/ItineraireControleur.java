@@ -101,7 +101,7 @@ public class ItineraireControleur {
 	 */
 	@PostMapping("/ajoutItineraire")
 	public String ajouterItineraire(Model model, @Valid @ModelAttribute ItineraireDto itineraireDto,
-			BindingResult bindingResult) {
+			BindingResult bindingResult,HttpSession session) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("ya erreur :");
 			for (ObjectError oe : bindingResult.getAllErrors())
@@ -113,6 +113,7 @@ public class ItineraireControleur {
 			for (Etape e : itineraireDto.getEtapes())
 				System.out.println(e);
 			int idCreer = itineraireService.ajouter(itineraireDto);
+			session.setAttribute("nbItineraires", itineraireService.getItineraires().size());
 			return "redirect:/itineraire/" + idCreer;
 		}
 	}
