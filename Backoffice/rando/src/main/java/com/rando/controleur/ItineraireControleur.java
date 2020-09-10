@@ -25,6 +25,7 @@ import com.rando.dto.ItineraireDto;
 import com.rando.modele.Etape;
 import com.rando.modele.Etapeitineraire;
 import com.rando.modele.Niveau;
+import com.rando.service.AfficheMessageException;
 import com.rando.service.EtapeService;
 import com.rando.service.ItineraireService;
 
@@ -98,15 +99,19 @@ public class ItineraireControleur {
 	 * @param itineraireDto
 	 * @param bindingResult
 	 * @return
+	 * @throws AfficheMessageException 
 	 */
 	@PostMapping("/ajoutItineraire")
 	public String ajouterItineraire(Model model, @Valid @ModelAttribute ItineraireDto itineraireDto,
-			BindingResult bindingResult,HttpSession session) {
+			BindingResult bindingResult,HttpSession session) throws AfficheMessageException {
 		if (bindingResult.hasErrors()) {
 			System.out.println("ya erreur :");
 			for (ObjectError oe : bindingResult.getAllErrors())
 				System.out.println(oe.getCode());
-			return ajouterItineraire(model, itineraireDto);
+//			return ajouterItineraire(model, itineraireDto);
+			model.addAttribute("itineraires", itineraireService.getItineraires());
+			model.addAttribute("messageEchecAjoutItineraire", "Un itineraire avec le même nom existe deja");
+			return "itineraires";
 		} else {
 			System.out.println();
 			List<Etape> lesEtapes = itineraireDto.getEtapes();
