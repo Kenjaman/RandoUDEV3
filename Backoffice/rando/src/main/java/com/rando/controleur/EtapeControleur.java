@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.rando.dto.CommentaireDto;
 import com.rando.dto.EtapeDto;
 import com.rando.modele.Niveau;
 import com.rando.service.EtapeEncoreDansUnItineraireException;
@@ -57,7 +58,7 @@ public class EtapeControleur {
 	}
 
 	@GetMapping("/etape/detail/{etapeId}")
-	public String getDetailEtape(Model model, @PathVariable int etapeId) {
+	public String getDetailEtape(Model model, @PathVariable int etapeId,@ModelAttribute CommentaireDto commentaireDto) {
 		model.addAttribute("etape", etapeService.getEtape(etapeId));
 		return "etape";
 	}

@@ -32,6 +32,9 @@ public class Etape implements Serializable {
 	@OneToMany(mappedBy="etape")
 	@JsonIgnore
 	private List<Etapeitineraire> etapeitineraires;
+	
+	@OneToMany(mappedBy="etape")
+	private List<Commentaire> allComs;
 
 	public Etape() {
 	}
@@ -75,6 +78,20 @@ public class Etape implements Serializable {
 
 	public void setEtapeitineraires(List<Etapeitineraire> etapeitineraires) {
 		this.etapeitineraires = etapeitineraires;
+	}
+
+	/**
+	 * @return the allComs
+	 */
+	public List<Commentaire> getAllComs() {
+		return allComs;
+	}
+
+	/**
+	 * @param allComs the allComs to set
+	 */
+	public void setAllComs(List<Commentaire> allComs) {
+		this.allComs = allComs;
 	}
 
 	public Etapeitineraire addEtapeitineraire(Etapeitineraire etapeitineraire) {
