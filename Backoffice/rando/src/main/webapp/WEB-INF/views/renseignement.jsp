@@ -16,26 +16,27 @@
 </head>
 <body class="bg-dark">
 	<div class="container rando rando_design">
-<%-- 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include> --%>
+		<%-- 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include> --%>
 		<div class="container bg-light">
 			<form:form servletRelativeAction="/inscription"
 				modelAttribute="utilisateurDto">
-				<section>
-					Nom d'utilisateur :<br>
-					<form:input path="pseudo" class="form-control" required="required" />
-				</section>
-				<br>
-				<section>
-					Mot de passe :<br>
-					<form:password path="mdp" class="form-control" required="required" />
-				</section>
-				<br>
-				<section>
-					<button type="submit" class="btn btn-success">Valider</button>
-					<button class="btn btn-danger">
-						<a href="<c:url value='/accueil'/>">Annuler</a>
-					</button>
-				</section>
+				<div class="modal-body">
+					<div id="div-login-msg">
+						<span class="h3 text-success">Inscrivez-vous</span> <br>
+						<br>
+						<form:input path="pseudo" class="form-control" required="required"
+							placeholder="Nom d'utilisateur" />
+							<br>
+						<form:password path="mdp" class="form-control" required="required"
+							placeholder="********" />
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-success">Valider</button>
+							<button class="btn btn-danger">
+								<a href="<c:url value='/accueil'/>">Annuler</a>
+							</button>
+						</div>
+					</div>
+				</div>
 			</form:form>
 		</div>
 	</div>
