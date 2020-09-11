@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!--  Déclaration de site responsive  -->
 <!-- CSS Bootstrap -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"

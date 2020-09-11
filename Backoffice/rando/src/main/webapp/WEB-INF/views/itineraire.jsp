@@ -18,7 +18,7 @@
 	<div class="container">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 		<div class="container bg-light">
-		<span class="text-success"><c:out value="${messageReussite}" /></span>
+		<span class="text-success"><c:out value="${param.messageReussite}" /></span>
 			<table class="table table-striped">
 				<thead>
 					<tr>
