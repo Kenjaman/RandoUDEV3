@@ -19,10 +19,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.rando.dto.EtapeDto;
+import com.rando.dto.EtapeItineraireDto;
 import com.rando.dto.ItineraireDto;
 import com.rando.modele.Etape;
 import com.rando.modele.Etapeitineraire;
 import com.rando.modele.Niveau;
+import com.rando.service.AfficheMessageException;
 import com.rando.service.EtapeService;
 import com.rando.service.ItineraireService;
 
@@ -68,8 +71,9 @@ public class ItineraireControleur {
 	 * @return
 	 */
 	@GetMapping("/itineraire/{itineraireId}")
-	public String getDetailItineraire(Model model, @PathVariable int itineraireId) {
+	public String getDetailItineraire(Model model, @PathVariable Integer itineraireId, @ModelAttribute EtapeItineraireDto etapeItineraireDto) {
 		model.addAttribute("itineraire", itineraireService.getItineraire(itineraireId));
+		model.addAttribute("etapes", etapeService.getAllEtapes());
 		return "itineraire";
 	}
 
@@ -95,22 +99,36 @@ public class ItineraireControleur {
 	 * @param itineraireDto
 	 * @param bindingResult
 	 * @return
+	 * @throws AfficheMessageException 
 	 */
 	@PostMapping("/ajoutItineraire")
 	public String ajouterItineraire(Model model, @Valid @ModelAttribute ItineraireDto itineraireDto,
-			BindingResult bindingResult) {
+			BindingResult bindingResult,HttpSession session) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("ya erreur :");
 			for (ObjectError oe : bindingResult.getAllErrors())
 				System.out.println(oe.getCode());
-			return ajouterItineraire(model, itineraireDto);
+			//			return ajouterItineraire(model, itineraireDto);
+			model.addAttribute("itineraires", itineraireService.getItineraires());
+			model.addAttribute("messageEchecAjoutItineraire", "Un itineraire avec le même nom existe deja");
+			return "ajoutItineraire";
 		} else {
-			System.out.println();
-			List<Etape> lesEtapes = itineraireDto.getEtapes();
-			for (Etape e : itineraireDto.getEtapes())
-				System.out.println(e);
-			int idCreer = itineraireService.ajouter(itineraireDto);
-			return "redirect:/itineraire/" + idCreer;
+			try {
+				System.out.println();
+				List<Etape> lesEtapes = itineraireDto.getEtapes();
+				for (Etape e : itineraireDto.getEtapes())
+					System.out.println(e);
+				int idCreer;
+				idCreer = itineraireService.ajouter(itineraireDto);
+				session.setAttribute("nbItineraires", itineraireService.getItineraires().size());
+				return "redirect:/itineraire/" + idCreer;
+			} catch (AfficheMessageException e1) {
+				e1.printStackTrace();
+				return ajouterItineraire(model, itineraireDto);
+				// TODO Auto-generated catch block
+				
+
+			}
 		}
 	}
 
@@ -139,6 +157,7 @@ public class ItineraireControleur {
 			return "modifierItineraire";
 		} else {
 			itineraireService.modifierDetail(itineraireId,itineraireDto);
+			model.addAttribute("messageReussite","Itineraire modifier avec succes");
 			return "redirect:/itineraire/" + itineraireId;
 		}
 	}
@@ -167,7 +186,7 @@ public class ItineraireControleur {
 
 	@PostMapping("/actionSurEtapeItineraire/{etapeId}")
 	public String actionSurEtapeItineraire(Model model, @RequestParam String action,
-			 @PathVariable Integer etapeId) {
+			@PathVariable Integer etapeId) {
 		return "redirect:/itineraire/" + etapeId;
 	}
 

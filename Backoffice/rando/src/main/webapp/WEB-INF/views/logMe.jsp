@@ -17,28 +17,30 @@
 </head>
 <body class="bg-dark">
 	<div class="container rando rando_design">
-<%-- 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include> --%>
+		<%-- 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include> --%>
 		<div class="container bg-light">
 			<!-- Begin # Login Form -->
+			<span class="text-danger">${errorLogin}</span>
 			<form:form id="login-form" servletRelativeAction="/authentification"
 				modelAttribute="utilisateurDto">
 				<div class="modal-body">
 					<div id="div-login-msg">
-						<span>Authentifiez-vous</span>
-					<input type="text" id="login_username" name="pseudo"
-						class="form-control" placeholder="Nom d'utilisateur" value="" />
-					<input type="password" id="login_password" class="form-control"
-						name="mdp" placeholder="********" required="required" value="" />
-					<div class="modal-footer">
-						<button class="btn btn-success" type="submit">Connectez-vous</button>
-						<button class="btn btn-secondary">
-							<a href="<c:url value='/renseignement'/>">Inscrivez-vous</a>
-						</button>
-						<button class="btn btn-danger">
-							<a href="<c:url value='/'/>">Annuler</a>
-						</button>
+						<span class="h3 text-success">Authentifiez-vous</span> <br>
+						<br>
+						<form:errors path="*"></form:errors>
+						<!-- ne fonctionne pas -->
+						<input type="text" id="login_username" name="pseudo"
+							class="form-control" placeholder="Nom d'utilisateur" value="" />
+							<br>
+						<input type="password" id="login_password" class="form-control"
+							name="mdp" placeholder="********" required="required" value="" />
+						<div class="modal-footer">
+							<button class="btn btn-success" type="submit">Connectez-vous</button>
+							<a class="btn btn-secondary"
+								href="<c:url value='/renseignement'/>">Inscrivez-vous</a> <a
+								class="btn btn-danger" href="<c:url value='/'/>">Annuler</a>
+						</div>
 					</div>
-				</div>
 				</div>
 			</form:form>
 			<!-- End # Login Form -->

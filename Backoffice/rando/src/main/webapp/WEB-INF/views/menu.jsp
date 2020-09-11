@@ -1,7 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<link rel="stylesheet" href="css/rando.css" type="text/css" />
-<a href="<c:url value='/stop'/>" class="h1 text-success">L'association
+<link rel="stylesheet" href="<c:url value='/css/rando.css'/>" type="text/css" />
+
+ <a href="<c:url value='/stop'/>" class="h1 text-success text-align-center">L'association
 	de randonnée K.P</a>
 <nav class="navbar navbar-navbar navbar-expand-lg navbar-dark bg-dark">
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -11,10 +12,11 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="nav navbar-nav">
-			<a class="nav-link" href="<c:url value='/itineraires'/>">Liste
-				des itinéraires&nbsp;(<c:out value="${sessionScope.nbItineraires}" />)
-			</a> <a class="nav-link" href="<c:url value='/etapes'/>">Liste des
-				étapes&nbsp;(<c:out value="${sessionScope.nbEtapes}" />)
+			<a class="nav-link" href="<c:url value='/itineraires'/>">
+				Liste des itinéraires&nbsp;<span class="badge badge-light"><c:out value="${sessionScope.nbItineraires}" /></span>
+			</a> 
+			<a class="nav-link" href="<c:url value='/etapes'/>">
+				Liste des étapes&nbsp;<span class="badge badge-light"><c:out value="${sessionScope.nbEtapes}" /></span>
 			</a>
 			<c:if test="${!empty sessionScope.key && sessionScope.key=='A'}">
 				<c:if test="${empty sessionScope.moi }">
@@ -43,8 +45,9 @@
 			</c:if>
 			<c:if test="${!empty sessionScope.moi}">
 				<a class="nav-link" href="<c:url value='/stop'/>">Deconnexion</a>
-				<a class="nav-link" href="#">Bienvenue <c:out
-						value="${sessionScope.moi}" /></a>
+				<a class="nav-link" href="#">
+					<span class="badge badge-success">Bienvenue <c:out value="${sessionScope.moi}" /></span>
+				</a>
 			</c:if>
 		</div>
 	</div>

@@ -20,7 +20,7 @@ public class AccueilControleur {
 	@Autowired
 	private EtapeService etapeService;
 	
-	@GetMapping({"/", "/accueil"})
+	@GetMapping({"/", "/accueil",""})
 	public String accueillir(Model model,@ModelAttribute UtilisateurDto utilisateurDto,HttpSession session) {
 		session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
 		session.setAttribute("nbItineraires", itineraireService.getItineraires().size());

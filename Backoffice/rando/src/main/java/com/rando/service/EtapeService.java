@@ -34,6 +34,7 @@ public class EtapeService {
 			Etape nEtape = new Etape();
 			nEtape.setNom(etapeDto.getNom());
 			nEtape.setDescription(etapeDto.getDescription());
+			nEtape.setNbLike(0);
 			return etapeDao.ajouterEtape(nEtape);
 		}
 		return 0;

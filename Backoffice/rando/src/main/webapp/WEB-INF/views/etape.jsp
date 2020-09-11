@@ -11,16 +11,16 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-<!-- <link rel="stylesheet" href="css/rando.css" type="text/css" /> -->
-<title>Rando - Détails étape</title>
+<!-- <link rel="stylesheet" href="css/rando.css" type="text/css" />
+ --><title>Rando - Détails étape</title>
 </head>
 <body class="bg-dark">
-	<div class="container rando rando_design">
+	<div class="container">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 		<div class="container bg-light">
 			<c:if test="${!empty sessionScope.moi}">
 				<section>
-					<bouton class="btn btn-success"> <a
+					<bouton class="btn btn-success mt-3"> <a
 						href="<c:url value='/modifEtape/${etape.id}'/>">Modifier</a> </bouton>
 				</section>
 				<H2>${etape.nom}</H2>
@@ -62,16 +62,6 @@
 							<c:out value="${etape.nom}" />
 						</h1>
 					</div>
-					<div class="col-4" style="border: 2px solid black">
-						<form:form servletRelativeAction="/ajoutLike/${etape.id}"
-							modelAttribute="etape">
-							<div class="checkbox">
-								<label> <input type="checkbox" data-toggle="toggle">
-									Option one is enabled
-								</label>
-							</div>
-						</form:form>
-					</div>
 					<div class="col-2" style="border: 2px solid black">
 						<p>
 							Nombre de like :
@@ -79,13 +69,13 @@
 						</p>
 					</div>
 				</div>
-				<div class="row" style="border: 2px solid black">
+				<%-- <div class="row" style="border: 2px solid black">
 					<form:form servletRelativeAction="/ajoutCommentaire/${etape.id}"
 						modelAttribute="etape">
 						<form:textarea path="description" />
 						<button class="btn btn-success" type="submit">Commentez</button>
 					</form:form>
-				</div>
+				</div> --%>
 			</c:if>
 		</div>
 	</div>

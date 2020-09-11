@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rando.modele.Commentaire;
 import com.rando.modele.Etapeitineraire;
 
 public class EtapeDto implements Serializable{
@@ -19,6 +20,21 @@ public class EtapeDto implements Serializable{
 	private Integer nbLike;
 	@JsonIgnore
 	private List<Etapeitineraire> etapeitineraires;
+	private List<Commentaire> allComs;
+
+	/**
+	 * @return the allComs
+	 */
+	public List<Commentaire> getAllComs() {
+		return allComs;
+	}
+
+	/**
+	 * @param allComs the allComs to set
+	 */
+	public void setAllComs(List<Commentaire> allComs) {
+		this.allComs = allComs;
+	}
 
 	public EtapeDto(){
 		super();

@@ -25,24 +25,26 @@
 			<form:form
 				servletRelativeAction="${!empty etapeDto.id && etapeDto.id==0 ? '/ajoutEtape' : '/modifEtape'}"
 				modelAttribute="etapeDto">
-				<div class="form-row">
-					<div class="col-md-6 mb-3">
-						<label for="nom">Nom de l'etape:</label>
-						<form:input class="form-control" path="nom" required="required" />
+				<div class="modal-body">
+					<div class="form-row">
+						<div class="col-md-6 mb-3">
+							<label for="nom">Nom de l'etape:</label>
+							<form:input class="form-control" path="nom" required="required" />
+						</div>
 					</div>
-				</div>
-				<label for="description">Description :</label>
-				<br>
-				<form:textarea path="description" class="form-control" />
-				<div class="form-row">
-					<c:if test="${!empty etapeDto.id && etapeDto.id==0}">
-						<button class="btn btn-success" type="submit">Ajouter</button>
-					</c:if>
-					<c:if test="${!empty etapeDto.id && etapeDto.id>=1}">
-						<button class="btn btn-success" type="submit">Modifier</button>
-						<input type="hidden" name="id" value="${etapeDto.id}" />
-					</c:if>
-					<a class="btn btn-danger" href="<c:url value='/etapes'/>">Annuler</a>
+					<label for="description">Description :</label> <br>
+					<form:textarea path="description" class="form-control" />
+					<div class="form-row pt-3">
+						<c:if test="${!empty etapeDto.id && etapeDto.id==0}">
+							<button class="btn btn-success mr-3" type="submit">Ajouter</button>
+						</c:if>
+						<c:if test="${!empty etapeDto.id && etapeDto.id>=1}">
+							<button class="btn btn-success" type="submit"
+								style="margin-right: 1%">Modifier</button>
+							<input type="hidden" name="id" value="${etapeDto.id}" />
+						</c:if>
+						<a class="btn btn-danger" href="<c:url value='/etapes'/>">Annuler</a>
+					</div>
 				</div>
 			</form:form>
 		</div>

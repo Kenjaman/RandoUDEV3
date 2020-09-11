@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,18 +11,12 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-<!-- <link rel="stylesheet" href="css/rando.css" type="text/css" /> -->
 <title>Rando - Liste des itinéraires</title>
 </head>
 <body class="bg-dark">
 	<div class="container rando rando_design">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
-		<c:if test="${!empty messageEchecAjoutItineraire}">
-			<div class="btn btn-danger avertissement">
-				<c:out value="${messageEchecAjoutItineraire}" />
-			</div>
-		</c:if>
-		<div class="list-group container">
+			<div class="list-group container">
 			<c:if test="${!empty sessionScope.moi}">
 				<a class="btn btn-primary" href="<c:url value='/ajoutItineraire'/>">Ajouter
 					un itineraire <svg width="1em" height="1em" viewBox="0 0 16 16"
@@ -34,11 +29,34 @@
 </svg>
 				</a>
 			</c:if>
-			<c:forEach items="${itineraires}" var="itineraire">
-				<a class="list-group-item list-group-item-action"
-					href="<c:url value='/itineraire/${itineraire.id}'/>"><c:out
-						value="${itineraire.nom}"></c:out></a>
+
+				<c:forEach items="${itineraires}" var="itineraire">
+					<div class="row">
+						<div class="${empty sessionScope.moi ? 'col-12' : 'col-10'}">
+							<a class="list-group-item list-group-item-action"
+								href="<c:url value='/itineraire/${itineraire.id}'/>"><c:out
+								value="${itineraire.nom}"></c:out></a>
+						</div>
+						<c:if test="${!empty sessionScope.moi}">
+						<div class="col-2">
+							<form:form servletRelativeAction="/itineraire/suppression/${itineraire.id}"
+								modelAttribute="itineraire">
+								<button type="submit" class="btn btn-danger"
+									onclick="return(confirm('Voulez-vous vraiment supprimer ' +
+	                               'définitivement <c:out value="${itineraire.nom}"/> ?'));">
+									<svg width="7.57em" height="2.3em" viewBox="0 0 16 16"
+										class="bi bi-trash-fill" fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg">
+	  <path fill-rule="evenodd"
+											d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
+	</svg>
+								</button>
+							</form:form>
+						</div>
+						</c:if>
+					</div>
 			</c:forEach>
+
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.rando.dto.CommentaireDto;
 import com.rando.dto.EtapeDto;
 import com.rando.modele.Niveau;
 import com.rando.service.EtapeEncoreDansUnItineraireException;
@@ -40,7 +41,7 @@ import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
 @Controller
-public class EtapeControlleur {
+public class EtapeControleur {
 
 	@Autowired
 	private EtapeService etapeService;
@@ -56,32 +57,15 @@ public class EtapeControlleur {
 		return "etapes";
 	}
 
-	@GetMapping("/etape/{etapeId}")
-	public String getDetailEtape(Model model, @PathVariable int etapeId) {
+	@GetMapping("/etape/detail/{etapeId}")
+	public String getDetailEtape(Model model, @PathVariable int etapeId,HttpSession session) {
 		model.addAttribute("etape", etapeService.getEtape(etapeId));
 		return "etape";
 	}
-
-//	@GetMapping("/etape/{etapeId}")
-//	public String getEtapeClient(Model model, @PathVariable int etapeId) {
-//		model.addAttribute("etape", etapeService.getEtape(etapeId));
-//		return "etapeRandonneur";
-//	}
 	
-	//	@GetMapping("/etape/{etapeId}")
-//	public String getDetailEtape(Model model,@PathVariable int etapeId) {
-//	model.addAttribute("etape",etapeService.getEtape(etapeId));
-//	return "etape";	
-//}
-	@GetMapping("/etape/{idEtape}")
-	public ModelAndView helloAjaxTest(@PathVariable(name="idEtape") Integer idEtape) {
-		return new ModelAndView("etapeRandonneur", "etape", etapeService.getEtape(idEtape));
-	}
-
 	@GetMapping("/etape/view/{etapeId}")
-	public String getEtapeClient(Model model,@PathVariable int etapeId) {
-		model.addAttribute("etape",etapeService.getEtape(etapeId));
-		return "etapeRandonneur";	
+	public ModelAndView getEtapeClient(@PathVariable int etapeId) {
+		return new ModelAndView("etapeRandonneur", "etape", etapeService.getEtape(etapeId));
 	}
 
 	// Creation
@@ -103,7 +87,7 @@ public class EtapeControlleur {
 			try {
 				int idCreer = etapeService.ajouter(etapeDto);
 				session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
-				return "redirect:/etape/" + idCreer;
+				return "redirect:/etape/detail/" + idCreer;
 			} catch (EtapeExisteDejaException e) {
 				model.addAttribute("erreurs", e.getMessage());
 				// TODO Auto-generated catch block
@@ -147,7 +131,7 @@ public class EtapeControlleur {
 			return "modifierEtape";
 		} else {
 			etapeService.modifier(id, etapeDto);
-			return "redirect:/etape/" + id;
+			return "redirect:/etape/detail/" + id;
 		}
 	}
 
@@ -173,7 +157,7 @@ public class EtapeControlleur {
 			InputStream modeleInputStream = this.getClass().getResourceAsStream("/QrCodeEtape.jrxml");
 			JasperReport rapport = JasperCompileManager.compileReport(modeleInputStream);
 			Map<String, Object> parameters = new HashMap<>();
-			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(WebConfigApiControleur.class, "getEtape",	etapeId);
+			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(EtapeControleur.class, "getEtapeClient",etapeId);
 			System.out.println("uri du qrcode : " + uri.toUriString());
 			parameters.put("URI", uri.toUriString());
 			parameters.put("ID", etapeId);

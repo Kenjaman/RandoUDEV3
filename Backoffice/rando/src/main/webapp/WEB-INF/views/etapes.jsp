@@ -43,9 +43,16 @@
 			<c:forEach items="${etapes}" var="etape">
 				<div class="row">
 					<div class="${!empty sessionScope.moi ? 'col-8' : 'col-12'}">
-						<a class="list-group-item list-group-item-action"
-							href="<c:url value='/etape/${etape.id}'/>"><c:out
-								value="${etape.nom}"></c:out></a>
+						<c:if test="${empty sessionScope.moi}">
+							<a class="list-group-item list-group-item-action"
+								href="<c:url value='/etape/view/${etape.id}'/>"><c:out
+									value="${etape.nom}"></c:out></a>
+						</c:if>
+						<c:if test="${!empty sessionScope.moi}">
+							<a class="list-group-item list-group-item-action"
+								href="<c:url value='/etape/detail/${etape.id}'/>"><c:out
+									value="${etape.nom}"></c:out></a>
+						</c:if>
 					</div>
 					<c:if test="${!empty sessionScope.moi}">
 						<div class="col-2">
@@ -54,7 +61,7 @@
 								<button type="submit" class="btn btn-danger"
 									onclick="return(confirm('Voulez-vous vraiment supprimer ' +
                                'définitivement <c:out value="${etape.nom}"/> ?'));">
-									<svg width="1em" height="1em" viewBox="0 0 16 16"
+									<svg width="7.57em" height="2.3em" viewBox="0 0 16 16"
 										class="bi bi-trash-fill" fill="currentColor"
 										xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd"
@@ -66,7 +73,7 @@
 						<div class="col-2">
 							<button class="btn btn-success">
 								<a href="<c:url value='/modifEtape/${etape.id}'/>"><svg
-										width="1em" height="1em" viewBox="0 0 16 16"
+										width="7.57em" height="2.3em" viewBox="0 0 16 16"
 										class="bi bi-pen-fill" fill="currentColor"
 										xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd"

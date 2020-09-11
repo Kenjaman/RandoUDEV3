@@ -1,0 +1,14 @@
+Competences validées avec le projet RANDO
+	- Mise en place d'une architecture multi-couches (N-Tiers)
+	- Développement d'une application Web dynamique avec les fonctionnalités essentielles :
+		- création
+		- consultation de liste
+		- modification
+		- suppression
+	- Déploiement d’une application Web
+	- Conception et implémentation d'un modèle de données relationnelles
+	- Communication par programmation avec une base de données relationnelles
+	- Génération de documents PDF par programmation
+	- Développement d'une API Web permettant l'échange de données entre un client et un serveur au format JSON
+	- Conception d'un site Web responsive
+	- Sécurisation des accès à une application Web

@@ -21,49 +21,54 @@
 		<div class="container bg-light">
 			<form:form servletRelativeAction="/ajoutItineraire"
 				modelAttribute="itineraireDto">
-				<div class="form-row">
-					<div class="col-md-6 mb-3">
-						<form:label path="nom">Nom de l'itinéraire :</form:label>
-						<form:input class="form-control" path="nom" required="required" />
+				<div class="modal-body">
+					<div class="text-danger">
+						<c:out value="${messageEchecAjoutItineraire}" />
 					</div>
-					<div class="col-md-6 mb-3">
-						<form:label path="niveau">Niveau :</form:label>
-						<form:select path="niveau" class="form-control">
-							<form:options items="${niveau}" />
-						</form:select>
+					<div class="form-row">
+						<div class="col-md-6 mb-3">
+							<form:label path="nom">Nom de l'itinéraire :</form:label>
+							<form:input class="form-control" path="nom" required="required" />
+						</div>
+						<div class="col-md-6 mb-3">
+							<form:label path="niveau">Niveau :</form:label>
+							<form:select path="niveau" class="form-control">
+								<form:options items="${niveau}" />
+							</form:select>
+						</div>
 					</div>
-				</div>
-				<div class="form-row justify-content-between">
-					<h3 class="col-4">Etapes :</h3>
-					<button type="button"
-						class="btn btn-primary btn-lg col-4 btn-ajouter" id="btn">+</button>
-				</div>
-				<div class="form-group" id="groupeEtape">
-					<div class="form-row row mb-2" id="etape">
-						<form:label path="etapes"></form:label>
-						<select name="etapes" class="form-control col">
-							<option value="-" selected>Choisir l'etape</option>
-							<c:forEach items="${etapes}" var="etape">
-								<option value="${etape.id}">${etape.nom}</option>
-							</c:forEach>
-						</select>
-						<button type="button" class="btn btn-danger col-1" id="delete">
-							<svg width="1em" height="1em" viewBox="0 0 16 16"
-								class="bi bi-trash" fill="currentColor"
-								xmlns="http://www.w3.org/2000/svg">
+					<div class="form-row justify-content-between">
+						<h3 class="col-4">Etapes :</h3>
+						<button type="button"
+							class="btn btn-primary btn-lg col-4 btn-ajouter" id="btn">+</button>
+					</div>
+					<div class="form-group" id="groupeEtape">
+						<div class="form-row row mb-2" id="etape">
+							<form:label path="etapes"></form:label>
+							<select name="etapes" class="form-control col">
+								<option value="-" selected>Choisir l'etape</option>
+								<c:forEach items="${etapes}" var="etape">
+									<option value="${etape.id}">${etape.nom}</option>
+								</c:forEach>
+							</select>
+							<button type="button" class="btn btn-danger col-1 delete" onclick="deleted(this)">
+								<svg width="1em" height="1em" viewBox="0 0 16 16"
+									class="bi bi-trash" fill="currentColor"
+									xmlns="http://www.w3.org/2000/svg">
   <path
-									d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+										d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
   <path fill-rule="evenodd"
-									d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+										d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
 </svg>
-						</button>
+							</button>
+						</div>
+					</div>
+					<div class="form-row">
+						<button class="btn btn-success mr-3" type="submit">Ajouter</button>
+						<a class="btn btn-danger" href="<c:url value='/itineraires'/>">Annuler</a>
 					</div>
 				</div>
-				<div class="form-row">
-					<button class="btn btn-success" type="submit">Ajouter</button>
-					<a class="btn btn-danger" href="<c:url value='/itineraires'/>">Annuler</a>
-				</div>
-				<form:errors></form:errors>
+
 			</form:form>
 		</div>
 	</div>
@@ -80,5 +85,6 @@
 		crossorigin="anonymous"></script>
 
 	<script src="<c:url value="/assets/js/main.js"/>"></script>
+
 </body>
 </html>
