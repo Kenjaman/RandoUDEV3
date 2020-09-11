@@ -58,7 +58,7 @@ public class EtapeControleur {
 	}
 
 	@GetMapping("/etape/detail/{etapeId}")
-	public String getDetailEtape(Model model, @PathVariable int etapeId,@ModelAttribute CommentaireDto commentaireDto) {
+	public String getDetailEtape(Model model, @PathVariable int etapeId,HttpSession session) {
 		model.addAttribute("etape", etapeService.getEtape(etapeId));
 		return "etape";
 	}
@@ -87,7 +87,7 @@ public class EtapeControleur {
 			try {
 				int idCreer = etapeService.ajouter(etapeDto);
 				session.setAttribute("nbEtapes", etapeService.getAllEtapes().size());
-				return "redirect:/etape/" + idCreer;
+				return "redirect:/etape/detail/" + idCreer;
 			} catch (EtapeExisteDejaException e) {
 				model.addAttribute("erreurs", e.getMessage());
 				// TODO Auto-generated catch block

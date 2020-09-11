@@ -54,7 +54,7 @@
 									var="etapeItineraire">
 									<li class="list-group-item"><c:if
 											test="${empty sessionScope.moi}">
-											<a href="<c:url value='/etape/${etapeItineraire.etape.id}'/>"><c:out
+											<a href="<c:url value='/etape/view/${etapeItineraire.etape.id}'/>"><c:out
 													value="${etapeItineraire.etape.nom}" /></a>
 										</c:if> <c:if test="${!empty sessionScope.moi}">
 											<a

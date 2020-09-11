@@ -14,7 +14,7 @@
 <title>Rando - Liste des itinéraires</title>
 </head>
 <body class="bg-dark">
-	<div class="container rando rando_design overflow-auto ">
+	<div class="container rando rando_design">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 			<div class="list-group container">
 			<c:if test="${!empty sessionScope.moi}">
