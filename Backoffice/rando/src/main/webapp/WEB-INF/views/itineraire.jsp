@@ -14,7 +14,7 @@
 <!-- <link rel="stylesheet" href="../css/rando.css" type="text/css" />
  --><title>Rando - Détails itinéraire</title>
 </head>
-<body class="bg-dark">
+<body class="bg-dark">	
 	<div class="container">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 		<div class="container bg-light">

@@ -32,15 +32,15 @@
 				<label for="description">Description :</label> <br>
 				<textarea class="form-control" readonly="readonly"><c:out
 						value="${etape.description}" /></textarea>
-				<form:form servletRelativeAction="/commentez/${etape.id}" modelAttribute="commentaireDto">
+				<%-- <form:form servletRelativeAction="/commentez/${etape.id}" modelAttribute="commentaireDto">
 					<br>
 					<label for="commentaire">Commentaire :</label>
 					<br>
-<%-- 					<c:forEach var="com" items="${etape.allComs}"> --%>
-<%-- 					<form:textarea class="form-control" path="com" placeholder="Vous pouvez commentez cette étape ici"/> --%>
-<%-- 					</c:forEach> --%>
+ 					<c:forEach var="com" items="${etape.allComs}"> 
+ 					<form:textarea class="form-control" path="com" placeholder="Vous pouvez commentez cette étape ici"/> 
+ 					</c:forEach>
 					<button class="btn btn-success" type="submit">Valider</button>
-				</form:form>
+				</form:form> --%>
 			</div>
 	</div>
 	<script

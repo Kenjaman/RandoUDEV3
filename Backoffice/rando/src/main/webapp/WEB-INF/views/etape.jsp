@@ -15,7 +15,7 @@
 <title>Rando - Détails étape</title>
 </head>
 <body class="bg-dark">
-	<div class="container rando rando_design">
+	<div class="container">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 		<div class="container bg-light">
 			<c:if test="${!empty sessionScope.moi}">

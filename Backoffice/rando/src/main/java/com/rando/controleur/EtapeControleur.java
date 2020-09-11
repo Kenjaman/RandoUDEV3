@@ -63,15 +63,9 @@ public class EtapeControleur {
 		return "etape";
 	}
 	
-	@GetMapping("/etape/{idEtape}")
-	public ModelAndView helloAjaxTest(@PathVariable(name="idEtape") Integer idEtape) {
-		return new ModelAndView("etapeRandonneur", "etape", etapeService.getEtape(idEtape));
-	}
-
 	@GetMapping("/etape/view/{etapeId}")
-	public String getEtapeClient(Model model,@PathVariable int etapeId) {
-		model.addAttribute("etape",etapeService.getEtape(etapeId));
-		return "etapeRandonneur";	
+	public ModelAndView getEtapeClient(@PathVariable int etapeId) {
+		return new ModelAndView("etapeRandonneur", "etape", etapeService.getEtape(etapeId));
 	}
 
 	// Creation
@@ -163,7 +157,7 @@ public class EtapeControleur {
 			InputStream modeleInputStream = this.getClass().getResourceAsStream("/QrCodeEtape.jrxml");
 			JasperReport rapport = JasperCompileManager.compileReport(modeleInputStream);
 			Map<String, Object> parameters = new HashMap<>();
-			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(RandoApiControleur.class, "getEtape",	etapeId);
+			UriComponentsBuilder uri = MvcUriComponentsBuilder.fromMethodName(EtapeControleur.class, "getEtapeClient",etapeId);
 			System.out.println("uri du qrcode : " + uri.toUriString());
 			parameters.put("URI", uri.toUriString());
 			parameters.put("ID", etapeId);
