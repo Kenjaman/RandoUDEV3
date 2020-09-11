@@ -62,18 +62,20 @@
 													value="${etapeItineraire.etape.nom}" /></a>
 										</c:if></li>
 									<c:set var="etapeId" value="${etapeItineraire.etape.id}" />
-									<c:if test="${!empty sessionScope.moi}">
+<!-- 									<c:if test="${!empty sessionScope.moi}">
 										<form:form
 											servletRelativeAction="/actionSurEtapeItineraire/${etapeId}"
 											modelAttribute="etapeItineraireDto">
 											<li class="list-group-item"><form:select path="etape"
 													class="form-control">
+													<form:option value="-">Remplacer par une autre étape</form:option>
 													<c:forEach items="${etapes}" var="etape">
 														<form:option value="${etape.nom}"></form:option>
 													</c:forEach>
 												</form:select></li>
 											<%-- 											<c:if test="${!empty sessionScope.moi}"> --%>
-											<div class="form-row">
+
+										<div class="form-row">
 												<button class="btn btn-success mr-3 mt-3 mb-3" type="submit" name="action"
 													value="modification">
 													<svg width="10em" height="1em" viewBox="0 0 16 16"
@@ -91,7 +93,7 @@
   <path fill-rule="evenodd"
 															d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
 </svg>
-												</button>
+												</button> -->
 											</div>
 											<%-- 											</c:if> --%>
 										</form:form>
