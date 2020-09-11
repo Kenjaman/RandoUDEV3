@@ -18,6 +18,7 @@
 	<div class="container">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 		<div class="container bg-light">
+		<span class="text-success"><c:out value="${messageReussite}" /></span>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -35,10 +36,9 @@
 							<form:form
 								servletRelativeAction="/modifItineraireDetail/${itineraire.id}"
 								modelAttribute="itineraire">
-								<td><button class="btn btn-primary">
-										<a href="<c:url value='/itineraires'/>">Tous annuler</a>
-									</button>
-									<button type="submit" class="btn btn-danger">Modifier</button></td>
+								<td>
+									<a class="btn btn-danger" href="<c:url value='/itineraires'/>">Tout annuler</a>
+									<button type="submit" class="btn btn-primary">Modifier</button></td>
 								<td><form:input path="nom" class="form-control" /></td>
 								<td><form:select path="niveau" class="form-control">
 										<form:options items="${niveau}" />

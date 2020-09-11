@@ -45,7 +45,7 @@
 					<div class="${!empty sessionScope.moi ? 'col-8' : 'col-12'}">
 						<c:if test="${empty sessionScope.moi}">
 							<a class="list-group-item list-group-item-action"
-								href="<c:url value='/etape/${etape.id}'/>"><c:out
+								href="<c:url value='/etape/view/${etape.id}'/>"><c:out
 									value="${etape.nom}"></c:out></a>
 						</c:if>
 						<c:if test="${!empty sessionScope.moi}">

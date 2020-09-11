@@ -32,11 +32,12 @@
 
 				<c:forEach items="${itineraires}" var="itineraire">
 					<div class="row">
-						<div class="col-10">
+						<div class="${empty sessionScope.moi ? 'col-12' : 'col-10'}">
 							<a class="list-group-item list-group-item-action"
 								href="<c:url value='/itineraire/${itineraire.id}'/>"><c:out
 								value="${itineraire.nom}"></c:out></a>
 						</div>
+						<c:if test="${!empty sessionScope.moi}">
 						<div class="col-2">
 							<form:form servletRelativeAction="/itineraire/suppression/${itineraire.id}"
 								modelAttribute="itineraire">
@@ -52,6 +53,7 @@
 								</button>
 							</form:form>
 						</div>
+						</c:if>
 					</div>
 			</c:forEach>
 

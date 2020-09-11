@@ -131,7 +131,7 @@ public class EtapeControleur {
 			return "modifierEtape";
 		} else {
 			etapeService.modifier(id, etapeDto);
-			return "redirect:/etape/" + id;
+			return "redirect:/etape/detail/" + id;
 		}
 	}
 

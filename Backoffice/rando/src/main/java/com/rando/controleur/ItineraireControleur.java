@@ -157,6 +157,7 @@ public class ItineraireControleur {
 			return "modifierItineraire";
 		} else {
 			itineraireService.modifierDetail(itineraireId,itineraireDto);
+			model.addAttribute("messageReussite","Itineraire modifier avec succes");
 			return "redirect:/itineraire/" + itineraireId;
 		}
 	}
