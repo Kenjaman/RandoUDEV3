@@ -43,13 +43,13 @@ CREATE TABLE `Commentaire` (
   `com` varchar(255)
 )ENGINE = INNODB;;
 
-ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_itineraire`) REFERENCES `Itineraire` (`id`);
+ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_itineraire`) REFERENCES `Itineraire` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `Commentaire` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`);
+ALTER TABLE `Commentaire` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `Photo` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`);
+ALTER TABLE `Photo` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 INSERT INTO `itineraire` (`id`, `nom`, `niveau`) VALUES (NULL, 'Le premier chemin', 'Debutant'),
 (NULL, 'Le deuxieme chemin', 'Normal');
