@@ -31,17 +31,25 @@ CREATE table if not exists `Utilisateur` (
   `role` varchar(255)
 )ENGINE = INNODB;
 
-CREATE table if not exists `Commentaire` (
+CREATE TABLE `Photo` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `id_etape` int not null,
-  `com` varchar(255)
+  id_etape int not null,
+  `photo` blob
 )ENGINE = INNODB;
+
+CREATE TABLE `Commentaire` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  id_etape int not null,
+  `com` varchar(255)
+)ENGINE = INNODB;;
 
 ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_itineraire`) REFERENCES `Itineraire` (`id`);
 
 ALTER TABLE `EtapeItineraire` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `Commentaire` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`);
+
+ALTER TABLE `Photo` ADD FOREIGN KEY (`id_etape`) REFERENCES `Etape` (`id`);
 
 INSERT INTO `itineraire` (`id`, `nom`, `niveau`) VALUES (NULL, 'Le premier chemin', 'Debutant'),
 (NULL, 'Le deuxieme chemin', 'Normal');
