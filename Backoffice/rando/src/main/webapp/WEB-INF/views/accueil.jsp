@@ -13,62 +13,55 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 <!-- CSS Custom -->
-<link rel="stylesheet" href="<c:url value='/css/rando.css'/>" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/rando.css'/>"
+	type="text/css" />
+<link rel="stylesheet" href="<c:url value='./css/rando.css'/>"
+	type="text/css" />
 <!-- Deux car bug de chargement lorsque l'adresse est "localhost:8080/rando"
  -->
-<!--  <link rel="stylesheet" href="./rando/css/rando.css" type="text/css" />
- --><title>Rando</title>
+<title>Rando</title>
 </head>
 <body class="bg-dark">
 	<div class="container rando rando_design">
-		<%-- 		<c:if test="${!empty statut}"> --%>
-		<%-- 			<c:if test="${statut=='false' }"> --%>
-		<!-- 				<div class="btn btn-danger avertissement"> -->
-		<%-- 					<c:out value="Connexion échec" /> --%>
-		<!-- 				</div> -->
-		<%-- 			</c:if> --%>
-		<%-- 			<c:if test="${statut=='true' }"> --%>
-		<!-- 				<div class="btn btn-success avertissement"> -->
-		<%-- 					<c:out value="Connexion reussie" /> --%>
-		<!-- 				</div> -->
-		<%-- 			</c:if> --%>
-		<%-- 		</c:if> --%>
-		<%-- 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include> --%>
-		<!-- 		<div class="bg-light"> -->
-		<!-- 			<h4>Bienvenue sur la partie administration de RandoKPJ !</h4> -->
-		<!-- 			<section> -->
-		<!-- 				<pre>Veuillez vous inscrire :</pre> -->
-		<!-- 				<div class="container bg-light"> -->
-		<%-- 					<form:form servletRelativeAction="/inscription" --%>
-		<%-- 						modelAttribute="utilisateurDto"> --%>
-		<!-- 						<section> -->
-		<!-- 							Nom d'utilisateur :<br> -->
-		<%-- 							<form:input path="pseudo" class="form-control" --%>
-		<%-- 								required="required" /> --%>
-		<!-- 						</section> -->
-		<!-- 						<br> -->
-		<!-- 						<section> -->
-		<!-- 							Mot de passe :<br> -->
-		<%-- 							<form:password path="mdp" class="form-control" --%>
-		<%-- 								required="required" /> --%>
-		<!-- 						</section> -->
-		<!-- 						<br> -->
-		<!-- 						<section> -->
-		<!-- 							<button type="submit" class="btn btn-success">Valider</button> -->
-		<!-- 						</section> -->
-		<%-- 					</form:form> --%>
-		<!-- 				</div> -->
-		<!-- 			</section> -->
-		<!-- 		</div> -->
 		<h1 class="text-success">Association de Randonnée K.P</h1>
-		<section>
-			<a class="btn btn-primary" href="itineraires?itineraireKey=R">RONDONNEUR</a>
-		</section>
-		<br>
-		<section><a class="btn btn-primary" href="<c:url value='/logMe'/>">
-	<!-- 				<a href="itineraires?itineraireKey=A">ADMINISTRATEUR</a> -->
-					ADMINISTRATEUR</a>
-		</section>
+		<div id="myCarousel" class="carousel slide carousel-fade pt-5"
+			data-ride="carousel" data-interval="3000">
+			<div class="carousel-indicators pb-5">
+				<section>
+					<a class="btn btn-primary mr-3" href="itineraires?itineraireKey=R">RONDONNEUR</a>
+				</section>
+				<br>
+				<section>
+					<a class="btn btn-primary" href="<c:url value='/logMe'/>"> <!-- 				<a href="itineraires?itineraireKey=A">ADMINISTRATEUR</a> -->
+						ADMINISTRATEUR
+					</a>
+				</section>
+			</div>
+			<div class="carousel-inner">
+
+				<div class="carousel-item active">
+					<img class="first-slide animated zoomInUp"
+						src="<c:url value='/images/paysage-randonnée.jpg'/>" alt="">
+				</div>
+				<div class="carousel-item">
+					<img class="second-slide animated zoomInDown"
+						src="<c:url value='/images/queyras-ceillac-lac-miroir.jpg'/>"
+						alt="">
+				</div>
+				<div class="carousel-item">
+					<img class="third-slide animated zoomIn"
+						src="<c:url value='/images/randonnees-vers-lacs-de-montagnes2.jpg'/>" alt="">
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#myCarousel" role="button"
+				data-slide="prev"> <span class="carousel-control-prev-icon"
+				aria-hidden="true"></span> <span class="sr-only">Previous</span>
+			</a> <a class="carousel-control-next" href="#myCarousel" role="button"
+				data-slide="next"> <span class="carousel-control-next-icon"
+				aria-hidden="true"></span> <span class="sr-only">Next</span>
+			</a>
+		</div>
+
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

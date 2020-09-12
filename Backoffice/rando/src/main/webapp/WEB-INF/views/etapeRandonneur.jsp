@@ -12,11 +12,12 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-	<!-- <link rel="stylesheet" href="../css/rando.css" type="text/css" /> -->
+	<link rel="stylesheet" href="<c:url value='/css/rando.css'/>"
+	type="text/css" />
 <title>Rando - Avis étape : ${etape.nom}</title>
 </head>
-<body class="bg-light">
-		<div class="container bg-light">
+<body class="bg-dark text-white">
+		<div class="container rando rando_design">
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-6 mb-3">
@@ -25,7 +26,11 @@
 					</div>
 					<div class="col-md-6 mb-3">
 						<label>Nombre like : <span id="nbLike">${etape.nbLike}</span></label>
-						<button id="btn-like" class="">like</button>
+						<button id="btn-like" class="">like
+						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+</svg>
+						</button>
 						<input type="hidden" id="etapeId" value="${etape.id }" />
 					</div>
 				</div>

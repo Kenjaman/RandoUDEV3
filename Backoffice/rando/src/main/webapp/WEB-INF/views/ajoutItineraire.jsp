@@ -22,9 +22,7 @@
 			<form:form servletRelativeAction="/ajoutItineraire"
 				modelAttribute="itineraireDto">
 				<div class="modal-body">
-					<div class="text-danger">
-						<c:out value="${messageEchecAjoutItineraire}" />
-					</div>
+					<span class="text-danger"><c:out value="${messageEchecAjoutItineraire}" /></span>
 					<div class="form-row">
 						<div class="col-md-6 mb-3">
 							<form:label path="nom">Nom de l'itinéraire :</form:label>

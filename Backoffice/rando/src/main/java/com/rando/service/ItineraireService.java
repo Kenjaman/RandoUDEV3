@@ -1,11 +1,13 @@
 package com.rando.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rando.dao.EtapeItineraireDao;
 import com.rando.dao.ItineraireDao;
 import com.rando.dto.ItineraireDto;
 import com.rando.modele.Etape;
@@ -18,6 +20,9 @@ public class ItineraireService {
 
 	@Autowired
 	ItineraireDao itineraireDao;
+
+	@Autowired
+	EtapeItineraireDao etapeItineraireDao;
 
 	public List<Itineraire> getItineraires() {
 		return itineraireDao.getAllIteneraires();
@@ -55,9 +60,38 @@ public class ItineraireService {
 		return 0;
 	}
 
+	//Fonctionne uniquement si pas d'etape incluse
 	@Transactional
-	public void modifierDetail(int itineraireId, ItineraireDto itineraireDto) {
-		itineraireDao.modifierItineraire(itineraireId, itineraireDto);
+	public void modifierDetail(int itineraireId, ItineraireDto itineraireDto) throws AfficheMessageException {
+		if (!itineraireDao.existe(itineraireDto.getNom())) {
+			Itineraire itineraire = itineraireDao.getIteneraire(itineraireId);
+			System.out.println("ITI =>>> " + itineraire.toString() + " et " + itineraireId);
+			if (itineraire.getEtapeitineraires().size() != 0) {
+				int ordreEtapes = 1;
+				System.out.println("ITI2 =>>> " + itineraire.getEtapeitineraires().size() + " et "
+						+ itineraire.getEtapeitineraires().toString());
+				List<Etapeitineraire> allEtapesInItineraire = new ArrayList<Etapeitineraire>();
+				List<Etapeitineraire> allEtapes = etapeItineraireDao.getAllEtapeItineraireByIdItineraire(itineraireId);
+				System.out.println("ALL =>>> " + allEtapes);
+
+				for (Etape e : itineraireDto.getEtapes()) {
+					Etapeitineraire ei = new Etapeitineraire();
+					ei.setEtape(e);
+					ei.setNumEtape(ordreEtapes);
+					ei.setItineraire(itineraire);
+					allEtapesInItineraire.add(ei);
+					ordreEtapes++;
+				}
+				for (Etapeitineraire etapeitineraire : allEtapes) {
+				itineraire.removeEtapeitineraire(etapeitineraire);
+			}
+				itineraire.setEtapeitineraires(allEtapesInItineraire);
+			}
+			itineraireDao.modifierItineraire(itineraireId, itineraireDto);
+		} else {
+			throw new AfficheMessageException("Ce nom d'itinéraire existe déja");
+		}
+
 	}
 
 	// TODO : modifEtape itineraire

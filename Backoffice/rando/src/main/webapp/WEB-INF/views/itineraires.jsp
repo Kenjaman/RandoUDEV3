@@ -16,7 +16,9 @@
 <body class="bg-dark">
 	<div class="container rando rando_design">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
-			<div class="list-group container">
+		<div class="list-group container">
+			<span class="text-danger"><c:out
+					value='${param.msgEchecAffichageItineraire}' /></span>
 			<c:if test="${!empty sessionScope.moi}">
 				<a class="btn btn-primary" href="<c:url value='/ajoutItineraire'/>">Ajouter
 					un itineraire <svg width="1em" height="1em" viewBox="0 0 16 16"
@@ -30,20 +32,22 @@
 				</a>
 			</c:if>
 
-				<c:forEach items="${itineraires}" var="itineraire">
-					<div class="row">
-						<div class="${empty sessionScope.moi ? 'col-12' : 'col-10'}">
-							<a class="list-group-item list-group-item-action"
-								href="<c:url value='/itineraire/${itineraire.id}'/>"><c:out
+			<c:forEach items="${itineraires}" var="itineraire">
+				<div class="row">
+					<div class="${empty sessionScope.moi ? 'col-12' : 'col-10'}">
+						<a class="list-group-item list-group-item-action"
+							href="<c:url value='/itineraire/${itineraire.id}'/>"><c:out
 								value="${itineraire.nom}"></c:out></a>
-						</div>
-						<c:if test="${!empty sessionScope.moi}">
+					</div>
+					<c:if test="${!empty sessionScope.moi}">
 						<div class="col-2">
-							<form:form servletRelativeAction="/itineraire/suppression/${itineraire.id}"
+							<form:form
+								servletRelativeAction="/itineraire/suppression/${itineraire.id}"
 								modelAttribute="itineraire">
 								<button type="submit" class="btn btn-danger"
 									onclick="return(confirm('Voulez-vous vraiment supprimer ' +
 	                               'définitivement <c:out value="${itineraire.nom}"/> ?'));">
+
 									<svg width="7.57em" height="2.3em" viewBox="0 0 16 16"
 										class="bi bi-trash-fill" fill="currentColor"
 										xmlns="http://www.w3.org/2000/svg">
@@ -53,8 +57,8 @@
 								</button>
 							</form:form>
 						</div>
-						</c:if>
-					</div>
+					</c:if>
+				</div>
 			</c:forEach>
 
 		</div>

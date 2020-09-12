@@ -46,6 +46,7 @@ public class ItineraireControleur {
 	/**
 	 * @param model
 	 * @return
+	 * Méthode pour afficher la liste de tous les itinéraires
 	 */
 	@GetMapping("/itineraires")
 	public String getListeItineraires(Model model, HttpSession session, HttpServletRequest request) {
@@ -68,7 +69,9 @@ public class ItineraireControleur {
 	/**
 	 * @param model
 	 * @param itineraireId
+	 * @param etapeItineraireDto
 	 * @return
+	 * Méthode pour afficher les détails d'un itinéraire
 	 */
 	@GetMapping("/itineraire/{itineraireId}")
 	public String getDetailItineraire(Model model, @PathVariable Integer itineraireId, @ModelAttribute EtapeItineraireDto etapeItineraireDto) {
@@ -79,6 +82,12 @@ public class ItineraireControleur {
 
 	// Creation
 
+	/**
+	 * @param model
+	 * @param itineraireDto
+	 * @return
+	 * Méthode pour afficher le formulaire de création d'un itinéraire 
+	 */
 	@GetMapping("/ajoutItineraire")
 	public String ajouterItineraire(Model model, @ModelAttribute ItineraireDto itineraireDto) {
 		try {
@@ -88,7 +97,7 @@ public class ItineraireControleur {
 			model.addAttribute("niveau", Niveau.values());
 			return "ajoutItineraire";
 		} catch (Exception e) {
-			model.addAttribute("messageEchecAjoutItineraire", e.getMessage());
+			model.addAttribute("msgEchecAffichageItineraire", e.getMessage());
 			return "redirect:/itineraires";
 		}
 
@@ -98,8 +107,9 @@ public class ItineraireControleur {
 	 * @param model
 	 * @param itineraireDto
 	 * @param bindingResult
-	 * @return
-	 * @throws AfficheMessageException 
+	 * @throws AfficheMessageException
+	 * @return 
+	 * Méthode qui permet de valider la création d'un itinéraire
 	 */
 	@PostMapping("/ajoutItineraire")
 	public String ajouterItineraire(Model model, @Valid @ModelAttribute ItineraireDto itineraireDto,
@@ -123,7 +133,7 @@ public class ItineraireControleur {
 				session.setAttribute("nbItineraires", itineraireService.getItineraires().size());
 				return "redirect:/itineraire/" + idCreer;
 			} catch (AfficheMessageException e1) {
-				e1.printStackTrace();
+				model.addAttribute("messageEchecAjoutItineraire", e1.getMessage());
 				return ajouterItineraire(model, itineraireDto);
 				// TODO Auto-generated catch block
 				
@@ -134,6 +144,12 @@ public class ItineraireControleur {
 
 	// Modification
 
+	/**
+	 * @param model
+	 * @param itineraireId
+	 * @return 
+	 * Méthode pour afficher le formulaire de modification d'un itinéraire
+	 */
 	@GetMapping("/modifItineraire/{itineraireId}")
 	public String modifierItineraire(Model model, @PathVariable int itineraireId) {
 		model.addAttribute("itineraire", itineraireService.getItineraire(itineraireId));
@@ -147,18 +163,27 @@ public class ItineraireControleur {
 	 * @param itineraireDto
 	 * @param bindingResult
 	 * @return
+	 * Méthode qui permet de valider la modification d'un itinéraire 
 	 */
 	@PostMapping("/modifItineraireDetail/{itineraireId}")
 	public String modifierItineraireDetail(Model model, @PathVariable Integer itineraireId,
-			@Valid @ModelAttribute ItineraireDto itineraireDto, BindingResult bindingResult) {
+			@Valid @ModelAttribute ItineraireDto itineraireDto, BindingResult bindingResult){
 		System.out.println("TOTOID =>>> " + itineraireId);
 		if (bindingResult.hasErrors()) {
 			System.out.println("ya une erreur");
 			return "modifierItineraire";
 		} else {
-			itineraireService.modifierDetail(itineraireId,itineraireDto);
-			model.addAttribute("messageReussite","Itineraire modifier avec succes");
-			return "redirect:/itineraire/" + itineraireId;
+			try {
+				itineraireService.modifierDetail(itineraireId,itineraireDto);
+				model.addAttribute("msgReussiteModifItineraire", "Itineraire modifier avec succes");
+				return "redirect:/itineraire/" + itineraireId;
+			} catch (AfficheMessageException e) {
+				model.addAttribute("msgEchecModifItineraire",e.getMessage());
+				return "redirect:/modifItineraire/{itineraireId}";
+			}
+//			itineraireService.modifierDetail(itineraireId,itineraireDto);
+//			model.addAttribute("msgReussiteModifItineraire","Itineraire modifier avec succes");
+//			return "redirect:/itineraire/" + itineraireId;
 		}
 	}
 

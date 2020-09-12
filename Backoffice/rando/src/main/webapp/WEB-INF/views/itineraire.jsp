@@ -11,14 +11,14 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-<!-- <link rel="stylesheet" href="../css/rando.css" type="text/css" />
- --><title>Rando - Détails itinéraire</title>
+<title>Rando - Détails itinéraire</title>
 </head>
 <body class="bg-dark">	
-	<div class="container">
+	<div class="container rando rando_design">
 		<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 		<div class="container bg-light">
-		<span class="text-success"><c:out value="${param.messageReussite}" /></span>
+		<span class="text-success"><c:out value="${param.msgReussiteModifItineraire}" /></span>
+				<span class="text-danger"><c:out value="${param.msgEchecModifItineraire}" /></span>
 			<table class="table table-striped">
 				<thead>
 					<tr>
