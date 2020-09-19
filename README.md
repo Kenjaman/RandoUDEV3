@@ -2,7 +2,6 @@
 Projet groupe 1 UDEV3
 Participants :
 - Kénan
-- Julien
 - Patrick
 
 Partie Administration :
