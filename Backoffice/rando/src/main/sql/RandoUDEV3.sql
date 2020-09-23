@@ -55,8 +55,9 @@ INSERT INTO `itineraire` (`id`, `nom`, `niveau`) VALUES (NULL, 'Le premier chemi
 (NULL, 'Le deuxieme chemin', 'Normal');
 
 INSERT INTO `utilisateur` (`id`, `pseudo`, `mdp`, `role`) VALUES (NULL, 'pattho', 'ZeroM$Pe', 'admin'),
-(NULL, 'damien', 'CrEpEsP6','admin');
+(NULL, 'kenan', 'CrEpEsP6','admin');
 
 INSERT INTO `etape` (`id`, `nom`, `description`, `nb_like`) VALUES 
+(NULL, 'La Premiere etape', 'C\'est cool', '0'), 
 (NULL, 'La deuxieme etape', 'C\'est encore mieux', '0'), 
 (NULL, 'La troisieme ', 'C\'est splendide', '0');
