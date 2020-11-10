@@ -130,15 +130,8 @@ public class EtapeControleur {
 			System.out.println("ya une erreur sur " + id);
 			return "modifierEtape";
 		} else {
-			try {
-				etapeService.modifier(id, etapeDto);
-				return "redirect:/etape/detail/" + id;
-			} catch (EtapeExisteDejaException e) {
-				model.addAttribute("erreurs", e.getMessage());
-				e.printStackTrace();
-				return modifierEtape(model,id, etapeDto);
-			}
-			
+			etapeService.modifier(id, etapeDto);
+			return "redirect:/etape/detail/" + id;
 		}
 	}
 

@@ -32,7 +32,6 @@ import com.rando.service.ItineraireService;
 /**
  * @author kenan.roux
  *
- *Controleur 
  */
 @Controller
 public class ItineraireControleur {
@@ -45,9 +44,9 @@ public class ItineraireControleur {
 	// Consultation
 
 	/**
-	 * Méthode d'appel de la vue pour afficher la liste de tous les itinéraires
 	 * @param model
-	 * @return vue "itineraires"
+	 * @return
+	 * Méthode pour afficher la liste de tous les itinéraires
 	 */
 	@GetMapping("/itineraires")
 	public String getListeItineraires(Model model, HttpSession session, HttpServletRequest request) {
@@ -68,12 +67,11 @@ public class ItineraireControleur {
 	}
 
 	/**
-	 * Méthode d'appel de la vue pour afficher les détails d'un itinéraire
 	 * @param model
 	 * @param itineraireId
 	 * @param etapeItineraireDto
-	 * @return vue "itineraire"
-	 * 
+	 * @return
+	 * Méthode pour afficher les détails d'un itinéraire
 	 */
 	@GetMapping("/itineraire/{itineraireId}")
 	public String getDetailItineraire(Model model, @PathVariable Integer itineraireId, @ModelAttribute EtapeItineraireDto etapeItineraireDto) {
@@ -85,10 +83,10 @@ public class ItineraireControleur {
 	// Creation
 
 	/**
-	 * Méthode d'appel de la vue du formulaire de création d'itinéraire
 	 * @param model
 	 * @param itineraireDto
-	 * @return vue formulaire "ajoutItineraire"
+	 * @return
+	 * Méthode pour afficher le formulaire de création d'un itinéraire 
 	 */
 	@GetMapping("/ajoutItineraire")
 	public String ajouterItineraire(Model model, @ModelAttribute ItineraireDto itineraireDto) {
@@ -106,12 +104,12 @@ public class ItineraireControleur {
 	}
 
 	/**
-	 * Méthode qui permet de valider les données du formulaire de création d'un itinéraire
 	 * @param model
 	 * @param itineraireDto
 	 * @param bindingResult
 	 * @throws AfficheMessageException
 	 * @return 
+	 * Méthode qui permet de valider la création d'un itinéraire
 	 */
 	@PostMapping("/ajoutItineraire")
 	public String ajouterItineraire(Model model, @Valid @ModelAttribute ItineraireDto itineraireDto,

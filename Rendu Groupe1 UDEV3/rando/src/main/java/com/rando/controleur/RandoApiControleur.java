@@ -17,12 +17,6 @@ import com.rando.service.EtapeService;
 import com.rando.service.ItineraireService;
 import com.rando.service.UtilisateurService;
 
-
-/**
- * @author kenan.roux, patrick-olivier.alpha
- *
- * Partie API d'application.
- */
 @RestController
 @RequestMapping("/api")
 public class RandoApiControleur {
@@ -32,48 +26,13 @@ public class RandoApiControleur {
 	private ItineraireService itineraireService;
 	@Autowired
 	private EtapeService etapeService;
-	
-    /**
-     * Liker l'etape
-     * @param etapeDto
-     * @return Le nouveau nombre de like mis a jour
-     */
-	@PutMapping(path="/etape/like", consumes = "application/json", produces= "text/plain")
-	@ResponseBody
-	public String actionEtape(@RequestBody(required = true) EtapeDto etapeJson) {
-		EtapeDto nEtapeDto = etapeService.likeEtape(etapeJson);
-		return String.valueOf(nEtapeDto.getNbLike());
-	}
 
-	/**
-	 * Disliker l'etape
-	 * @param etapeDto
-	 * @return Le nouveau nombre de like mis a jour
-	 */
-	@PutMapping(path="/etape/dislike", consumes = "application/json", produces= "text/plain")
-	@ResponseBody
-	public String actionEtape2(@RequestBody(required = true) EtapeDto etapeDto) {
-		System.out.println("dislike ="+etapeDto.getNom());
-		EtapeDto nEtapeDto = etapeService.dislikeEtape(etapeDto);
-		return String.valueOf(nEtapeDto.getNbLike());
-	}
-	
-    /**
-     * Récupéré la représentation JSON de l'étape spécifié par idEtape
-     * @param idEtape
-     * @return Représentation JSON de l'étape
-     */
-    @GetMapping(path="/etapes/{idEtape}", produces= "application/json")
-    public Etape getEtape(@PathVariable(name = "idEtape") Integer idEtape) {
-    	Etape etape = etapeService.getEtape(idEtape);
-        return etape;
+    @GetMapping(path="/utilisateurs", produces= "application/json")
+    public List<Utilisateur> getAllUsers() {
+    	List<Utilisateur> users = utilisateurService.getAllUsers();
+        return users;
     }
-	
-    /**
-     * Récupéré la représentation JSON de la liste de tous les itineraires 
-     * @param idEtape
-     * @return Représentation JSON de l'étape
-     */
+    
     @GetMapping(path="/itineraires", produces= "application/json")
     public List<Itineraire> getItineraires() {
     	List<Itineraire> itineraires = itineraireService.getItineraires();
@@ -85,18 +44,39 @@ public class RandoApiControleur {
     	List<Etape> etapes = etapeService.getAllEtapes();
         return etapes;
     }
-
-    @GetMapping(path="/utilisateurs", produces= "application/json")
-    public List<Utilisateur> getAllUsers() {
-    	List<Utilisateur> users = utilisateurService.getAllUsers();
-        return users;
+    
+    @GetMapping(path="/etapes/{idEtape}", produces= "application/json")
+    public Etape getEtape(@PathVariable(name = "idEtape") Integer idEtape) {
+    	Etape etape = etapeService.getEtape(idEtape);
+        return etape;
     }
+   
     
+    /**
+     * Liker l'etape
+     * @param etapeDto
+     * @return nbLike 
+     */
+	@PutMapping(path="/etape/like", consumes = "application/json", produces= "text/plain")
+	@ResponseBody
+	public String actionEtape(@RequestBody(required = true) EtapeDto etapeJson) {
+		EtapeDto nEtapeDto = etapeService.likeEtape(etapeJson);
+		return String.valueOf(nEtapeDto.getNbLike());
+	}
 
-    
-
-    
-
+	/**
+	 * Disliker l'etape
+	 * @param etapeDto
+	 * @return
+	 */
+	@PutMapping(path="/etape/dislike", consumes = "application/json", produces= "text/plain")
+	@ResponseBody
+	public String actionEtape2(@RequestBody(required = true) EtapeDto etapeDto) {
+		System.out.println("dislike ="+etapeDto.getNom());
+		EtapeDto nEtapeDto = etapeService.dislikeEtape(etapeDto);
+		return String.valueOf(nEtapeDto.getNbLike());
+	}
+	
 
 
 }

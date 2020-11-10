@@ -74,10 +74,8 @@ public class ItineraireDto {
 	@Override
 	public String toString() {
 		String s = "ItineraireDto [id=" + id + ", niveau=" + niveau + ", nom=" + nom + ", etapes=";
-		for (int i = 0; i < etapes.size(); i++) {
-			Etape e = etapes.get(i);
-			s = s + e;
-		}
+		for(Etape e : etapes)
+			s = s + etapes;
 		s = s+"]";
 		return s;
 		
